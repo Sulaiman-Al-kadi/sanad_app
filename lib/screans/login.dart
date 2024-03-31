@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sanad_app/screans/forget_passwprd.dart';
 import 'package:sanad_app/screans/signup.dart';
+import 'package:sanad_app/screans/admin-ui/admin_home_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -106,7 +108,7 @@ class _LoginState extends State<Login> {
                 onPressed: () {
                   Navigator.of(context)
                       .push(MaterialPageRoute(builder: (context) {
-                    return const Signup();
+                    return MyHomePage();
                   }));
                 },
               ),
