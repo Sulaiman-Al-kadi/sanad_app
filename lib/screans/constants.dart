@@ -1,7 +1,17 @@
+import 'dart:ffi';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:sanad_app/main.dart';
 import 'package:sanad_app/screans/SettingsPage.dart';
 import 'package:sanad_app/screans/admin-ui/admin_home_page.dart';
 import 'package:sanad_app/screans/admin-ui/dashboard.dart';
+import 'package:sanad_app/screans/login.dart';
+import 'package:sanad_app/screans/user/user_homepage.dart';
+
+bool isAdmin = false;
+bool isUser = false;
+bool isMP = false;
 
 class Nbar extends StatefulWidget {
   const Nbar({super.key});
@@ -12,7 +22,7 @@ class Nbar extends StatefulWidget {
 
 class _NbarState extends State<Nbar> {
   @override
-  int _selectedIndex = 1;
+  static int _selectedIndex = 1;
 
   Widget build(BuildContext context) {
     return SafeArea(
@@ -50,10 +60,11 @@ class _NbarState extends State<Nbar> {
             selectedItemColor:
             Color.fromARGB(255, 61, 30, 199);
             // If "Settings" item is tapped
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) =>
-                  MyHomePage(), // Navigate to the settings page
-            ));
+            if (ModalRoute.of(context) == UserHomePage()) {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => Login(), // Navigate to the settings page
+              ));
+            }
           }
           if (_selectedIndex == 2) {
             selectedItemColor:
@@ -61,11 +72,12 @@ class _NbarState extends State<Nbar> {
             // // If "Settings" item is tapped
             Navigator.of(context).push(MaterialPageRoute(
               builder: (context) =>
-                  dashboard(), // Navigate to the settings page
+                  Dashboard(), // Navigate to the settings page
             ));
           }
         }),
       ),
+      
     );
   }
 }

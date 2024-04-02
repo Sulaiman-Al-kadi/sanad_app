@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:sanad_app/screans/constants.dart';
 
-class dashboard extends StatefulWidget {
-  const dashboard({super.key});
+class Dashboard extends StatefulWidget {
+  const Dashboard({super.key});
 
   @override
-  State<dashboard> createState() => _dashboardState();
+  State<Dashboard> createState() => _dashboardState();
 }
 
-class _dashboardState extends State<dashboard> {
+class _dashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

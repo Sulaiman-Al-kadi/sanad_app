@@ -13,13 +13,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -82,49 +84,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ]),
       bottomNavigationBar: Nbar(),
-      // bottomNavigationBar: BottomNavigationBar(
-      //   iconSize: 35,
-      //   items: const <BottomNavigationBarItem>[
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.settings),
-      //       label: 'Settings',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.home),
-      //       label: 'Home',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.history),
-      //       label: 'History',
-      //     ),
-      //   ],
-      //   currentIndex: _selectedIndex,
-      //   // selectedItemColor: Color.fromARGB(255, 61, 30, 199),
-      //   onTap: (index) => setState(() {
-      //     _selectedIndex = index;
-      //     if (_selectedIndex == 0) {
-      //       // If "Settings" item is tapped
-      //       Navigator.of(context).pushReplacement(MaterialPageRoute(
-      //         builder: (context) =>
-      //             SettingsPage(), // Navigate to the settings page
-      //       ));
-      //     }
-      //     if (_selectedIndex == 1) {
-      //       Navigator.of(context).pushReplacement(MaterialPageRoute(
-      //         builder: (context) =>
-      //             MyHomePage(), // Navigate to the settings page
-      //       ));
-      //     }
-      //     if (_selectedIndex == 2) {
-      //       Text("dfjsjd");
-      //       // If "Settings" item is tapped
-      //       Navigator.of(context).pushReplacement(MaterialPageRoute(
-      //           builder: (context) =>
-      //               dashboard() // Navigate to the settings page
-      //           ));
-      //     }
-      //   }),
-      // ),
       body: Container(
         width: MediaQuery.of(context).copyWith().size.width,
         child: ListView(shrinkWrap: true, children: [
@@ -317,6 +276,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ],
               )),
+
 
           ///////////////////////////////////////////////////////////////////////////////////
           // Container(
