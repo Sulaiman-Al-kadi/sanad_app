@@ -13,6 +13,9 @@ class Nbar extends StatefulWidget {
 class _NbarState extends State<Nbar> {
   @override
   int _selectedIndex = 1;
+  void state(index) {
+    _selectedIndex = index;
+  }
 
   Widget build(BuildContext context) {
     return SafeArea(
@@ -37,6 +40,7 @@ class _NbarState extends State<Nbar> {
         onTap: (index) => setState(() {
           _selectedIndex = index;
           if (_selectedIndex == 0) {
+            state(index);
             selectedItemColor:
             Color.fromARGB(255, 61, 30, 199);
 
@@ -47,6 +51,7 @@ class _NbarState extends State<Nbar> {
             ));
           }
           if (_selectedIndex == 1) {
+            state(index);
             selectedItemColor:
             Color.fromARGB(255, 61, 30, 199);
             // If "Settings" item is tapped
@@ -56,6 +61,7 @@ class _NbarState extends State<Nbar> {
             ));
           }
           if (_selectedIndex == 2) {
+            state(index);
             selectedItemColor:
             Color.fromARGB(255, 61, 30, 199);
             // // If "Settings" item is tapped
