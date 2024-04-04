@@ -134,10 +134,8 @@ class _LoginState extends State<Login> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) {
-                    return const Password();
-                  }));
+                      Navigator.of(context).pushNamed("/forget_ password");
+
                 },
                 child: const Text(
                   'نسيت كلمة المرور؟',
@@ -152,10 +150,8 @@ class _LoginState extends State<Login> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) {
-                    return const Signup();
-                  }));
+                      Navigator.of(context).pushNamed("/signup");
+
                 },
                 child: const Text(
                   'إنشاء حساب جديد',
