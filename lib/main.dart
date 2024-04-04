@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sanad_app/screans/admin-ui/admin_home_page.dart';
-import 'package:sanad_app/screans/admin-ui/manage_location.dart';
 import 'package:sanad_app/screans/login.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -29,7 +27,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: Login(),
     );
   }
 }
