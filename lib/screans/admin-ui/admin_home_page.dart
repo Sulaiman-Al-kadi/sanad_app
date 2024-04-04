@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sanad_app/screans/SettingsPage.dart';
 import 'package:sanad_app/screans/admin-ui/dashboard.dart';
+import 'package:sanad_app/screans/admin-ui/manage_location.dart';
+import 'package:sanad_app/screans/admin-ui/new_category_entity.dart';
 import 'package:sanad_app/screans/constants.dart';
 
 void main() {
@@ -153,7 +155,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                         child: GestureDetector(
                           onTapDown: (details) {
-                            return print("object");
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  CategoryAndEntity(), // Navigate to the settings page
+                            ));
                           },
                           child: Image.asset(
                             "images/eugen-str-CrhsIRY3JWY-unsplash.jpg",
@@ -197,7 +202,9 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                         child: GestureDetector(
                             onTapDown: (details) {
-                              return print("object");
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => ManageLocation(),
+                              ));
                             },
                             child: Image.asset(
                               "images/pexels-pixabay-159213.jpg",
