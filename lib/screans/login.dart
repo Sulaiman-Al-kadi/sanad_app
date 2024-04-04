@@ -12,6 +12,11 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final _auth = FirebaseAuth.instance;
+
+  late String email;
+  late String password;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +39,9 @@ class _LoginState extends State<Login> {
                 height: 70,
               ),
               TextField(
+                onChanged: (value) {
+                  email = value;
+                },
                 decoration: InputDecoration(
                   hintText: 'Email',
                   prefixIcon: Icon(Icons.email),
@@ -61,6 +69,9 @@ class _LoginState extends State<Login> {
                 height: 30,
               ),
               TextField(
+                onChanged: (value) {
+                  password = value;
+                },
                 decoration: InputDecoration(
                   hintText: 'password',
                   prefixIcon: Icon(Icons.password),
@@ -105,11 +116,20 @@ class _LoginState extends State<Login> {
                   borderRadius: BorderRadius.circular(50),
                   borderSide: BorderSide.none,
                 ),
-                onPressed: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) {
-                    return MyHomePage();
-                  }));
+                onPressed: () async {
+                  final user = await _auth.signInWithEmailAndPassword(
+                      email: email, password: password);
+
+                  try {
+                    if (user != null) {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) {
+                        return MyHomePage();
+                      }));
+                    }
+                  } catch (e) {
+                    print(e);
+                  }
                 },
               ),
               const SizedBox(
