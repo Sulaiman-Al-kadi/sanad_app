@@ -14,7 +14,7 @@ class _dashboardState extends State<Dashboard> {
     return Scaffold(
       appBar:
           AppBar(title: const Text("Dashboard"), backgroundColor: Colors.blue),
-      bottomNavigationBar: Nbar(),
+      bottomNavigationBar: const Nbar(),
     );
   }
 }

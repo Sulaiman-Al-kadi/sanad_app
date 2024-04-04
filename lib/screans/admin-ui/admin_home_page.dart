@@ -1,23 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sanad_app/screans/SettingsPage.dart';
-import 'package:sanad_app/screans/admin-ui/dashboard.dart';
 import 'package:sanad_app/screans/constants.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: MyHomePage(),
-    );
-  }
-}
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -28,17 +11,15 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
-  int _selectedIndex = 0;
-
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffF8F9FC),
+      backgroundColor: const Color(0xffF8F9FC),
       appBar: AppBar(
           shadowColor: Colors.grey,
           toolbarHeight: 90,
-          backgroundColor: Color(0xffFDFDFD),
+          backgroundColor: const Color(0xffFDFDFD),
           leading: Transform.translate(
-              offset: Offset(15, 0),
+              offset: const Offset(15, 0),
               child: GestureDetector(
                 onTap: () {
                   return print("object");
@@ -58,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Text(
                   'Welcome,',
                   style: GoogleFonts.nunitoSans(
-                    color: Color.fromARGB(255, 85, 85, 85),
+                    color: const Color.fromARGB(255, 85, 85, 85),
                     fontSize: 13,
                     fontWeight: FontWeight.w800,
                   ),
@@ -77,19 +58,19 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           actions: [
             IconButton(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               onPressed: () {},
-              icon: Icon(Icons.notifications_none),
+              icon: const Icon(Icons.notifications_none),
               iconSize: 37,
             ),
           ]),
-      bottomNavigationBar: Nbar(),
-      body: Container(
+      bottomNavigationBar: const Nbar(),
+      body: SizedBox(
         width: MediaQuery.of(context).copyWith().size.width,
         child: ListView(shrinkWrap: true, children: [
           Container(
             decoration: BoxDecoration(
-              image: DecorationImage(
+              image: const DecorationImage(
                   image: AssetImage(
                       "images/Screenshot_20240312_003406_WhatsApp.jpg"),
                   fit: BoxFit.fill),
@@ -98,27 +79,27 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             height: 200,
             width: double.maxFinite,
-            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           ),
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Container(
-                margin: EdgeInsets.all(10),
+                margin: const EdgeInsets.all(10),
                 child: TextButton(
                     onPressed: () {},
                     child: Text(
                       "تصفح الجميع",
                       style: GoogleFonts.nunitoSans(
-                        color: Color.fromARGB(255, 130, 6, 207),
+                        color: const Color.fromARGB(255, 130, 6, 207),
                         fontSize: 15,
                         fontWeight: FontWeight.w900,
                       ),
                     ))),
             Container(
-              margin: EdgeInsets.only(right: 25),
+              margin: const EdgeInsets.only(right: 25),
               child: Text(
                 "الخدمات",
                 style: GoogleFonts.nunitoSans(
-                  color: Color.fromARGB(255, 0, 0, 0),
+                  color: const Color.fromARGB(255, 0, 0, 0),
                   fontSize: 20,
                   fontWeight: FontWeight.w900,
                 ),
@@ -126,9 +107,9 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ]),
           Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              padding: EdgeInsets.all(5),
-              decoration: BoxDecoration(boxShadow: [
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.all(5),
+              decoration: const BoxDecoration(boxShadow: [
                 BoxShadow(
                   color: Color(0xffF8F9FC),
                 )
@@ -147,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Stack(
                     children: [
                       Container(
-                        margin: EdgeInsets.only(right: 10),
+                        margin: const EdgeInsets.only(right: 10),
                         clipBehavior: Clip.antiAlias,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(
@@ -166,32 +147,34 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                       Positioned(
+                        left: 40,
+                        top: 110,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Text("إدارة التصنيفات",
                                 style: GoogleFonts.nunitoSans(
-                                  color: Color.fromARGB(255, 255, 255, 255),
+                                  color:
+                                      const Color.fromARGB(255, 255, 255, 255),
                                   fontSize: 25,
                                   fontWeight: FontWeight.w800,
                                 )),
                             Text("اضافة/حذف او تعديل تصنيفات موجودة",
                                 style: GoogleFonts.nunitoSans(
-                                  color: Color.fromARGB(255, 211, 210, 210),
+                                  color:
+                                      const Color.fromARGB(255, 211, 210, 210),
                                   fontSize: 14,
                                   fontWeight: FontWeight.w800,
                                 )),
                           ],
                         ),
-                        left: 40,
-                        top: 110,
                       )
                     ],
                   ),
                   Stack(
                     children: [
                       Container(
-                        margin: EdgeInsets.only(right: 10),
+                        margin: const EdgeInsets.only(right: 10),
                         clipBehavior: Clip.antiAlias,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(
@@ -209,32 +192,34 @@ class _MyHomePageState extends State<MyHomePage> {
                             )),
                       ),
                       Positioned(
+                        left: 55,
+                        top: 110,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text("إدارة المواقع",
                                 style: GoogleFonts.nunitoSans(
-                                  color: Color.fromARGB(255, 255, 255, 255),
+                                  color:
+                                      const Color.fromARGB(255, 255, 255, 255),
                                   fontSize: 25,
                                   fontWeight: FontWeight.w800,
                                 )),
                             Text("اضافة/حذف او تعديل غرف موجودة",
                                 style: GoogleFonts.nunitoSans(
-                                  color: Color.fromARGB(255, 211, 210, 210),
+                                  color:
+                                      const Color.fromARGB(255, 211, 210, 210),
                                   fontSize: 14,
                                   fontWeight: FontWeight.w800,
                                 )),
                           ],
                         ),
-                        left: 55,
-                        top: 110,
                       )
                     ],
                   ),
                   Stack(
                     children: [
                       Container(
-                        margin: EdgeInsets.only(right: 10),
+                        margin: const EdgeInsets.only(right: 10),
                         clipBehavior: Clip.antiAlias,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(
@@ -252,31 +237,32 @@ class _MyHomePageState extends State<MyHomePage> {
                             )),
                       ),
                       Positioned(
+                        left: 55,
+                        top: 110,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text("إدارة المواقع",
                                 style: GoogleFonts.nunitoSans(
-                                  color: Color.fromARGB(255, 255, 255, 255),
+                                  color:
+                                      const Color.fromARGB(255, 255, 255, 255),
                                   fontSize: 25,
                                   fontWeight: FontWeight.w800,
                                 )),
                             Text("اضافة/حذف او تعديل غرف موجودة",
                                 style: GoogleFonts.nunitoSans(
-                                  color: Color.fromARGB(255, 211, 210, 210),
+                                  color:
+                                      const Color.fromARGB(255, 211, 210, 210),
                                   fontSize: 14,
                                   fontWeight: FontWeight.w800,
                                 )),
                           ],
                         ),
-                        left: 55,
-                        top: 110,
                       )
                     ],
                   ),
                 ],
               )),
-
 
           ///////////////////////////////////////////////////////////////////////////////////
           // Container(
