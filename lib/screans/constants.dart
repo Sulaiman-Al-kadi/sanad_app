@@ -221,35 +221,35 @@ class _NbarState extends State<Nbar> {
             _selectedIndex = index;
             if (_selectedIndex == 0) {
               if (isAdmin) {
-                Navigator.of(context).popAndPushNamed("/admin_settings");
+                Navigator.of(context).pushNamed("/admin_settings");
               }
               if (isUser) {
-                Navigator.of(context).pushReplacementNamed("/user_settings");
+                Navigator.of(context).pushNamed("/user_settings");
               }
               if (isMP) {
-                Navigator.of(context).popAndPushNamed("/mp_settings");
+                Navigator.of(context).pushNamed("/mp_settings");
               }
             }
             if (_selectedIndex == 1) {
               if (isAdmin) {
-                Navigator.of(context).popAndPushNamed("/admin_homepage");
+                Navigator.of(context).pushNamed("/admin_homepage");
               }
               if (isUser) {
-                Navigator.of(context).popAndPushNamed("/user_homepage");
+                Navigator.of(context).pushNamed("/user_homepage");
               }
               if (isMP) {
-                Navigator.of(context).popAndPushNamed("/mp_homepage");
+                Navigator.of(context).pushNamed("/mp_homepage");
               }
             }
             if (_selectedIndex == 2) {
               if (isAdmin) {
-                Navigator.of(context).popAndPushNamed("/admin_dashboard");
+                Navigator.of(context).pushNamed("/admin_dashboard");
               }
               if (isUser) {
-                Navigator.of(context).popAndPushNamed("/user_dashboard");
+                Navigator.of(context).pushNamed("/user_dashboard");
               }
               if (isMP) {
-                Navigator.of(context).popAndPushNamed("/mp_dashboard");
+                Navigator.of(context).pushNamed("/mp_dashboard");
               }
             }
           });
