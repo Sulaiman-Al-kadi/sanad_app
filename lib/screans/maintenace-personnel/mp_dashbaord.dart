@@ -12,7 +12,7 @@ class _MPDashboardState extends State<MPDashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("فني الصيانة")),
+      appBar: AppBar(title: Text(" DASHBAORD فني الصيانة")),
       bottomNavigationBar: Nbar(),
     );
   }

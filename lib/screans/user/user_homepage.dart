@@ -12,8 +12,6 @@ class UserHomePage extends StatefulWidget {
 
 class _UserHomePageState extends State<UserHomePage> {
   @override
-  final int _selectedIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
