@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sanad_app/screans/SettingsPage.dart';
+import 'package:sanad_app/screans/admin-ui/dashboard.dart';
+import 'package:sanad_app/screans/admin-ui/manage_location.dart';
+import 'package:sanad_app/screans/admin-ui/new_category_entity.dart';
 import 'package:sanad_app/screans/constants.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -64,8 +68,9 @@ class _MyHomePageState extends State<MyHomePage> {
               iconSize: 37,
             ),
           ]),
-      bottomNavigationBar: const Nbar(),
-      body: SizedBox(
+
+      bottomNavigationBar: Nbar(),
+      body: Container(
         width: MediaQuery.of(context).copyWith().size.width,
         child: ListView(shrinkWrap: true, children: [
           Container(
@@ -279,60 +284,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               )),
 
-          ///////////////////////////////////////////////////////////////////////////////////
-          // Container(
-          //   height: 20,
-          // ),
-          // Padding(
-          //   padding: const EdgeInsets.symmetric(horizontal: 20),
-          //   child: Text(
-          //     "الطلبات الاخيرة",
-          //     style: GoogleFonts.nunitoSans(
-          //       color: Color.fromARGB(255, 0, 0, 0),
-          //       fontSize: 18,
-          //       fontWeight: FontWeight.w900,
-          //     ),
-          //   ),
-          // ),
-          //   Container(
-          //     height: 15,
-          //   ),
-          //   Padding(
-          //     padding: const EdgeInsets.all(10),
-          //     child: Row(
-          //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //       children: [
-          //         Container(
-          //           width: 115,
-          //           height: 115,
-          //           decoration: BoxDecoration(
-          //               color: Colors.blue,
-          //               borderRadius: BorderRadius.circular(
-          //                   15) // Adjust the radius as needed
-          //               ),
-          //         ),
-          //         Container(
-          //           width: 115,
-          //           height: 115,
-          //           decoration: BoxDecoration(
-          //               color: Colors.blue,
-          //               borderRadius: BorderRadius.circular(
-          //                   15) // Adjust the radius as needed
-          //               ),
-          //         ),
-          //         Container(
-          //           width: 115,
-          //           height: 115,
-          //           decoration: BoxDecoration(
-          //               color: Colors.blue,
-          //               borderRadius: BorderRadius.circular(
-          //                   15) // Adjust the radius as needed
-          //               ),
-          //         )
-          //       ],
-          //     ),
-          //   ),
-          ////////////////////////////////////////////////////////////////////////////////
         ]),
       ),
     );
