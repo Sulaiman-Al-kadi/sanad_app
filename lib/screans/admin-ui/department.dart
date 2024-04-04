@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sanad_app/screans/admin-ui/create_department.dart';
 import 'package:sanad_app/screans/admin-ui/edit_department.dart';
-
 class Department extends StatelessWidget {
   const Department({super.key});
 
