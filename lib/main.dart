@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // home: Login(),
-      initialRoute: "/user_homepage",
+      initialRoute: "/mp_homepage",
       routes: routes,
     );
   }

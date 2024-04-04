@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sanad_app/screans/constants.dart';
 
@@ -66,7 +67,7 @@ class _UserHomePageState extends State<UserHomePage> {
             ),
           ]),
       bottomNavigationBar: const Nbar(),
-      body: SizedBox(
+      body: Container(
         width: MediaQuery.of(context).copyWith().size.width,
         child: ListView(shrinkWrap: true, children: [
           Container(
@@ -120,137 +121,105 @@ class _UserHomePageState extends State<UserHomePage> {
                   // Text("page view1 "),
                   // Text("page view2 "),
 
-                  Stack(
-                    alignment: Alignment.center,
-                    textDirection: TextDirection.rtl,
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(right: 10),
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.8),
-                            backgroundBlendMode: BlendMode.darken,
-                            borderRadius: BorderRadius.circular(
-                                15) // Adjust the radius as needed
+                  GestureDetector(
+                    onTapDown: (details) {
+                      Navigator.of(context).popAndPushNamed("/user_settings");
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(right: 10),
+                      child: Stack(
+                        alignment: AlignmentDirectional.center,
+                        textDirection: TextDirection.rtl,
+                        children: <Widget>[
+                          Container(
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(
+                                    15) // Adjust the radius as needed
+                                ),
+                            child: Image.asset(
+                              "images/eugen-str-CrhsIRY3JWY-unsplash.jpg",
+                              height: double.maxFinite,
+                              width: double.maxFinite,
+                              fit: BoxFit.fill,
                             ),
-                        child: GestureDetector(
-                          onTapDown: (details) {
-                            print("Object");
-                          },
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text("طلب جديد",
+                                  style: GoogleFonts.nunitoSans(
+                                    color: const Color.fromARGB(
+                                        255, 255, 255, 255),
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.w800,
+                                  )),
+                              Text("قم برفع بلاغ جديد ",
+                                  style: GoogleFonts.nunitoSans(
+                                    color: const Color.fromARGB(
+                                        255, 211, 210, 210),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w800,
+                                  )),
+                              Container(
+                                height: 15,
+                                width: 30,
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTapDown: (details) {
+                      Navigator.of(context).popAndPushNamed("/user_homepage");
+                    },
+                    child: Stack(
+                      alignment: AlignmentDirectional.center,
+                      textDirection: TextDirection.rtl,
+                      children: <Widget>[
+                        Container(
+                          clipBehavior: Clip.antiAlias,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(
+                                  15) // Adjust the radius as needed
+                              ),
                           child: Image.asset(
-                            "images/eugen-str-CrhsIRY3JWY-unsplash.jpg",
+                            "images/pexels-pixabay-159213.jpg",
                             height: double.maxFinite,
                             width: double.maxFinite,
                             fit: BoxFit.fill,
                           ),
                         ),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text("تقديم طلب",
-                              style: GoogleFonts.nunitoSans(
-                                color: const Color.fromARGB(255, 255, 255, 255),
-                                fontSize: 30,
-                                fontWeight: FontWeight.w800,
-                              )),
-                          Text("أرفع طلب صيانه جديد",
-                              style: GoogleFonts.nunitoSans(
-                                color: const Color.fromARGB(255, 211, 210, 210),
-                                fontSize: 20,
-                                fontWeight: FontWeight.w800,
-                              )),
-                          Container(
-                            height: 15,
-                            width: 30,
-                          ),
-                        ],
-                      ),
-                    ],
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text("حالة الطلب",
+                                style: GoogleFonts.nunitoSans(
+                                  color:
+                                      const Color.fromARGB(255, 255, 255, 255),
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w800,
+                                )),
+                            Text("الاستعلام عن حالة الطلب",
+                                style: GoogleFonts.nunitoSans(
+                                  color:
+                                      const Color.fromARGB(255, 211, 210, 210),
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w800,
+                                )),
+                            Container(
+                              height: 15,
+                              width: 30,
+                            )
+                          ],
+                        )
+                      ],
+                    ),
                   ),
-                  Stack(
-                    alignment: AlignmentDirectional.center,
-                    textDirection: TextDirection.rtl,
-                    children: <Widget>[
-                      Container(
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                                15) // Adjust the radius as needed
-                            ),
-                        child: GestureDetector(
-                            onTapDown: (details) {
-                              return print("object");
-                            },
-                            child: Image.asset(
-                              "images/pexels-pixabay-159213.jpg",
-                              height: double.maxFinite,
-                              width: double.maxFinite,
-                              fit: BoxFit.fill,
-                            )),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text("حالة الطلب",
-                              style: GoogleFonts.nunitoSans(
-                                color: const Color.fromARGB(255, 255, 255, 255),
-                                fontSize: 30,
-                                fontWeight: FontWeight.w800,
-                              )),
-                          Text("الاستعلام عن حالة الطلب",
-                              style: GoogleFonts.nunitoSans(
-                                color: const Color.fromARGB(255, 211, 210, 210),
-                                fontSize: 20,
-                                fontWeight: FontWeight.w800,
-                              )),
-                          Container(
-                            height: 15,
-                            width: 30,
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-
-                  // GestureDetector(
-                  //   onTap: () {},
-                  //   child: Stack(
-                  //     children: [
-                  //       Image.asset(
-                  //         "images/pexels-pixabay-159213.jpg",
-                  //         height: double.maxFinite,
-                  //         width: double.maxFinite,
-                  //         fit: BoxFit.fill,
-                  //       ),
-                  //       Container(
-                  //           child: Column(
-                  //             crossAxisAlignment: CrossAxisAlignment.end,
-                  //             mainAxisAlignment: MainAxisAlignment.end,
-                  //             children: [
-                  //               Text("حالة الطلب",
-                  //                   style: GoogleFonts.nunitoSans(
-                  //                     color: const Color.fromARGB(
-                  //                         255, 255, 255, 255),
-                  //                     fontSize: 30,
-                  //                     fontWeight: FontWeight.w800,
-                  //                   )),
-                  //               Text("الاستعلام عن حالة الطلب",
-                  //                   style: GoogleFonts.nunitoSans(
-                  //                     color: const Color.fromARGB(
-                  //                         255, 211, 210, 210),
-                  //                     fontSize: 20,
-                  //                     fontWeight: FontWeight.w800,
-                  //                   )),
-                  //             ],
-                  //           ),
-                  //           decoration: BoxDecoration(
-                  //               color: Colors.black.withOpacity(0.4))),
-                  //     ],
-                  //   ),
-                  // )
                 ],
               )),
         ]),

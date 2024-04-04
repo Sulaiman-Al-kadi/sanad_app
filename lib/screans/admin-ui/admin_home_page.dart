@@ -125,141 +125,156 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   // Text("page view1 "),
                   // Text("page view2 "),
-                  Stack(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(right: 10),
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                                15) // Adjust the radius as needed
+
+                  GestureDetector(
+                    onTapDown: (details) {
+                      Navigator.of(context).popAndPushNamed("/");
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(right: 10),
+                      child: Stack(
+                        alignment: AlignmentDirectional.center,
+                        textDirection: TextDirection.rtl,
+                        children: <Widget>[
+                          Container(
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(
+                                    15) // Adjust the radius as needed
+                                ),
+                            child: Image.asset(
+                              "images/eugen-str-CrhsIRY3JWY-unsplash.jpg",
+                              height: double.maxFinite,
+                              width: double.maxFinite,
+                              fit: BoxFit.fill,
                             ),
-                        child: GestureDetector(
-                          onTapDown: (details) {
-                            return print("object");
-                          },
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text("إدارة التصنيفات",
+                                  style: GoogleFonts.nunitoSans(
+                                    color: const Color.fromARGB(
+                                        255, 255, 255, 255),
+                                    fontSize: 27,
+                                    fontWeight: FontWeight.w800,
+                                  )),
+                              Text("اضافة/حذف او تعديل التصنيفات",
+                                  style: GoogleFonts.nunitoSans(
+                                    color: const Color.fromARGB(
+                                        255, 211, 210, 210),
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w800,
+                                  )),
+                              Container(
+                                height: 15,
+                                width: 30,
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTapDown: (details) {
+                      Navigator.of(context).popAndPushNamed("/");
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(right: 10),
+                      child: Stack(
+                        alignment: AlignmentDirectional.center,
+                        textDirection: TextDirection.rtl,
+                        children: <Widget>[
+                          Container(
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(
+                                    15) // Adjust the radius as needed
+                                ),
+                            child: Image.asset(
+                              "images/pexels-pixabay-159213.jpg",
+                              height: double.maxFinite,
+                              width: double.maxFinite,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text("إدارة المواقع",
+                                  style: GoogleFonts.nunitoSans(
+                                    color: const Color.fromARGB(
+                                        255, 255, 255, 255),
+                                    fontSize: 27,
+                                    fontWeight: FontWeight.w800,
+                                  )),
+                              Text("اضافة/حذف او تعديل المواقع ",
+                                  style: GoogleFonts.nunitoSans(
+                                    color: const Color.fromARGB(
+                                        255, 211, 210, 210),
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w800,
+                                  )),
+                              Container(
+                                height: 15,
+                                width: 30,
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTapDown: (details) {
+                      Navigator.of(context).popAndPushNamed("/");
+                    },
+                    child: Stack(
+                      alignment: AlignmentDirectional.center,
+                      textDirection: TextDirection.rtl,
+                      children: <Widget>[
+                        Container(
+                          clipBehavior: Clip.antiAlias,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(
+                                  15) // Adjust the radius as needed
+                              ),
                           child: Image.asset(
-                            "images/eugen-str-CrhsIRY3JWY-unsplash.jpg",
+                            "images/harry-shelton-pPxhM0CRzl4-unsplash.jpg",
                             height: double.maxFinite,
                             width: double.maxFinite,
                             fit: BoxFit.fill,
                           ),
                         ),
-                      ),
-                      Positioned(
-                        left: 40,
-                        top: 110,
-                        child: Column(
+                        Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Text("إدارة التصنيفات",
+                            Text("إدارة الاقسام",
                                 style: GoogleFonts.nunitoSans(
                                   color:
                                       const Color.fromARGB(255, 255, 255, 255),
-                                  fontSize: 25,
+                                  fontSize: 27,
                                   fontWeight: FontWeight.w800,
                                 )),
-                            Text("اضافة/حذف او تعديل تصنيفات موجودة",
+                            Text("اضافة/حذف او تعديل الاقسام ",
                                 style: GoogleFonts.nunitoSans(
                                   color:
                                       const Color.fromARGB(255, 211, 210, 210),
-                                  fontSize: 14,
+                                  fontSize: 17,
                                   fontWeight: FontWeight.w800,
                                 )),
+                            Container(
+                              height: 15,
+                              width: 30,
+                            )
                           ],
-                        ),
-                      )
-                    ],
-                  ),
-                  Stack(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(right: 10),
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                                15) // Adjust the radius as needed
-                            ),
-                        child: GestureDetector(
-                            onTapDown: (details) {
-                              return print("object");
-                            },
-                            child: Image.asset(
-                              "images/pexels-pixabay-159213.jpg",
-                              height: double.maxFinite,
-                              width: double.maxFinite,
-                              fit: BoxFit.fill,
-                            )),
-                      ),
-                      Positioned(
-                        left: 55,
-                        top: 110,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text("إدارة المواقع",
-                                style: GoogleFonts.nunitoSans(
-                                  color:
-                                      const Color.fromARGB(255, 255, 255, 255),
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w800,
-                                )),
-                            Text("اضافة/حذف او تعديل غرف موجودة",
-                                style: GoogleFonts.nunitoSans(
-                                  color:
-                                      const Color.fromARGB(255, 211, 210, 210),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w800,
-                                )),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                  Stack(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(right: 10),
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                                15) // Adjust the radius as needed
-                            ),
-                        child: GestureDetector(
-                            onTapDown: (details) {
-                              return print("object");
-                            },
-                            child: Image.asset(
-                              "images/pexels-pixabay-159213.jpg",
-                              height: double.maxFinite,
-                              width: double.maxFinite,
-                              fit: BoxFit.fill,
-                            )),
-                      ),
-                      Positioned(
-                        left: 55,
-                        top: 110,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text("إدارة المواقع",
-                                style: GoogleFonts.nunitoSans(
-                                  color:
-                                      const Color.fromARGB(255, 255, 255, 255),
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w800,
-                                )),
-                            Text("اضافة/حذف او تعديل غرف موجودة",
-                                style: GoogleFonts.nunitoSans(
-                                  color:
-                                      const Color.fromARGB(255, 211, 210, 210),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w800,
-                                )),
-                          ],
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                 ],
               )),
