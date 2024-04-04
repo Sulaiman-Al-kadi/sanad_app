@@ -7,7 +7,7 @@ class MPSettigns extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("فني الصيانة")),
+      appBar: AppBar(title: Text("فني الصيانة اعدادت")),
       bottomNavigationBar: Nbar(),
     );
   }

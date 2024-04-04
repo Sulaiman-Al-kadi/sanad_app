@@ -9,7 +9,6 @@ class UserSettingsPage extends StatefulWidget {
 }
 
 class _SettingsPage extends State<UserSettingsPage> {
-  int selectedIndex = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

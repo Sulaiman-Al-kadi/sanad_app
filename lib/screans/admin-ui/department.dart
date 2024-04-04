@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 class Department extends StatelessWidget {
   const Department({super.key});
 

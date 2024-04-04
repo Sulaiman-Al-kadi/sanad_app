@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sanad_app/screans/SettingsPage.dart';
 import 'package:sanad_app/screans/admin-ui/dashboard.dart';
 import 'package:sanad_app/screans/admin-ui/manage_location.dart';
 import 'package:sanad_app/screans/admin-ui/new_category_entity.dart';
@@ -68,7 +67,6 @@ class _MyHomePageState extends State<MyHomePage> {
               iconSize: 37,
             ),
           ]),
-
       bottomNavigationBar: Nbar(),
       body: Container(
         width: MediaQuery.of(context).copyWith().size.width,
@@ -133,7 +131,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
                   GestureDetector(
                     onTapDown: (details) {
-                      Navigator.of(context).popAndPushNamed("/");
+                      Navigator.of(context)
+                          .pushNamed("/admin_category_enitity");
                     },
                     child: Container(
                       margin: EdgeInsets.only(right: 10),
@@ -184,7 +183,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   GestureDetector(
                     onTapDown: (details) {
-                      Navigator.of(context).popAndPushNamed("/");
+                      Navigator.of(context).pushNamed("/admin_location");
                     },
                     child: Container(
                       margin: EdgeInsets.only(right: 10),
@@ -235,55 +234,108 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   GestureDetector(
                     onTapDown: (details) {
-                      Navigator.of(context).popAndPushNamed("/");
+                      Navigator.of(context).pushNamed("/admin_homepage");
                     },
-                    child: Stack(
-                      alignment: AlignmentDirectional.center,
-                      textDirection: TextDirection.rtl,
-                      children: <Widget>[
-                        Container(
-                          clipBehavior: Clip.antiAlias,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(
-                                  15) // Adjust the radius as needed
-                              ),
-                          child: Image.asset(
-                            "images/harry-shelton-pPxhM0CRzl4-unsplash.jpg",
-                            height: double.maxFinite,
-                            width: double.maxFinite,
-                            fit: BoxFit.fill,
+                    child: Container(
+                      margin: EdgeInsets.only(right: 10),
+                      child: Stack(
+                        alignment: AlignmentDirectional.center,
+                        textDirection: TextDirection.rtl,
+                        children: <Widget>[
+                          Container(
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(
+                                    15) // Adjust the radius as needed
+                                ),
+                            child: Image.asset(
+                              "images/harry-shelton-pPxhM0CRzl4-unsplash.jpg",
+                              height: double.maxFinite,
+                              width: double.maxFinite,
+                              fit: BoxFit.fill,
+                            ),
                           ),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Text("إدارة الاقسام",
-                                style: GoogleFonts.nunitoSans(
-                                  color:
-                                      const Color.fromARGB(255, 255, 255, 255),
-                                  fontSize: 27,
-                                  fontWeight: FontWeight.w800,
-                                )),
-                            Text("اضافة/حذف او تعديل الاقسام ",
-                                style: GoogleFonts.nunitoSans(
-                                  color:
-                                      const Color.fromARGB(255, 211, 210, 210),
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w800,
-                                )),
-                            Container(
-                              height: 15,
-                              width: 30,
-                            )
-                          ],
-                        )
-                      ],
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text("إدارة الاقسام",
+                                  style: GoogleFonts.nunitoSans(
+                                    color: const Color.fromARGB(
+                                        255, 255, 255, 255),
+                                    fontSize: 27,
+                                    fontWeight: FontWeight.w800,
+                                  )),
+                              Text("اضافة/حذف او تعديل الاقسام ",
+                                  style: GoogleFonts.nunitoSans(
+                                    color: const Color.fromARGB(
+                                        255, 211, 210, 210),
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w800,
+                                  )),
+                              Container(
+                                height: 15,
+                                width: 30,
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTapDown: (details) {
+                      Navigator.of(context).pushNamed("/admin_homepage");
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(right: 10),
+                      child: Stack(
+                        alignment: AlignmentDirectional.center,
+                        textDirection: TextDirection.rtl,
+                        children: <Widget>[
+                          Container(
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(
+                                    15) // Adjust the radius as needed
+                                ),
+                            child: Image.asset(
+                              "images/isaac-smith-6EnTPvPPL6I-unsplash.jpg",
+                              height: double.maxFinite,
+                              width: double.maxFinite,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text("لوحة التحكم",
+                                  style: GoogleFonts.nunitoSans(
+                                    color: const Color.fromARGB(
+                                        255, 255, 255, 255),
+                                    fontSize: 27,
+                                    fontWeight: FontWeight.w800,
+                                  )),
+                              Text("إحصائيات تتعلق بالنظام",
+                                  style: GoogleFonts.nunitoSans(
+                                    color: const Color.fromARGB(
+                                        255, 211, 210, 210),
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w800,
+                                  )),
+                              Container(
+                                height: 15,
+                                width: 30,
+                              )
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ],
               )),
-
         ]),
       ),
     );

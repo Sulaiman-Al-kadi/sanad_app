@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sanad_app/screans/forget_passwprd.dart';
 import 'package:sanad_app/screans/signup.dart';
@@ -121,10 +122,7 @@ class _LoginState extends State<Login> {
 
                   try {
                     if (user != null) {
-                      Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (context) {
-                        return MyHomePage();
-                      }));
+                      Navigator.of(context).pushNamed("/admin_homepage");
                     }
                   } catch (e) {
                     print(e);
@@ -136,10 +134,8 @@ class _LoginState extends State<Login> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) {
-                    return const Password();
-                  }));
+                      Navigator.of(context).pushNamed("/forget_ password");
+
                 },
                 child: const Text(
                   'نسيت كلمة المرور؟',
@@ -154,10 +150,8 @@ class _LoginState extends State<Login> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) {
-                    return const Signup();
-                  }));
+                      Navigator.of(context).pushNamed("/signup");
+
                 },
                 child: const Text(
                   'إنشاء حساب جديد',

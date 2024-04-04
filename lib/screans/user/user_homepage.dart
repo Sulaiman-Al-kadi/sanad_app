@@ -12,8 +12,6 @@ class UserHomePage extends StatefulWidget {
 
 class _UserHomePageState extends State<UserHomePage> {
   @override
-  final int _selectedIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +70,6 @@ class _UserHomePageState extends State<UserHomePage> {
         child: ListView(shrinkWrap: true, children: [
           Container(
             decoration: BoxDecoration(
-
               image: DecorationImage(
                   image: AssetImage(
                       "images/Screenshot_20240312_003406_WhatsApp.jpg"),
@@ -97,14 +94,12 @@ class _UserHomePageState extends State<UserHomePage> {
                 style: GoogleFonts.nunitoSans(
                   color: const Color.fromARGB(255, 0, 0, 0),
                   fontSize: 15,
-
                   fontWeight: FontWeight.w900,
                 ),
               ),
             ),
           ]),
           Container(
-
               margin: EdgeInsets.symmetric(horizontal: 20),
               padding: EdgeInsets.all(5),
               decoration: BoxDecoration(boxShadow: [
@@ -126,7 +121,7 @@ class _UserHomePageState extends State<UserHomePage> {
 
                   GestureDetector(
                     onTapDown: (details) {
-                      Navigator.of(context).popAndPushNamed("/user_settings");
+                      Navigator.of(context).pushNamed("/user_settings");
                     },
                     child: Container(
                       margin: EdgeInsets.only(right: 10),
@@ -191,7 +186,6 @@ class _UserHomePageState extends State<UserHomePage> {
                               ),
                           child: Image.asset(
                             "images/pexels-pixabay-159213.jpg",
-
                             height: double.maxFinite,
                             width: double.maxFinite,
                             fit: BoxFit.fill,
@@ -231,22 +225,3 @@ class _UserHomePageState extends State<UserHomePage> {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
