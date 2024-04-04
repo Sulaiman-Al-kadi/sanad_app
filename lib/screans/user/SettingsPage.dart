@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:sanad_app/screans/constants.dart';
 
-class SettingsPage extends StatefulWidget {
-  const SettingsPage({super.key});
+class UserSettingsPage extends StatefulWidget {
+  const UserSettingsPage({super.key});
 
   @override
-  State<SettingsPage> createState() => _SettingsPage();
+  State<UserSettingsPage> createState() => _SettingsPage();
 }
 
-class _SettingsPage extends State<SettingsPage> {
+class _SettingsPage extends State<UserSettingsPage> {
   int selectedIndex = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text("SettingsPage"), backgroundColor: Colors.blue),
-      bottomNavigationBar: Nbar(),
+          title: const Text("UserSettingsPage"), backgroundColor: Colors.blue),
+      bottomNavigationBar: const Nbar(),
 
       // bottomNavigationBar: FlashyTabBar(
       //   selectedIndex: selectedIndex,

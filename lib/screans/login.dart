@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sanad_app/screans/forget_passwprd.dart';
 import 'package:sanad_app/screans/signup.dart';
 import 'package:sanad_app/screans/admin-ui/admin_home_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -44,7 +43,7 @@ class _LoginState extends State<Login> {
                 },
                 decoration: InputDecoration(
                   hintText: 'Email',
-                  prefixIcon: Icon(Icons.email),
+                  prefixIcon: const Icon(Icons.email),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(200),
                       borderSide: const BorderSide(
@@ -74,7 +73,7 @@ class _LoginState extends State<Login> {
                 },
                 decoration: InputDecoration(
                   hintText: 'password',
-                  prefixIcon: Icon(Icons.password),
+                  prefixIcon: const Icon(Icons.password),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(200),
                       borderSide: const BorderSide(
@@ -100,7 +99,7 @@ class _LoginState extends State<Login> {
               ),
               MaterialButton(
                 elevation: 5.0,
-                color: Color.fromARGB(255, 4, 131, 234),
+                color: const Color.fromARGB(255, 4, 131, 234),
                 padding:
                     const EdgeInsets.symmetric(vertical: 20, horizontal: 80),
                 // ignore: sort_child_properties_last
