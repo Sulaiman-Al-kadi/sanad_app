@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sanad_app/screans/forget_passwprd.dart';
 import 'package:sanad_app/screans/signup.dart';
@@ -121,10 +122,7 @@ class _LoginState extends State<Login> {
 
                   try {
                     if (user != null) {
-                      Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (context) {
-                        return MyHomePage();
-                      }));
+                      Navigator.of(context).pushNamed("/admin_homepage");
                     }
                   } catch (e) {
                     print(e);

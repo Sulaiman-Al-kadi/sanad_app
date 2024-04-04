@@ -254,7 +254,6 @@ class _NbarState extends State<Nbar> {
             }
           });
         },
-
       ),
     );
   }

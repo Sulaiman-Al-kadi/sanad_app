@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sanad_app/screans/SettingsPage.dart';
 import 'package:sanad_app/screans/admin-ui/dashboard.dart';
 import 'package:sanad_app/screans/admin-ui/manage_location.dart';
 import 'package:sanad_app/screans/admin-ui/new_category_entity.dart';
@@ -68,7 +67,6 @@ class _MyHomePageState extends State<MyHomePage> {
               iconSize: 37,
             ),
           ]),
-
       bottomNavigationBar: Nbar(),
       body: Container(
         width: MediaQuery.of(context).copyWith().size.width,
@@ -133,7 +131,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
                   GestureDetector(
                     onTapDown: (details) {
-                      Navigator.of(context).popAndPushNamed("/");
+                      Navigator.of(context)
+                          .pushNamed("/admin_category_enitity");
                     },
                     child: Container(
                       margin: EdgeInsets.only(right: 10),
@@ -184,7 +183,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   GestureDetector(
                     onTapDown: (details) {
-                      Navigator.of(context).popAndPushNamed("/");
+                      Navigator.of(context).pushNamed("/admin_location");
                     },
                     child: Container(
                       margin: EdgeInsets.only(right: 10),
@@ -235,7 +234,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   GestureDetector(
                     onTapDown: (details) {
-                      Navigator.of(context).popAndPushNamed("/");
+                      Navigator.of(context).pushNamed("/admin_homepage");
                     },
                     child: Container(
                       margin: EdgeInsets.only(right: 10),
@@ -286,7 +285,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   GestureDetector(
                     onTapDown: (details) {
-                      Navigator.of(context).popAndPushNamed("/");
+                      Navigator.of(context).pushNamed("/admin_homepage");
                     },
                     child: Container(
                       margin: EdgeInsets.only(right: 10),
@@ -337,7 +336,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ],
               )),
-
         ]),
       ),
     );

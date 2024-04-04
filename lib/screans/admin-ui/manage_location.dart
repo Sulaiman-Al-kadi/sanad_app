@@ -21,7 +21,9 @@ class ManageLocation extends StatelessWidget {
           ),
           MaterialButton(
             padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed("/add_location");
+            },
             color: Colors.blue,
             child: Text("اضافة موقع",
                 style: TextStyle(color: Colors.white, fontSize: 20)),
