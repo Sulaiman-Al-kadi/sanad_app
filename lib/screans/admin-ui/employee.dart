@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:sanad_app/screans/admin-ui/create_department.dart';
-import 'package:sanad_app/screans/admin-ui/edit_department.dart';
 
-class Department extends StatelessWidget {
-  const Department({super.key});
+class Employee extends StatelessWidget {
+  const Employee({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "الاقسام",
+          "الموظفين",
           textDirection: TextDirection.rtl,
         ),
       ),
@@ -23,10 +21,10 @@ class Department extends StatelessWidget {
           MaterialButton(
             padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
             onPressed: () {
-              Navigator.of(context).pushNamed("/craete_department");
+              Navigator.of(context).pushNamed("/add_employee");
             },
             color: Colors.blue,
-            child: Text("اضافة قسم",
+            child: Text("اضافة موظف",
                 style: TextStyle(color: Colors.white, fontSize: 20)),
             shape: OutlineInputBorder(
               borderRadius: BorderRadius.circular(50),
@@ -42,7 +40,7 @@ class Department extends StatelessWidget {
               Navigator.of(context).pushNamed("/edit_depatment");
             },
             color: Colors.blue,
-            child: Text("تعديل قسم",
+            child: Text("تعديل موظف",
                 style: TextStyle(color: Colors.white, fontSize: 20)),
             shape: OutlineInputBorder(
               borderRadius: BorderRadius.circular(50),
