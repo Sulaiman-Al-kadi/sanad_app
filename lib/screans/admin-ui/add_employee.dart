@@ -1,25 +1,21 @@
+import 'dart:ffi';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:sanad_app/screans/login.dart';
 
-class Signup extends StatefulWidget {
-  const Signup({super.key});
-
-  @override
-  State<Signup> createState() => _SignupState();
-}
-
-class _SignupState extends State<Signup> {
-  final _auth = FirebaseAuth.instance;
-
-  late String email;
-  late String password;
+class AddEmplyee extends StatelessWidget {
+  AddEmplyee({super.key});
+  String? firstName;
+  String? lastName;
+  String? phone;
+  String? email;
+  final _firestorer = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text("SettingsPage"), backgroundColor: Colors.blue),
+          title: const Text("اضافة موظف جديد"), backgroundColor: Colors.blue),
       body: Container(
         padding: const EdgeInsets.symmetric(
           horizontal: 20,
@@ -32,11 +28,11 @@ class _SignupState extends State<Signup> {
               const SizedBox(height: 50),
               TextField(
                 onChanged: (value) {
-                  email = value;
+                  firstName = value;
                 },
                 decoration: InputDecoration(
-                  hintText: 'البريد الالكتروني',
-                  prefixIcon: Icon(Icons.email),
+                  hintText: 'الأسم الأول',
+                  prefixIcon: Icon(Icons.label_important),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(200),
                       borderSide: const BorderSide(
@@ -62,11 +58,11 @@ class _SignupState extends State<Signup> {
               ),
               TextField(
                 onChanged: (value) {
-                  password = value;
+                  lastName = value;
                 },
                 decoration: InputDecoration(
-                  hintText: 'كلمة السر',
-                  prefixIcon: Icon(Icons.email),
+                  hintText: 'اسم العائلة',
+                  prefixIcon: Icon(Icons.label_important),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(200),
                       borderSide: const BorderSide(
@@ -91,10 +87,12 @@ class _SignupState extends State<Signup> {
                 height: 30,
               ),
               TextField(
-                onChanged: (value) {},
+                onChanged: (value) {
+                  phone = value;
+                },
                 decoration: InputDecoration(
-                  hintText: 'تأكيد كلمة السر',
-                  prefixIcon: Icon(Icons.password),
+                  hintText: 'رقم الهاتف',
+                  prefixIcon: Icon(Icons.label_important),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(200),
                       borderSide: const BorderSide(
@@ -116,7 +114,37 @@ class _SignupState extends State<Signup> {
                 ),
               ),
               const SizedBox(
-                height: 50,
+                height: 30,
+              ),
+              TextField(
+                onChanged: (value) {
+                  email = value;
+                },
+                decoration: InputDecoration(
+                  hintText: 'البريد الالكتروني',
+                  prefixIcon: Icon(Icons.label_important),
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(200),
+                      borderSide: const BorderSide(
+                        color: Colors.blue,
+                        width: 1.0,
+                      )),
+                  disabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(200),
+                      borderSide: const BorderSide(
+                        color: Colors.blue,
+                        width: 1.0,
+                      )),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(200),
+                      borderSide: const BorderSide(
+                        color: Colors.blue,
+                        width: 1.0,
+                      )),
+                ),
+              ),
+              const SizedBox(
+                height: 30,
               ),
               MaterialButton(
                 elevation: 5.0,
@@ -125,7 +153,7 @@ class _SignupState extends State<Signup> {
                     const EdgeInsets.symmetric(vertical: 20, horizontal: 80),
                 // ignore: sort_child_properties_last
                 child: const Text(
-                  'تسجيل حساب جديد',
+                  'اضافة موظف جديد',
                   style: TextStyle(
                     color: Color.fromARGB(255, 254, 254, 254),
                     fontSize: 20,
@@ -137,17 +165,13 @@ class _SignupState extends State<Signup> {
                   borderSide: BorderSide.none,
                 ),
                 onPressed: () async {
-                  try {
-                    final newUser = await _auth.createUserWithEmailAndPassword(
-                        email: email, password: password);
-
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) {
-                      return Login();
-                    }));
-                  } catch (e) {
-                    print(e);
-                  }
+                  await _firestorer.collection('user').add({
+                    'FirstName': firstName,
+                    'LastName': lastName,
+                    'PhoneNumber': phone,
+                    'email': email,
+                  });
+                  Navigator.of(context).pushNamed("/admin_homepage");
                 },
               ),
             ],

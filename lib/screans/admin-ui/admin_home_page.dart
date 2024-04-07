@@ -1,42 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sanad_app/screans/SettingsPage.dart';
 import 'package:sanad_app/screans/admin-ui/dashboard.dart';
+import 'package:sanad_app/screans/admin-ui/manage_location.dart';
+import 'package:sanad_app/screans/admin-ui/new_category_entity.dart';
 import 'package:sanad_app/screans/constants.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MyHomePage(),
-    );
-  }
-}
-
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
-  int _selectedIndex = 0;
-
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffF8F9FC),
+      backgroundColor: const Color(0xffF8F9FC),
       appBar: AppBar(
           shadowColor: Colors.grey,
           toolbarHeight: 90,
-          backgroundColor: Color(0xffFDFDFD),
+          backgroundColor: const Color(0xffFDFDFD),
           leading: Transform.translate(
-              offset: Offset(15, 0),
+              offset: const Offset(15, 0),
               child: GestureDetector(
                 onTap: () {
                   return print("object");
@@ -56,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Text(
                   'Welcome,',
                   style: GoogleFonts.nunitoSans(
-                    color: Color.fromARGB(255, 85, 85, 85),
+                    color: const Color.fromARGB(255, 85, 85, 85),
                     fontSize: 13,
                     fontWeight: FontWeight.w800,
                   ),
@@ -75,62 +61,19 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           actions: [
             IconButton(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               onPressed: () {},
-              icon: Icon(Icons.notifications_none),
+              icon: const Icon(Icons.notifications_none),
               iconSize: 37,
             ),
           ]),
       bottomNavigationBar: Nbar(),
-      // bottomNavigationBar: BottomNavigationBar(
-      //   iconSize: 35,
-      //   items: const <BottomNavigationBarItem>[
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.settings),
-      //       label: 'Settings',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.home),
-      //       label: 'Home',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.history),
-      //       label: 'History',
-      //     ),
-      //   ],
-      //   currentIndex: _selectedIndex,
-      //   // selectedItemColor: Color.fromARGB(255, 61, 30, 199),
-      //   onTap: (index) => setState(() {
-      //     _selectedIndex = index;
-      //     if (_selectedIndex == 0) {
-      //       // If "Settings" item is tapped
-      //       Navigator.of(context).pushReplacement(MaterialPageRoute(
-      //         builder: (context) =>
-      //             SettingsPage(), // Navigate to the settings page
-      //       ));
-      //     }
-      //     if (_selectedIndex == 1) {
-      //       Navigator.of(context).pushReplacement(MaterialPageRoute(
-      //         builder: (context) =>
-      //             MyHomePage(), // Navigate to the settings page
-      //       ));
-      //     }
-      //     if (_selectedIndex == 2) {
-      //       Text("dfjsjd");
-      //       // If "Settings" item is tapped
-      //       Navigator.of(context).pushReplacement(MaterialPageRoute(
-      //           builder: (context) =>
-      //               dashboard() // Navigate to the settings page
-      //           ));
-      //     }
-      //   }),
-      // ),
       body: Container(
         width: MediaQuery.of(context).copyWith().size.width,
         child: ListView(shrinkWrap: true, children: [
           Container(
             decoration: BoxDecoration(
-              image: DecorationImage(
+              image: const DecorationImage(
                   image: AssetImage(
                       "images/Screenshot_20240312_003406_WhatsApp.jpg"),
                   fit: BoxFit.fill),
@@ -139,27 +82,27 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             height: 200,
             width: double.maxFinite,
-            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           ),
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Container(
-                margin: EdgeInsets.all(10),
+                margin: const EdgeInsets.all(10),
                 child: TextButton(
                     onPressed: () {},
                     child: Text(
                       "تصفح الجميع",
                       style: GoogleFonts.nunitoSans(
-                        color: Color.fromARGB(255, 130, 6, 207),
+                        color: const Color.fromARGB(255, 130, 6, 207),
                         fontSize: 15,
                         fontWeight: FontWeight.w900,
                       ),
                     ))),
             Container(
-              margin: EdgeInsets.only(right: 25),
+              margin: const EdgeInsets.only(right: 25),
               child: Text(
                 "الخدمات",
                 style: GoogleFonts.nunitoSans(
-                  color: Color.fromARGB(255, 0, 0, 0),
+                  color: const Color.fromARGB(255, 0, 0, 0),
                   fontSize: 20,
                   fontWeight: FontWeight.w900,
                 ),
@@ -167,9 +110,9 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ]),
           Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              padding: EdgeInsets.all(5),
-              decoration: BoxDecoration(boxShadow: [
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.all(5),
+              decoration: const BoxDecoration(boxShadow: [
                 BoxShadow(
                   color: Color(0xffF8F9FC),
                 )
@@ -185,193 +128,265 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   // Text("page view1 "),
                   // Text("page view2 "),
-                  Stack(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(right: 10),
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                                15) // Adjust the radius as needed
+
+                  GestureDetector(
+                    onTapDown: (details) {
+                      Navigator.of(context)
+                          .pushNamed("/admin_category_enitity");
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(right: 10),
+                      child: Stack(
+                        alignment: AlignmentDirectional.center,
+                        textDirection: TextDirection.rtl,
+                        children: <Widget>[
+                          Container(
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(
+                                    15) // Adjust the radius as needed
+                                ),
+                            child: Image.asset(
+                              "images/eugen-str-CrhsIRY3JWY-unsplash.jpg",
+                              height: double.maxFinite,
+                              width: double.maxFinite,
+                              fit: BoxFit.fill,
                             ),
-                        child: GestureDetector(
-                          onTapDown: (details) {
-                            return print("object");
-                          },
-                          child: Image.asset(
-                            "images/eugen-str-CrhsIRY3JWY-unsplash.jpg",
-                            height: double.maxFinite,
-                            width: double.maxFinite,
-                            fit: BoxFit.fill,
                           ),
-                        ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text("إدارة التصنيفات",
+                                  style: GoogleFonts.nunitoSans(
+                                    color: const Color.fromARGB(
+                                        255, 255, 255, 255),
+                                    fontSize: 27,
+                                    fontWeight: FontWeight.w800,
+                                  )),
+                              Text("اضافة/حذف او تعديل التصنيفات",
+                                  style: GoogleFonts.nunitoSans(
+                                    color: const Color.fromARGB(
+                                        255, 211, 210, 210),
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w800,
+                                  )),
+                              Container(
+                                height: 15,
+                                width: 30,
+                              )
+                            ],
+                          )
+                        ],
                       ),
-                      Positioned(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Text("إدارة التصنيفات",
-                                style: GoogleFonts.nunitoSans(
-                                  color: Color.fromARGB(255, 255, 255, 255),
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w800,
-                                )),
-                            Text("اضافة/حذف او تعديل تصنيفات موجودة",
-                                style: GoogleFonts.nunitoSans(
-                                  color: Color.fromARGB(255, 211, 210, 210),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w800,
-                                )),
-                          ],
-                        ),
-                        left: 40,
-                        top: 110,
-                      )
-                    ],
+                    ),
                   ),
-                  Stack(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(right: 10),
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                                15) // Adjust the radius as needed
-                            ),
-                        child: GestureDetector(
-                            onTapDown: (details) {
-                              return print("object");
-                            },
+                  GestureDetector(
+                    onTapDown: (details) {
+                      Navigator.of(context).pushNamed("/admin_location");
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(right: 10),
+                      child: Stack(
+                        alignment: AlignmentDirectional.center,
+                        textDirection: TextDirection.rtl,
+                        children: <Widget>[
+                          Container(
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(
+                                    15) // Adjust the radius as needed
+                                ),
                             child: Image.asset(
                               "images/pexels-pixabay-159213.jpg",
                               height: double.maxFinite,
                               width: double.maxFinite,
                               fit: BoxFit.fill,
-                            )),
-                      ),
-                      Positioned(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text("إدارة المواقع",
-                                style: GoogleFonts.nunitoSans(
-                                  color: Color.fromARGB(255, 255, 255, 255),
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w800,
-                                )),
-                            Text("اضافة/حذف او تعديل غرف موجودة",
-                                style: GoogleFonts.nunitoSans(
-                                  color: Color.fromARGB(255, 211, 210, 210),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w800,
-                                )),
-                          ],
-                        ),
-                        left: 55,
-                        top: 110,
-                      )
-                    ],
-                  ),
-                  Stack(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(right: 10),
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                                15) // Adjust the radius as needed
                             ),
-                        child: GestureDetector(
-                            onTapDown: (details) {
-                              return print("object");
-                            },
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text("إدارة المواقع",
+                                  style: GoogleFonts.nunitoSans(
+                                    color: const Color.fromARGB(
+                                        255, 255, 255, 255),
+                                    fontSize: 27,
+                                    fontWeight: FontWeight.w800,
+                                  )),
+                              Text("اضافة/حذف او تعديل المواقع ",
+                                  style: GoogleFonts.nunitoSans(
+                                    color: const Color.fromARGB(
+                                        255, 211, 210, 210),
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w800,
+                                  )),
+                              Container(
+                                height: 15,
+                                width: 30,
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTapDown: (details) {
+                      Navigator.of(context).pushNamed("/admin_department");
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(right: 10),
+                      child: Stack(
+                        alignment: AlignmentDirectional.center,
+                        textDirection: TextDirection.rtl,
+                        children: <Widget>[
+                          Container(
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(
+                                    15) // Adjust the radius as needed
+                                ),
                             child: Image.asset(
-                              "images/pexels-pixabay-159213.jpg",
+                              "images/harry-shelton-pPxhM0CRzl4-unsplash.jpg",
                               height: double.maxFinite,
                               width: double.maxFinite,
                               fit: BoxFit.fill,
-                            )),
+                            ),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text("إدارة الاقسام",
+                                  style: GoogleFonts.nunitoSans(
+                                    color: const Color.fromARGB(
+                                        255, 255, 255, 255),
+                                    fontSize: 27,
+                                    fontWeight: FontWeight.w800,
+                                  )),
+                              Text("اضافة/حذف او تعديل الاقسام ",
+                                  style: GoogleFonts.nunitoSans(
+                                    color: const Color.fromARGB(
+                                        255, 211, 210, 210),
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w800,
+                                  )),
+                              Container(
+                                height: 15,
+                                width: 30,
+                              )
+                            ],
+                          )
+                        ],
                       ),
-                      Positioned(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text("إدارة المواقع",
-                                style: GoogleFonts.nunitoSans(
-                                  color: Color.fromARGB(255, 255, 255, 255),
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w800,
-                                )),
-                            Text("اضافة/حذف او تعديل غرف موجودة",
-                                style: GoogleFonts.nunitoSans(
-                                  color: Color.fromARGB(255, 211, 210, 210),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w800,
-                                )),
-                          ],
-                        ),
-                        left: 55,
-                        top: 110,
-                      )
-                    ],
+                    ),
                   ),
+                  GestureDetector(
+                    onTapDown: (details) {
+                      Navigator.of(context).pushNamed("/admin_employee");
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(right: 10),
+                      child: Stack(
+                        alignment: AlignmentDirectional.center,
+                        textDirection: TextDirection.rtl,
+                        children: <Widget>[
+                          Container(
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(
+                                    15) // Adjust the radius as needed
+                                ),
+                            child: Image.asset(
+                              "images/isaac-smith-6EnTPvPPL6I-unsplash.jpg",
+                              height: double.maxFinite,
+                              width: double.maxFinite,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text("الموظفين",
+                                  style: GoogleFonts.nunitoSans(
+                                    color: const Color.fromARGB(
+                                        255, 255, 255, 255),
+                                    fontSize: 27,
+                                    fontWeight: FontWeight.w800,
+                                  )),
+                              Text("اضافة/حذف موظفين في االنظام",
+                                  style: GoogleFonts.nunitoSans(
+                                    color: const Color.fromARGB(
+                                        255, 211, 210, 210),
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w800,
+                                  )),
+                              Container(
+                                height: 15,
+                                width: 30,
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  // GestureDetector(
+                  //   onTapDown: (details) {
+                  //     Navigator.of(context).pushNamed("/admin_homepage");
+                  //   },
+                  //   child: Container(
+                  //     margin: EdgeInsets.only(right: 10),
+                  //     child: Stack(
+                  //       alignment: AlignmentDirectional.center,
+                  //       textDirection: TextDirection.rtl,
+                  //       children: <Widget>[
+                  //         Container(
+                  //           clipBehavior: Clip.antiAlias,
+                  //           decoration: BoxDecoration(
+                  //               borderRadius: BorderRadius.circular(
+                  //                   15) // Adjust the radius as needed
+                  //               ),
+                  //           child: Image.asset(
+                  //             "images/isaac-smith-6EnTPvPPL6I-unsplash.jpg",
+                  //             height: double.maxFinite,
+                  //             width: double.maxFinite,
+                  //             fit: BoxFit.fill,
+                  //           ),
+                  //         ),
+                  //         Column(
+                  //           crossAxisAlignment: CrossAxisAlignment.end,
+                  //           mainAxisAlignment: MainAxisAlignment.end,
+                  //           children: [
+                  //             Text("لوحة التحكم",
+                  //                 style: GoogleFonts.nunitoSans(
+                  //                   color: const Color.fromARGB(
+                  //                       255, 255, 255, 255),
+                  //                   fontSize: 27,
+                  //                   fontWeight: FontWeight.w800,
+                  //                 )),
+                  //             Text("إحصائيات تتعلق بالنظام",
+                  //                 style: GoogleFonts.nunitoSans(
+                  //                   color: const Color.fromARGB(
+                  //                       255, 211, 210, 210),
+                  //                   fontSize: 17,
+                  //                   fontWeight: FontWeight.w800,
+                  //                 )),
+                  //             Container(
+                  //               height: 15,
+                  //               width: 30,
+                  //             )
+                  //           ],
+                  //         )
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               )),
-
-          ///////////////////////////////////////////////////////////////////////////////////
-          // Container(
-          //   height: 20,
-          // ),
-          // Padding(
-          //   padding: const EdgeInsets.symmetric(horizontal: 20),
-          //   child: Text(
-          //     "الطلبات الاخيرة",
-          //     style: GoogleFonts.nunitoSans(
-          //       color: Color.fromARGB(255, 0, 0, 0),
-          //       fontSize: 18,
-          //       fontWeight: FontWeight.w900,
-          //     ),
-          //   ),
-          // ),
-          //   Container(
-          //     height: 15,
-          //   ),
-          //   Padding(
-          //     padding: const EdgeInsets.all(10),
-          //     child: Row(
-          //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //       children: [
-          //         Container(
-          //           width: 115,
-          //           height: 115,
-          //           decoration: BoxDecoration(
-          //               color: Colors.blue,
-          //               borderRadius: BorderRadius.circular(
-          //                   15) // Adjust the radius as needed
-          //               ),
-          //         ),
-          //         Container(
-          //           width: 115,
-          //           height: 115,
-          //           decoration: BoxDecoration(
-          //               color: Colors.blue,
-          //               borderRadius: BorderRadius.circular(
-          //                   15) // Adjust the radius as needed
-          //               ),
-          //         ),
-          //         Container(
-          //           width: 115,
-          //           height: 115,
-          //           decoration: BoxDecoration(
-          //               color: Colors.blue,
-          //               borderRadius: BorderRadius.circular(
-          //                   15) // Adjust the radius as needed
-          //               ),
-          //         )
-          //       ],
-          //     ),
-          //   ),
-          ////////////////////////////////////////////////////////////////////////////////
         ]),
       ),
     );

@@ -1,8 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sanad_app/screans/forget_passwprd.dart';
 import 'package:sanad_app/screans/signup.dart';
 import 'package:sanad_app/screans/admin-ui/admin_home_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -12,6 +12,11 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final _auth = FirebaseAuth.instance;
+
+  late String email;
+  late String password;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,9 +39,12 @@ class _LoginState extends State<Login> {
                 height: 70,
               ),
               TextField(
+                onChanged: (value) {
+                  email = value;
+                },
                 decoration: InputDecoration(
                   hintText: 'Email',
-                  prefixIcon: Icon(Icons.email),
+                  prefixIcon: const Icon(Icons.email),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(200),
                       borderSide: const BorderSide(
@@ -61,9 +69,12 @@ class _LoginState extends State<Login> {
                 height: 30,
               ),
               TextField(
+                onChanged: (value) {
+                  password = value;
+                },
                 decoration: InputDecoration(
                   hintText: 'password',
-                  prefixIcon: Icon(Icons.password),
+                  prefixIcon: const Icon(Icons.password),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(200),
                       borderSide: const BorderSide(
@@ -89,7 +100,7 @@ class _LoginState extends State<Login> {
               ),
               MaterialButton(
                 elevation: 5.0,
-                color: Color.fromARGB(255, 4, 131, 234),
+                color: const Color.fromARGB(255, 4, 131, 234),
                 padding:
                     const EdgeInsets.symmetric(vertical: 20, horizontal: 80),
                 // ignore: sort_child_properties_last
@@ -105,11 +116,17 @@ class _LoginState extends State<Login> {
                   borderRadius: BorderRadius.circular(50),
                   borderSide: BorderSide.none,
                 ),
-                onPressed: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) {
-                    return MyHomePage();
-                  }));
+                onPressed: () async {
+                  final user = await _auth.signInWithEmailAndPassword(
+                      email: email, password: password);
+
+                  try {
+                    if (user != null) {
+                      Navigator.of(context).pushNamed("/admin_homepage");
+                    }
+                  } catch (e) {
+                    print(e);
+                  }
                 },
               ),
               const SizedBox(
@@ -117,10 +134,8 @@ class _LoginState extends State<Login> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) {
-                    return const Password();
-                  }));
+                      Navigator.of(context).pushNamed("/forget_ password");
+
                 },
                 child: const Text(
                   'نسيت كلمة المرور؟',
@@ -135,10 +150,8 @@ class _LoginState extends State<Login> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) {
-                    return const Signup();
-                  }));
+                      Navigator.of(context).pushNamed("/signup");
+
                 },
                 child: const Text(
                   'إنشاء حساب جديد',
