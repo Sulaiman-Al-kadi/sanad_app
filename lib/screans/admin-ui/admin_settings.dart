@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sanad_app/screans/constants.dart';
 
 class AdminSettings extends StatefulWidget {
   const AdminSettings({super.key});
@@ -10,6 +11,11 @@ class AdminSettings extends StatefulWidget {
 class _AdminSettingsState extends State<AdminSettings> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar:
+          AppBar(title: const Text("الاعدادات"), backgroundColor: Colors.blue),
+      bottomNavigationBar: const Nbar(),
+    );
+    ;
   }
 }

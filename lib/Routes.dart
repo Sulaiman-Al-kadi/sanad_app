@@ -6,7 +6,7 @@ import 'package:sanad_app/screans/admin-ui/admin_settings.dart';
 import 'package:sanad_app/screans/admin-ui/dashboard.dart';
 import 'package:sanad_app/screans/admin-ui/manage_location.dart';
 import 'package:sanad_app/screans/admin-ui/new_category_entity.dart';
-import 'package:sanad_app/screans/constants.dart';
+import 'package:sanad_app/screans/admin-ui/add_category.dart';
 import 'package:sanad_app/screans/forget_passwprd.dart';
 import 'package:sanad_app/screans/login.dart';
 import 'package:sanad_app/screans/maintenace-personnel/mp_dashbaord.dart';
@@ -16,6 +16,7 @@ import 'package:sanad_app/screans/signup.dart';
 import 'package:sanad_app/screans/user/user_settings.dart';
 import 'package:sanad_app/screans/user/user.dashbaord.dart';
 import 'package:sanad_app/screans/user/user_homepage.dart';
+import 'package:sanad_app/screans/admin-ui/add_entity.dart';
 
 class Rout extends StatefulWidget {
   const Rout({super.key});
@@ -46,6 +47,8 @@ var routes = <String, WidgetBuilder>{
   "/admin_location": (context) => const ManageLocation(),
   "/add_location": (context) => AddLocation(),
   "/admin_category_enitity": (context) => const CategoryAndEntity(),
+  "/admin_add_category": (context) => AddCategory(),
+  "/admin_add_entity": (context) => AddEntity(),
   //mp
   "/mp_homepage": (context) => const MPHomepage(),
   "/mp_dashboard": (context) => const MPDashboard(),

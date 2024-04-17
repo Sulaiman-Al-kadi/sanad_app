@@ -86,18 +86,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Container(
-                margin: const EdgeInsets.all(10),
-                child: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "تصفح الجميع",
-                      style: GoogleFonts.nunitoSans(
-                        color: const Color.fromARGB(255, 130, 6, 207),
-                        fontSize: 15,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ))),
-            Container(
               margin: const EdgeInsets.only(right: 25),
               child: Text(
                 "الخدمات",

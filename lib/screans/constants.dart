@@ -209,8 +209,8 @@ class _NbarState extends State<Nbar> {
             label: 'الرئيسية',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.history),
-            label: 'العمليات الاخيرة',
+            icon: Icon(Icons.analytics),
+            label: 'صفحة البيانات ',
           ),
         ],
         currentIndex: _selectedIndex,

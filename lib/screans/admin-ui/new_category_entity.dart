@@ -9,7 +9,7 @@ class CategoryAndEntity extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "ادارة المواقع",
+          "ادارة التصنيفات",
           textDirection: TextDirection.rtl,
         ),
       ),
@@ -17,11 +17,13 @@ class CategoryAndEntity extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SizedBox(
-            height: 50,
+            height: 30,
           ),
           MaterialButton(
             padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed("/admin_add_category");
+            },
             color: Colors.blue,
             child: Text("اضافة تصنيف",
                 style: TextStyle(color: Colors.white, fontSize: 20)),
@@ -31,11 +33,13 @@ class CategoryAndEntity extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 30,
           ),
           MaterialButton(
             padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed("/admin_add_entity");
+            },
             color: Colors.blue,
             child: Text("اضافة فئة",
                 style: TextStyle(color: Colors.white, fontSize: 20)),

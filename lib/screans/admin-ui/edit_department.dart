@@ -6,13 +6,6 @@ class EditDepartment extends StatelessWidget {
 
   final _firestorer = FirebaseFirestore.instance;
 
-  void textStreams() async {
-    await for (var snapshot
-        in _firestorer.collection('department').snapshots()) {
-      for (var text in snapshot.docs);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
