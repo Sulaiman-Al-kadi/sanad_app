@@ -73,10 +73,8 @@ class CreateDepartment extends StatelessWidget {
                   await _firestorer.collection('department').add({
                     'name': dep,
                   });
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) {
-                    return MyHomePage();
-                  }));
+              Navigator.of(context).pushNamed("/admin_homepage");
+
                 },
               ),
             ],

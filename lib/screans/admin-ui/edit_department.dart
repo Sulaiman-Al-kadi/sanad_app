@@ -22,7 +22,9 @@ class EditDepartment extends StatelessWidget {
                 builder: (context, snapshot) {
                   List<Text> depName = [];
 
-                  if (!snapshot.hasData) {}
+                  if (!snapshot.hasData) {
+                    
+                  }
                   final texts = snapshot.data!.docs;
                   for (var t in texts) {
                     final text = t.get('name');

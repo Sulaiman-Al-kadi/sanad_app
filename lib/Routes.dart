@@ -1,9 +1,15 @@
 // import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sanad_app/screans/admin-ui/add_location.dart';
+import 'package:sanad_app/screans/admin-ui/add_employee.dart';
 import 'package:sanad_app/screans/admin-ui/admin_home_page.dart';
 import 'package:sanad_app/screans/admin-ui/admin_settings.dart';
+import 'package:sanad_app/screans/admin-ui/create_department.dart';
 import 'package:sanad_app/screans/admin-ui/dashboard.dart';
+import 'package:sanad_app/screans/admin-ui/department.dart';
+import 'package:sanad_app/screans/admin-ui/edit_department.dart';
+import 'package:sanad_app/screans/admin-ui/edit_employee.dart';
+import 'package:sanad_app/screans/admin-ui/employee.dart';
 import 'package:sanad_app/screans/admin-ui/manage_location.dart';
 import 'package:sanad_app/screans/admin-ui/new_category_entity.dart';
 import 'package:sanad_app/screans/admin-ui/add_category.dart';
@@ -33,7 +39,7 @@ class _RoutState extends State<Rout> {
 }
 
 var routes = <String, WidgetBuilder>{
-  "/": (context) => const Login(),
+  //"/": (context) => const Login(),
   "/signup": (context) => const Signup(),
   "/forget_ password": (context) => const Password(),
   //user :
@@ -45,12 +51,20 @@ var routes = <String, WidgetBuilder>{
   "/admin_dashboard": (context) => const Dashboard(),
   "/admin_settings": (context) => const AdminSettings(),
   "/admin_location": (context) => const ManageLocation(),
+  "/admin_department": (context) => const Department(),
+  "/edit_depatment": (context) => EditDepartment(),
+  "/craete_department": (context) => CreateDepartment(),
   "/add_location": (context) => AddLocation(),
   "/admin_category_enitity": (context) => const CategoryAndEntity(),
   "/admin_add_category": (context) => AddCategory(),
   "/admin_add_entity": (context) => AddEntity(),
+  "/admin_edit_employee": (context) => EditEmployee(),
+
+  "/admin_employee": (context) => const Employee(),
+  "/add_employee": (context) => AddEmplyee(),
+
   //mp
   "/mp_homepage": (context) => const MPHomepage(),
   "/mp_dashboard": (context) => const MPDashboard(),
-  "/mp_settings": (context) => const MPSettigns()
+  "/mp_settings": (context) => MPSettigns()
 };
