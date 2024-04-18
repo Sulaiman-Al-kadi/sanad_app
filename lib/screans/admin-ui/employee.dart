@@ -37,7 +37,7 @@ class Employee extends StatelessWidget {
           MaterialButton(
             padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
             onPressed: () {
-              Navigator.of(context).pushNamed("/edit_depatment");
+              Navigator.of(context).pushNamed("/admin_edit_employee");
             },
             color: Colors.blue,
             child: Text("تعديل موظف",

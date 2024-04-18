@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sanad_app/screans/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:sanad_app/screans/login.dart';
 
 class UserSettingsPage extends StatefulWidget {
   const UserSettingsPage({super.key});
@@ -9,43 +11,56 @@ class UserSettingsPage extends StatefulWidget {
 }
 
 class _SettingsPage extends State<UserSettingsPage> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  void _logout() async {
+    await _auth.signOut();
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => Login()),
+      (route) => false,
+    );
+  }
+
+  Future<void> _changePassword() async {
+    // Implement password change logic
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text("UserSettingsPage"), backgroundColor: Colors.blue),
+        title: const Text("الاعدادات"),
+        backgroundColor: Colors.blue,
+      ),
       bottomNavigationBar: const Nbar(),
-
-      // bottomNavigationBar: FlashyTabBar(
-      //   selectedIndex: selectedIndex,
-      //   showElevation: true,
-      //   onItemSelected: (index) => setState(() {
-      //     selectedIndex = index;
-      //     if (selectedIndex == 0) {
-      //       // If "Settings" item is tapped
-      //       Navigator.of(context).pushReplacement(MaterialPageRoute(
-      //         builder: (context) =>
-      //             MyHomePage(), // Navigate to the settings page
-      //       ));
-      //     }
-      //   }),
-      //   items: [
-      //     FlashyTabBarItem(
-      //       icon: Icon(
-      //         Icons.home,
-      //         size: 30,
-      //       ),
-      //       title: Text('Home'),
-      //     ),
-      //     FlashyTabBarItem(
-      //       icon: Icon(
-      //         Icons.settings,
-      //         size: 30,
-      //       ),
-      //       title: Text('Settings'),
-      //     ),
-      //   ],
-      // ),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            ElevatedButton(
+              onPressed: _logout,
+              child: Text(
+                'تسجيل الخروج',
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: _changePassword,
+              child: Text(
+                'تغيير كلمة المرور',
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
