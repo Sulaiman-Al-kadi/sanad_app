@@ -13,6 +13,7 @@ import 'package:sanad_app/screans/admin-ui/employee.dart';
 import 'package:sanad_app/screans/admin-ui/manage_location.dart';
 import 'package:sanad_app/screans/admin-ui/new_category_entity.dart';
 import 'package:sanad_app/screans/admin-ui/add_category.dart';
+import 'package:sanad_app/screans/admin-ui/view_location.dart';
 import 'package:sanad_app/screans/forget_passwprd.dart';
 import 'package:sanad_app/screans/login.dart';
 import 'package:sanad_app/screans/maintenace-personnel/mp_dashbaord.dart';
@@ -59,6 +60,7 @@ var routes = <String, WidgetBuilder>{
   "/admin_add_category": (context) => AddCategory(),
   "/admin_add_entity": (context) => AddEntity(),
   "/admin_edit_employee": (context) => EditEmployee(),
+  "/admin_view_location": (context) => LocationData(),
 
   "/admin_employee": (context) => const Employee(),
   "/add_employee": (context) => AddEmplyee(),

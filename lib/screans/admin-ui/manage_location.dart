@@ -51,9 +51,11 @@ class ManageLocation extends StatelessWidget {
           ),
           MaterialButton(
             padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed("/admin_view_location");
+            },
             color: Colors.blue,
-            child: Text("QR code انشاء ",
+            child: Text("QR code عرض ",
                 style: TextStyle(color: Colors.white, fontSize: 20)),
             shape: OutlineInputBorder(
               borderRadius: BorderRadius.circular(50),
