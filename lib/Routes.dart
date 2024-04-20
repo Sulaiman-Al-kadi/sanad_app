@@ -9,6 +9,7 @@ import 'package:sanad_app/screans/admin-ui/dashboard.dart';
 import 'package:sanad_app/screans/admin-ui/department.dart';
 import 'package:sanad_app/screans/admin-ui/edit_department.dart';
 import 'package:sanad_app/screans/admin-ui/edit_employee.dart';
+import 'package:sanad_app/screans/admin-ui/edit_location.dart';
 import 'package:sanad_app/screans/admin-ui/employee.dart';
 import 'package:sanad_app/screans/admin-ui/manage_location.dart';
 import 'package:sanad_app/screans/admin-ui/new_category_entity.dart';
@@ -57,10 +58,11 @@ var routes = <String, WidgetBuilder>{
   "/craete_department": (context) => CreateDepartment(),
   "/add_location": (context) => AddLocation(),
   "/admin_category_enitity": (context) => const CategoryAndEntity(),
-  "/admin_add_category": (context) => AddCategory(),
+  "/admin_add_category": (context) => ChangeCategoryEntity(),
   "/admin_add_entity": (context) => AddEntity(),
   "/admin_edit_employee": (context) => EditEmployee(),
   "/admin_view_location": (context) => LocationData(),
+  "/admin_edit_location": (context) => EditLocationPage(),
 
   "/admin_employee": (context) => const Employee(),
   "/add_employee": (context) => AddEmplyee(),

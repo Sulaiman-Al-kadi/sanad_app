@@ -37,7 +37,9 @@ class ManageLocation extends StatelessWidget {
           ),
           MaterialButton(
             padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed("/admin_edit_location");
+            },
             color: Colors.blue,
             child: Text("تعديل موقع",
                 style: TextStyle(color: Colors.white, fontSize: 20)),

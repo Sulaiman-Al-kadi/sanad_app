@@ -56,12 +56,18 @@ class _AddEntityState extends State<AddEntity> {
       _showAlert('Error: Category already exists');
       return;
     }
-    await FirebaseFirestore.instance.collection('category').add({
-      'name': category,
-    });
-    _showAlert('Success: Category added successfully');
-    _categoryController.clear();
-    _fetchCategories();
+
+    try {
+      await FirebaseFirestore.instance.collection('category').add({
+        'name': category,
+      });
+      _showAlert('Success: Category added successfully');
+      _categoryController.clear();
+      _fetchCategories();
+    } catch (e) {
+      print('Error adding category: $e');
+      _showAlert('Error: Failed to add category');
+    }
   }
 
   void _addEntity(String name, String description) async {
@@ -70,26 +76,32 @@ class _AddEntityState extends State<AddEntity> {
       return;
     }
 
-    final entityRef = FirebaseFirestore.instance
-        .collection('category')
-        .doc(_selectedCategory)
-        .collection('entity');
+    final entityRef = FirebaseFirestore.instance.collection('entity');
 
-    final querySnapshot = await entityRef.where('name', isEqualTo: name).get();
+    final querySnapshot = await entityRef
+        .where('name', isEqualTo: name)
+        .where('category', isEqualTo: _selectedCategory)
+        .get();
 
     if (querySnapshot.docs.isNotEmpty) {
       _showAlert('Error: Entity already exists in selected category');
       return;
     }
 
-    await entityRef.add({
-      'name': name,
-      'description': description,
-      'department': _selectedDepartment,
-    });
-    _showAlert('Success: Entity added successfully');
-    _entityNameController.clear();
-    _entityDescriptionController.clear();
+    try {
+      await entityRef.add({
+        'name': name,
+        'description': description,
+        'department': _selectedDepartment,
+        'category': _selectedCategory,
+      });
+      _showAlert('Success: Entity added successfully');
+      _entityNameController.clear();
+      _entityDescriptionController.clear();
+    } catch (e) {
+      print('Error adding entity: $e');
+      _showAlert('Error: Failed to add entity');
+    }
   }
 
   void _showAlert(String message) {
@@ -166,7 +178,7 @@ class _AddEntityState extends State<AddEntity> {
                 ],
               ),
               SizedBox(height: 16.0),
-              Text('choose entity'),
+              Text('choose category'),
               IgnorePointer(
                 ignoring: !_addEntityChecked,
                 child: DropdownButton<String>(
