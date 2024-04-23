@@ -121,7 +121,7 @@ class _UserHomePageState extends State<UserHomePage> {
 
                   GestureDetector(
                     onTapDown: (details) {
-                      Navigator.of(context).pushNamed("/user_settings");
+                      Navigator.of(context).pushNamed("/user_new_request");
                     },
                     child: Container(
                       margin: EdgeInsets.only(right: 10),

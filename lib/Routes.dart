@@ -21,6 +21,8 @@ import 'package:sanad_app/screans/maintenace-personnel/mp_dashbaord.dart';
 import 'package:sanad_app/screans/maintenace-personnel/mp_homepage.dart';
 import 'package:sanad_app/screans/maintenace-personnel/mp_settings.dart';
 import 'package:sanad_app/screans/signup.dart';
+import 'package:sanad_app/screans/user/make_new_request.dart';
+import 'package:sanad_app/screans/user/scan_qr_code.dart';
 import 'package:sanad_app/screans/user/user_settings.dart';
 import 'package:sanad_app/screans/user/user.dashbaord.dart';
 import 'package:sanad_app/screans/user/user_homepage.dart';
@@ -48,6 +50,8 @@ var routes = <String, WidgetBuilder>{
   "/user_homepage": (context) => const UserHomePage(),
   "/user_settings": (context) => const UserSettingsPage(),
   "/user_dashboard": (context) => const UserDashboard(),
+  "/user_new_request": (context) => const EnhancedRequestPage(),
+  // "/scan_qr_code":(context) => ScanQRPage(),
   //admin
   "/admin_homepage": (context) => const MyHomePage(),
   "/admin_dashboard": (context) => const Dashboard(),
