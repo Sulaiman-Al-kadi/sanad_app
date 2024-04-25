@@ -31,6 +31,7 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
   String? _selectedEntity;
   List<String> _categories = [];
   List<String> _entities = [];
+  bool _isLoadingEntities = false;
 
   @override
   void initState() {
@@ -50,6 +51,9 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
   }
 
   Future<void> _fetchEntities(String category) async {
+    setState(() {
+      _isLoadingEntities = true;
+    });
     final entities = await FirebaseFirestore.instance
         .collection('entity')
         .where('category', isEqualTo: category)
@@ -58,6 +62,7 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
             querySnapshot.docs.map((doc) => doc['name'] as String).toList());
     setState(() {
       _entities = entities;
+      _isLoadingEntities = false;
     });
   }
 
@@ -92,22 +97,28 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
       return;
     }
 
-    await FirebaseFirestore.instance.collection('requests').add({
-      'category': _selectedCategory,
-      'entity': _selectedEntity,
-      'image_url': url,
-      'description': _descriptionController.text.trim(),
-      'building': widget.building,
-      'floor': widget.floor,
-      'suit': widget.suit,
-      'room': widget.room,
-      'timestamp': FieldValue.serverTimestamp(),
-    });
+    try {
+      await FirebaseFirestore.instance.collection('requests').add({
+        'category': _selectedCategory,
+        'entity': _selectedEntity,
+        'image_url': url,
+        'description': _descriptionController.text.trim(),
+        'building': widget.building,
+        'floor': widget.floor,
+        'suit': widget.suit,
+        'room': widget.room,
+        'timestamp': FieldValue.serverTimestamp(),
+      });
 
-    Navigator.pop(context);
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Request submitted successfully!')),
-    );
+      Navigator.pop(context);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Request submitted successfully!')),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error submitting request: $e')),
+      );
+    }
   }
 
   @override
@@ -125,6 +136,8 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
               onChanged: (newValue) {
                 setState(() {
                   _selectedCategory = newValue!;
+                  _selectedEntity =
+                      null; // Reset the entity when category changes
                   _fetchEntities(newValue);
                 });
               },
@@ -136,12 +149,15 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
               }).toList(),
               hint: Text('Select Category'),
             ),
-            if (_entities.isNotEmpty)
+            SizedBox(height: 20),
+            if (_isLoadingEntities)
+              CircularProgressIndicator()
+            else if (_entities.isNotEmpty)
               DropdownButton<String>(
                 value: _selectedEntity,
                 onChanged: (newValue) {
                   setState(() {
-                    _selectedEntity = newValue!;
+                    _selectedEntity = newValue;
                   });
                 },
                 items: _entities.map<DropdownMenuItem<String>>((String value) {
@@ -152,12 +168,12 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
                 }).toList(),
                 hint: Text('Select Entity'),
               ),
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
             GestureDetector(
               onTap: getImage,
               child: Container(
                 height: 200,
-                decoration: BoxDecoration(
+                width: 300,                decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey),
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -166,7 +182,7 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
                     : Icon(Icons.camera_alt, size: 50, color: Colors.grey),
               ),
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
             TextField(
               controller: _descriptionController,
               decoration: InputDecoration(
@@ -176,7 +192,7 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
               ),
               maxLines: 3,
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
             ElevatedButton(
               onPressed: saveRequest,
               child: Text("Submit Request"),

@@ -51,7 +51,7 @@ var routes = <String, WidgetBuilder>{
   "/user_settings": (context) => const UserSettingsPage(),
   "/user_dashboard": (context) => const UserDashboard(),
   "/user_new_request": (context) => const EnhancedRequestPage(),
-  // "/scan_qr_code":(context) => ScanQRPage(),
+  "/scan_qr_code": (context) => ScanQRPage(),
   //admin
   "/admin_homepage": (context) => const MyHomePage(),
   "/admin_dashboard": (context) => const Dashboard(),
