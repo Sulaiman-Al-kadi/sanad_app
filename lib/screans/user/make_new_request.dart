@@ -173,7 +173,7 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
               onTap: getImage,
               child: Container(
                 height: 200,
-                width: 300,                decoration: BoxDecoration(
+                width: 200,                decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey),
                   borderRadius: BorderRadius.circular(12),
                 ),
