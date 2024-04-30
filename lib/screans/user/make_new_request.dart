@@ -108,6 +108,8 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
         'suit': widget.suit,
         'room': widget.room,
         'timestamp': FieldValue.serverTimestamp(),
+        'state': 'onRequestPool', // Initial state
+        'assignedTo': null, // Initially not assigned
       });
 
       Navigator.pop(context);
@@ -173,7 +175,8 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
               onTap: getImage,
               child: Container(
                 height: 200,
-                width: 200,                decoration: BoxDecoration(
+                width: 200,
+                decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey),
                   borderRadius: BorderRadius.circular(12),
                 ),

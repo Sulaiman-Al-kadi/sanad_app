@@ -314,7 +314,7 @@ class _LoginState extends State<Login> {
                           break;
                         case 'Manager':
                           Navigator.of(context)
-                              .pushReplacementNamed("/mp_homepage");
+                              .pushReplacementNamed("/manager_homepage");
                           // Redirect user to manager page
                           break;
                         case 'Maintenance Personnel':

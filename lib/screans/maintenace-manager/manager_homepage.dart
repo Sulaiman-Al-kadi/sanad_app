@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sanad_app/Routes.dart';
 import 'package:sanad_app/screans/constants.dart';
 
-class UserHomePage extends StatefulWidget {
-  const UserHomePage({super.key});
+class ManagerHomepage extends StatefulWidget {
+  const ManagerHomepage({super.key});
 
   @override
-  _UserHomePageState createState() => _UserHomePageState();
+  State<ManagerHomepage> createState() => _ManagerHomepageState();
 }
 
-class _UserHomePageState extends State<UserHomePage> {
+class _ManagerHomepageState extends State<ManagerHomepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffF8F9FC),
       appBar: AppBar(
           shadowColor: Colors.grey,
           toolbarHeight: 90,
@@ -69,7 +68,7 @@ class _UserHomePageState extends State<UserHomePage> {
         child: ListView(shrinkWrap: true, children: [
           Container(
             decoration: BoxDecoration(
-              image: DecorationImage(
+              image: const DecorationImage(
                   image: AssetImage(
                       "images/Screenshot_20240312_003406_WhatsApp.jpg"),
                   fit: BoxFit.fill),
@@ -99,9 +98,9 @@ class _UserHomePageState extends State<UserHomePage> {
             ),
           ]),
           Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              padding: EdgeInsets.all(5),
-              decoration: BoxDecoration(boxShadow: [
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.all(5),
+              decoration: const BoxDecoration(boxShadow: [
                 BoxShadow(
                   color: Color(0xffF8F9FC),
                 )
@@ -120,7 +119,8 @@ class _UserHomePageState extends State<UserHomePage> {
 
                   GestureDetector(
                     onTapDown: (details) {
-                      Navigator.of(context).pushNamed("/scan_qr_code");
+                      Navigator.pushNamed(context, "/mp_request_list",
+                          arguments: getCurrentUserId());
                     },
                     child: Container(
                       margin: EdgeInsets.only(right: 10),
@@ -145,14 +145,14 @@ class _UserHomePageState extends State<UserHomePage> {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Text("طلب جديد",
+                              Text("تصفح الطلبات",
                                   style: GoogleFonts.nunitoSans(
                                     color: const Color.fromARGB(
                                         255, 255, 255, 255),
                                     fontSize: 30,
                                     fontWeight: FontWeight.w800,
                                   )),
-                              Text("قم برفع بلاغ جديد ",
+                              Text("تصفح احدث البلاغات المرفوعة",
                                   style: GoogleFonts.nunitoSans(
                                     color: const Color.fromARGB(
                                         255, 211, 210, 210),
@@ -169,54 +169,7 @@ class _UserHomePageState extends State<UserHomePage> {
                       ),
                     ),
                   ),
-                  GestureDetector(
-                    onTapDown: (details) {
-                      Navigator.of(context).popAndPushNamed("/user_homepage");
-                    },
-                    child: Stack(
-                      alignment: AlignmentDirectional.center,
-                      textDirection: TextDirection.rtl,
-                      children: <Widget>[
-                        Container(
-                          clipBehavior: Clip.antiAlias,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(
-                                  15) // Adjust the radius as needed
-                              ),
-                          child: Image.asset(
-                            "images/pexels-pixabay-159213.jpg",
-                            height: double.maxFinite,
-                            width: double.maxFinite,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Text("حالة الطلب",
-                                style: GoogleFonts.nunitoSans(
-                                  color:
-                                      const Color.fromARGB(255, 255, 255, 255),
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.w800,
-                                )),
-                            Text("الاستعلام عن حالة الطلب",
-                                style: GoogleFonts.nunitoSans(
-                                  color:
-                                      const Color.fromARGB(255, 211, 210, 210),
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w800,
-                                )),
-                            Container(
-                              height: 15,
-                              width: 30,
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
+                 
                 ],
               )),
         ]),

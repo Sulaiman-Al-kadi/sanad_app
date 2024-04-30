@@ -144,10 +144,12 @@
 // }
 
 import 'package:flutter/material.dart';
+import 'package:sanad_app/screans/login.dart';
 
 bool isAdmin = false;
 bool isUser = false;
 bool isMP = false;
+bool isM = false;
 
 // DETRMINE THE TYPE OF USER
 userGuider(BuildContext context) {
@@ -165,7 +167,6 @@ userGuider(BuildContext context) {
     case "/mp_settings":
       isMP = true;
       print("is mp");
-
       break;
     case "/user_homepage":
     case "/user_settings":
@@ -173,9 +174,18 @@ userGuider(BuildContext context) {
       isUser = true;
       print("is user");
       break;
+    case "/manager_homepage":
+    case "/mp_request_detail":
+    case "mp_request_list":
+    case "/manager_settings":
+    case "/manager_dashbaord":
+      isM = true;
+      print("isM");
+      break;
     default:
       print("error unknown user type");
   }
+
   return userTypeChecker;
 }
 
@@ -216,36 +226,48 @@ class _NbarState extends State<Nbar> {
             _selectedIndex = index;
             if (_selectedIndex == 0) {
               if (isAdmin) {
-                Navigator.of(context).pushNamed("/admin_settings");
+                Navigator.of(context).pushReplacementNamed("/admin_settings");
               }
               if (isUser) {
-                Navigator.of(context).pushNamed("/user_settings");
+                Navigator.of(context).pushReplacementNamed("/user_settings");
               }
               if (isMP) {
-                Navigator.of(context).pushNamed("/mp_settings");
+                Navigator.of(context).pushReplacementNamed("/mp_settings");
+              }
+              if (isM) {
+                Navigator.of(context).pushReplacementNamed("/manager_settings");
               }
             }
             if (_selectedIndex == 1) {
               if (isAdmin) {
-                Navigator.of(context).pushNamed("/admin_homepage");
+                Navigator.of(context).pushReplacementNamed("/admin_homepage");
               }
               if (isUser) {
-                Navigator.of(context).pushNamed("/user_homepage");
+                Navigator.of(context).pushReplacementNamed("/user_homepage");
               }
               if (isMP) {
-                Navigator.of(context).pushNamed("/mp_homepage");
+                Navigator.of(context).pushReplacementNamed("/mp_homepage");
+              }
+              if (isM) {
+                Navigator.of(context).pushReplacementNamed("/manager_homepage");
               }
             }
             if (_selectedIndex == 2) {
               if (isAdmin) {
-                Navigator.of(context).pushNamed("/admin_dashboard");
+                Navigator.of(context).pushReplacementNamed("/admin_dashboard");
               }
               if (isUser) {
-                Navigator.of(context).pushNamed("/user_dashboard");
+                Navigator.of(context).pushReplacementNamed("/user_dashboard");
               }
               if (isMP) {
-                Navigator.of(context).pushNamed("/mp_dashboard");
+                Navigator.of(context).pushReplacementNamed("/mp_dashboard");
               }
+              if (isM) {
+                Navigator.of(context)
+                    .pushReplacementNamed("/manager_dashboard");
+              }
+            } else {
+              print("not in currect postions ${_selectedIndex}");
             }
           });
         },
