@@ -47,6 +47,22 @@ class Employee extends StatelessWidget {
               borderSide: BorderSide.none,
             ),
           ),
+          SizedBox(
+            height: 20,
+          ),
+          MaterialButton(
+            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+            onPressed: () {
+              Navigator.of(context).pushNamed("/view_employee");
+            },
+            color: Colors.blue,
+            child: Text("عرض معلومات الموظف",
+                style: TextStyle(color: Colors.white, fontSize: 20)),
+            shape: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(50),
+              borderSide: BorderSide.none,
+            ),
+          ),
         ],
       ),
     );

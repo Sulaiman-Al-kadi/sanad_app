@@ -199,7 +199,6 @@ class _LoginState extends State<Login> {
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
-            
             children: <Widget>[
               SizedBox(height: 100),
               Image.asset(

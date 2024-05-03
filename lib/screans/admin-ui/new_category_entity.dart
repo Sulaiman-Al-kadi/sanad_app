@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class CategoryAndEntity extends StatelessWidget {
   const CategoryAndEntity({super.key});
@@ -25,7 +24,7 @@ class CategoryAndEntity extends StatelessWidget {
               Navigator.of(context).pushNamed("/admin_add_category");
             },
             color: Colors.blue,
-            child: Text("اضافة تصنيف",
+            child: Text("تعديل مسمى التصنيف و الفئة",
                 style: TextStyle(color: Colors.white, fontSize: 20)),
             shape: OutlineInputBorder(
               borderRadius: BorderRadius.circular(50),
@@ -41,7 +40,7 @@ class CategoryAndEntity extends StatelessWidget {
               Navigator.of(context).pushNamed("/admin_add_entity");
             },
             color: Colors.blue,
-            child: Text("اضافة فئة",
+            child: Text("اضافة تصنيف او فئة",
                 style: TextStyle(color: Colors.white, fontSize: 20)),
             shape: OutlineInputBorder(
               borderRadius: BorderRadius.circular(50),
@@ -50,6 +49,19 @@ class CategoryAndEntity extends StatelessWidget {
           ),
           SizedBox(
             height: 20,
+          ),
+          MaterialButton(
+            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+            onPressed: () {
+              Navigator.of(context).pushNamed("/delete_category_entity");
+            },
+            color: Colors.blue,
+            child: Text("حذف تصنيف او فئة",
+                style: TextStyle(color: Colors.white, fontSize: 20)),
+            shape: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(50),
+              borderSide: BorderSide.none,
+            ),
           ),
         ],
       ),
