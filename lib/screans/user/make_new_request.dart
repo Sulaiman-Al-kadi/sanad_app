@@ -111,6 +111,7 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
         'timestamp': FieldValue.serverTimestamp(),
         'state': 'onRequestPool', // Initial state
         'assignedTo': 'null', // Initially not assigned
+        'userEmail': '',
       });
 
       Navigator.pop(context);

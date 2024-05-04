@@ -33,7 +33,7 @@ class _SettingsPage extends State<UserSettingsPage> {
         title: const Text("الاعدادات"),
         backgroundColor: Colors.blue,
       ),
-      bottomNavigationBar: const Nbar(),
+      bottomNavigationBar: const UserNBar(),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(

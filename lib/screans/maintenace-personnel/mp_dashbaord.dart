@@ -13,7 +13,7 @@ class _MPDashboardState extends State<MPDashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(" DASHBAORD فني الصيانة")),
-      bottomNavigationBar: Nbar(),
+      bottomNavigationBar: MpNBar(),
     );
   }
 }

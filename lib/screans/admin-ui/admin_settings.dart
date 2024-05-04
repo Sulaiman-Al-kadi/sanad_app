@@ -78,7 +78,7 @@ class _AdminSettingsState extends State<AdminSettings> {
         title: const Text("الاعدادات"),
         backgroundColor: Colors.blue,
       ),
-      bottomNavigationBar: const Nbar(),
+      bottomNavigationBar: const AdminNBar(),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(

@@ -23,7 +23,7 @@ class Employee extends StatelessWidget {
             context: context,
             icon: Icons.file_copy,
             title: "اضافة موظف",
-            routeName: "/craete_department",
+            routeName: "/add_employee",
           ),
           SizedBox(
             height: 20,
@@ -32,7 +32,7 @@ class Employee extends StatelessWidget {
             context: context,
             icon: Icons.file_copy,
             title: "تعديل موظف",
-            routeName: "/edit_depatment",
+            routeName: "/admin_edit_employee",
           ),
           SizedBox(
             height: 20,

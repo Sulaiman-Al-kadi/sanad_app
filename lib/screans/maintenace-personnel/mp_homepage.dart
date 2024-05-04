@@ -62,7 +62,7 @@ class _MPHomepageState extends State<MPHomepage> {
               ),
             ),
           ]),
-      bottomNavigationBar: const Nbar(),
+      bottomNavigationBar:  MpNBar(),
       body: Container(
         width: MediaQuery.of(context).copyWith().size.width,
         child: ListView(shrinkWrap: true, children: [

@@ -10,7 +10,7 @@ class ManagerDashbaord extends StatelessWidget {
       appBar: AppBar(
         title: Text("Dashbaord"),
       ),
-      bottomNavigationBar: Nbar(),
+      bottomNavigationBar: ManagerNBar(),
     );
   }
 }

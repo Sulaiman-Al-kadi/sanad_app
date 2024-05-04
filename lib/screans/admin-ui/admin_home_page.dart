@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -95,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
-      bottomNavigationBar: Nbar(),
+      bottomNavigationBar: AdminNBar(),
       body: SingleChildScrollView(
         child: Column(
           textDirection: TextDirection.rtl,

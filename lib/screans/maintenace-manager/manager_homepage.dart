@@ -62,7 +62,7 @@ class _ManagerHomepageState extends State<ManagerHomepage> {
               ),
             ),
           ]),
-      bottomNavigationBar: const Nbar(),
+      bottomNavigationBar:  ManagerNBar(),
       body: Container(
         width: MediaQuery.of(context).copyWith().size.width,
         child: ListView(shrinkWrap: true, children: [

@@ -90,7 +90,7 @@ class MPSettigns extends StatelessWidget {
         title: const Text("الاعدادات"),
         backgroundColor: Colors.blue,
       ),
-      bottomNavigationBar: const Nbar(),
+      bottomNavigationBar: const MpNBar(),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(

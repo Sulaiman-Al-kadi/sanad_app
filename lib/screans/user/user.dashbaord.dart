@@ -10,7 +10,7 @@ class UserDashboard extends StatelessWidget {
       appBar: AppBar(
         title: Text("Dashbaord"),
       ),
-      bottomNavigationBar: Nbar(),
+      bottomNavigationBar: UserNBar(),
     );
   }
 }

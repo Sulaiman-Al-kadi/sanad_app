@@ -33,7 +33,7 @@ class _SettingsPage extends State<ManagerSettings> {
         title: const Text("الاعدادات"),
         backgroundColor: Colors.blue,
       ),
-      bottomNavigationBar: const Nbar(),
+      bottomNavigationBar: const ManagerNBar(),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(

@@ -15,27 +15,6 @@ class _AdminPageState extends State<EditEmployee> {
   String? selectedUserType;
   Map<String, dynamic>? userData;
 
-  // Future<void> _searchUser() async {
-  //   final email = _emailController.text.trim();
-
-  //   if (email.isNotEmpty) {
-  //     final snapshot = await _firestore
-  //         .collection('users')
-  //         .where('email', isEqualTo: email)
-  //         .get();
-
-  //     if (snapshot.docs.isNotEmpty) {
-  //       setState(() {
-  //         userData = snapshot.docs.first.data() as Map<String, dynamic>?;
-  //       });
-  //     } else {
-  //       setState(() {
-  //         userData = null;
-  //       });
-  //     }
-  //   }
-  // }
-
   Future<void> _searchUser() async {
     final email = _emailController.text.trim();
 

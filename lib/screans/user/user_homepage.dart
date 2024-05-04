@@ -63,7 +63,7 @@ class _UserHomePageState extends State<UserHomePage> {
               ),
             ),
           ]),
-      bottomNavigationBar: const Nbar(),
+      bottomNavigationBar: const UserNBar(),
       body: Container(
         width: MediaQuery.of(context).copyWith().size.width,
         child: ListView(shrinkWrap: true, children: [
