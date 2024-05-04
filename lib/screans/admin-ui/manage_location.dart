@@ -37,7 +37,9 @@ class ManageLocation extends StatelessWidget {
           ),
           MaterialButton(
             padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed("/admin_edit_location");
+            },
             color: Colors.blue,
             child: Text("تعديل موقع",
                 style: TextStyle(color: Colors.white, fontSize: 20)),
@@ -51,9 +53,27 @@ class ManageLocation extends StatelessWidget {
           ),
           MaterialButton(
             padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed("/admin_view_location");
+            },
             color: Colors.blue,
-            child: Text("QR code انشاء ",
+            child: Text("QR code عرض ",
+                style: TextStyle(color: Colors.white, fontSize: 20)),
+            shape: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(50),
+              borderSide: BorderSide.none,
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          MaterialButton(
+            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+            onPressed: () {
+              Navigator.of(context).pushNamed("/delete_location");
+            },
+            color: Colors.blue,
+            child: Text("حذف موقع ",
                 style: TextStyle(color: Colors.white, fontSize: 20)),
             shape: OutlineInputBorder(
               borderRadius: BorderRadius.circular(50),

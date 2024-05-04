@@ -27,6 +27,8 @@
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
+	<key>NSCameraUsageDescription</key>
+	<string>Camera permission is required for QR code scanning</string>
 	<string>Main</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

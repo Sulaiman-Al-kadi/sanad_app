@@ -3,14 +3,14 @@ import 'package:sanad_app/screans/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:sanad_app/screans/login.dart';
 
-class UserSettingsPage extends StatefulWidget {
-  const UserSettingsPage({super.key});
+class ManagerSettings extends StatefulWidget {
+  const ManagerSettings({super.key});
 
   @override
-  State<UserSettingsPage> createState() => _SettingsPage();
+  State<ManagerSettings> createState() => _SettingsPage();
 }
 
-class _SettingsPage extends State<UserSettingsPage> {
+class _SettingsPage extends State<ManagerSettings> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   void _logout() async {

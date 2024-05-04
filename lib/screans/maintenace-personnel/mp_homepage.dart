@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sanad_app/Routes.dart';
 import 'package:sanad_app/screans/constants.dart';
 
 class MPHomepage extends StatefulWidget {
@@ -118,7 +119,10 @@ class _MPHomepageState extends State<MPHomepage> {
 
                   GestureDetector(
                     onTapDown: (details) {
-                      Navigator.of(context).popAndPushNamed("/user_settings");
+                      Navigator.pushNamed(
+                        context,
+                        "/maintenance_personnel_page",
+                      );
                     },
                     child: Container(
                       margin: EdgeInsets.only(right: 10),
