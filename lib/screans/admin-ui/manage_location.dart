@@ -114,49 +114,6 @@ class ManageLocation extends StatelessWidget {
             title: "QR code عرض ",
             routeName: "/admin_view_location",
           ),
-        ]));
-  }
-
-  Widget miniServiceButton({
-    required BuildContext context,
-    required IconData icon,
-    required String title,
-    required String routeName,
-  }) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.of(context).pushNamed(routeName);
-      },
-      child: Directionality(
-        textDirection: TextDirection.rtl,
-        child: Container(
-          decoration: BoxDecoration(
-            // borderRadius: BorderRadius.circular(15),
-            color: Color(0xffFDFDFD),
-          ),
-          child: Card(
-            elevation: 0,
-            child: ListTile(
-              leading: Container(
-                color: Colors.grey[300],
-                child: Icon(
-                  icon,
-                  size: 50,
-                  color: Color.fromARGB(255, 15, 93, 156),
-                ),
-              ),
-              title: Text(
-                title,
-                style: GoogleFonts.nunitoSans(
-                  color: Color.fromARGB(255, 0, 0, 0),
-                  fontSize: 17,
-                ),
-                textAlign: TextAlign.start,
-              ),
-              trailing: Icon(Icons.keyboard_arrow_right_outlined),
-            ),
-          ),
-        ),
           SizedBox(
             height: 20,
           ),
@@ -173,8 +130,49 @@ class ManageLocation extends StatelessWidget {
               borderSide: BorderSide.none,
             ),
           ),
-        ],
-      ),
-    );
+        ]));
+  }
+
+  Widget miniServiceButton({
+    required BuildContext context,
+    required IconData icon,
+    required String title,
+    required String routeName,
+  }) {
+    return GestureDetector(
+        onTap: () {
+          Navigator.of(context).pushNamed(routeName);
+        },
+        child: Directionality(
+          textDirection: TextDirection.rtl,
+          child: Container(
+            decoration: BoxDecoration(
+              // borderRadius: BorderRadius.circular(15),
+              color: Color(0xffFDFDFD),
+            ),
+            child: Card(
+              elevation: 0,
+              child: ListTile(
+                leading: Container(
+                  color: Colors.grey[300],
+                  child: Icon(
+                    icon,
+                    size: 50,
+                    color: Color.fromARGB(255, 15, 93, 156),
+                  ),
+                ),
+                title: Text(
+                  title,
+                  style: GoogleFonts.nunitoSans(
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    fontSize: 17,
+                  ),
+                  textAlign: TextAlign.start,
+                ),
+                trailing: Icon(Icons.keyboard_arrow_right_outlined),
+              ),
+            ),
+          ),
+        ));
   }
 }
