@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:sanad_app/routes.dart';
-
 import 'package:sanad_app/screans/login.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    options: FirebaseOptions(
+    options: const FirebaseOptions(
       apiKey: "AIzaSyBNpuA5CzcH_djqjJ9vWoNtMGn6I0iudSE",
       appId: "1:489826002106:android:d15a451061bf6225df0e83",
       messagingSenderId: "489826002106",

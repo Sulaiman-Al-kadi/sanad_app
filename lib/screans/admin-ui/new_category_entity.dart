@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:path/path.dart' as Path;
 
+
 class CategoryAndEntity extends StatelessWidget {
   const CategoryAndEntity({Key? key});
 
@@ -22,21 +23,36 @@ class CategoryAndEntity extends StatelessWidget {
           SizedBox(
             height: 30,
           ),
+
           miniServiceButton(
             context: context,
             icon: Icons.file_copy,
-            title: "تعديل اسم التصنيف",
+            title:"تعديل مسمى التصنيف و الفئة",
             routeName: "/admin_add_category",
           ),
           Divider(),
           miniServiceButton(
             context: context,
             icon: Icons.file_copy,
-            title: "اضافة تصنيف",
+            title: "اضافة تصنيف او فئة",
             routeName: "/admin_add_entity",
+
           ),
           SizedBox(
             height: 20,
+          ),
+          MaterialButton(
+            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+            onPressed: () {
+              Navigator.of(context).pushNamed("/delete_category_entity");
+            },
+            color: Colors.blue,
+            child: Text("حذف تصنيف او فئة",
+                style: TextStyle(color: Colors.white, fontSize: 20)),
+            shape: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(50),
+              borderSide: BorderSide.none,
+            ),
           ),
         ],
       ),
