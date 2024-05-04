@@ -47,6 +47,8 @@ dependencies:
   path: ^1.9.0
   firebase_storage: ^11.7.2
   permission_handler: ^11.3.1
+  pdf: ^3.10.8
+  share_plus: ^9.0.0
 
 dev_dependencies:
   flutter_test:

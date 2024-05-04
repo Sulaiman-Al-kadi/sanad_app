@@ -73,7 +73,7 @@ class _ChangeCategoryEntityState extends State<ChangeCategoryEntity> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Change Category/Entity'),
+        title: Text('تعديل التصينفات والفئة'),
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,

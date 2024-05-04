@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -109,16 +110,16 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
         'room': widget.room,
         'timestamp': FieldValue.serverTimestamp(),
         'state': 'onRequestPool', // Initial state
-        'assignedTo': null, // Initially not assigned
+        'assignedTo': 'null', // Initially not assigned
       });
 
       Navigator.pop(context);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Request submitted successfully!')),
+        SnackBar(content: Text('تم ارسال الطلب بنجاح')),
       );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error submitting request: $e')),
+        SnackBar(content: Text('حدثت مشكلة اثناء رفع الطلب: $e')),
       );
     }
   }
@@ -149,7 +150,7 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
                   child: Text(value),
                 );
               }).toList(),
-              hint: Text('Select Category'),
+              hint: Text('التصنيف'),
             ),
             SizedBox(height: 20),
             if (_isLoadingEntities)
@@ -168,7 +169,7 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
                     child: Text(value),
                   );
                 }).toList(),
-                hint: Text('Select Entity'),
+                hint: Text('الفئة'),
               ),
             SizedBox(height: 20),
             GestureDetector(
@@ -187,10 +188,13 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
             ),
             SizedBox(height: 20),
             TextField(
+              inputFormatters: [
+                LengthLimitingTextInputFormatter(149),
+              ],
               controller: _descriptionController,
               decoration: InputDecoration(
-                labelText: "Description",
-                hintText: "Enter a description of the issue",
+                labelText: "الوصف",
+                hintText: "الرجاء كتابة وصف للمشكلة",
                 border: OutlineInputBorder(),
               ),
               maxLines: 3,
@@ -198,7 +202,7 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: saveRequest,
-              child: Text("Submit Request"),
+              child: Text("ارسال الطلب"),
             ),
           ],
         ),

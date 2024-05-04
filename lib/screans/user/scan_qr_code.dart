@@ -15,6 +15,37 @@ class _ScanQRPageState extends State<ScanQRPage> {
   QRViewController? controller;
 
   @override
+  void initState() {
+    super.initState();
+    _showInitialAlert();
+  }
+
+  void _showInitialAlert() {
+    Future.delayed(Duration.zero, () {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Directionality(
+            textDirection: TextDirection.rtl,
+            child: AlertDialog(
+              title: Text('التعليمات'),
+              content: Text(' الرجاء مسح الباركود'),
+              actions: <Widget>[
+                TextButton(
+                  child: Text('حسنا'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            ),
+          );
+        },
+      );
+    });
+  }
+
+  @override
   void reassemble() {
     super.reassemble();
     if (Platform.isAndroid) {
@@ -33,7 +64,7 @@ class _ScanQRPageState extends State<ScanQRPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Scan QR Code'),
+        title: Text('الباركود'),
       ),
       body: Column(
         children: <Widget>[
@@ -60,7 +91,8 @@ class _ScanQRPageState extends State<ScanQRPage> {
                       style: TextStyle(fontSize: 16),
                       textAlign: TextAlign.center,
                     )
-                  : Text('Scan a code', style: TextStyle(fontSize: 16)),
+                  : Text('الرجاء مسح الباركود الخاص بالغرفة',
+                      style: TextStyle(fontSize: 16)),
             ),
           )
         ],

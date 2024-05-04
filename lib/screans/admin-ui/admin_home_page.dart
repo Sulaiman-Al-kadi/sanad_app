@@ -1,4 +1,6 @@
+
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -43,8 +45,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffF8F9FC),
+      backgroundColor: Color.fromRGBO(248, 249, 252, 1),
       appBar: AppBar(
+        elevation: 0.2,
         shadowColor: Colors.grey,
         toolbarHeight: 90,
         backgroundColor: const Color(0xffFDFDFD),
@@ -95,6 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
       bottomNavigationBar: Nbar(),
       body: SingleChildScrollView(
         child: Column(
+          textDirection: TextDirection.rtl,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
@@ -122,20 +126,23 @@ class _MyHomePageState extends State<MyHomePage> {
                   subTitle: "اضافة/حذف او تعديل التصنيفات",
                   routeName: "/admin_category_enitity",
                 ),
+                Divider(),
                 serviceButton(
                   icon: Icons.location_on,
                   title: "إدارة المواقع",
                   subTitle: "اضافة/حذف او تعديل المواقع",
                   routeName: "/admin_location",
                 ),
+                Divider(),
                 serviceButton(
-                  icon: Icons.category,
+                  icon: Icons.label,
                   title: "إدارة الاقسام",
                   subTitle: "اضافة/حذف او تعديل الاقسام",
                   routeName: "/admin_department",
                 ),
+                Divider(),
                 serviceButton(
-                  icon: Icons.person,
+                  icon: Icons.people,
                   title: "الموظفين",
                   subTitle: "اضافة/حذف موظفين في االنظام",
                   routeName: "/admin_employee",
@@ -158,43 +165,42 @@ class _MyHomePageState extends State<MyHomePage> {
       onTap: () {
         Navigator.of(context).pushNamed(routeName);
       },
-      child: Container(
-        margin: EdgeInsets.only(bottom: 20),
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          color: Colors.blue[200],
-        ),
-        padding: EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Icon(
-              icon,
-              size: 50,
-              color: Colors.white,
-            ),
-            SizedBox(height: 10),
-            Text(
-              title,
-              style: GoogleFonts.nunitoSans(
-                color: const Color.fromARGB(255, 255, 255, 255),
-                fontSize: 20,
-                fontWeight: FontWeight.w800,
+      child: Directionality(
+        textDirection: TextDirection.rtl,
+        child: Container(
+          decoration: BoxDecoration(
+              // borderRadius: BorderRadius.circular(15),
+              color: Color(0xffFDFDFD)),
+          child: Card(
+            elevation: 0,
+            child: ListTile(
+              leading: Container(
+                  color: Colors.grey[300],
+                  child: Icon(
+                    icon,
+                    size: 50,
+                    color: Color.fromARGB(255, 15, 93, 156),
+                  )),
+              title: Text(
+                title,
+                style: GoogleFonts.nunitoSans(
+                  color: Color.fromARGB(255, 0, 0, 0),
+                  fontSize: 17,
+                  fontWeight: FontWeight.w800,
+                ),
+                textAlign: TextAlign.start,
               ),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 5),
-            Text(
-              subTitle,
-              style: GoogleFonts.nunitoSans(
-                color: const Color.fromARGB(255, 255, 255, 255),
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
+              subtitle: Text(
+                subTitle,
+                style: GoogleFonts.nunitoSans(
+                  color: Colors.grey[500],
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                ),
+                textAlign: TextAlign.start,
               ),
-              textAlign: TextAlign.center,
             ),
-          ],
+          ),
         ),
       ),
     );

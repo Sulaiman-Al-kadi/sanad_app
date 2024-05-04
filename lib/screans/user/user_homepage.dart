@@ -70,9 +70,7 @@ class _UserHomePageState extends State<UserHomePage> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage(
-                      "images/Screenshot_20240312_003406_WhatsApp.jpg"),
-                  fit: BoxFit.fill),
+                  image: AssetImage("images/banner2.jpg"), fit: BoxFit.fill),
               borderRadius: BorderRadius.circular(15),
               color: Colors.blue[300],
             ),
@@ -171,7 +169,7 @@ class _UserHomePageState extends State<UserHomePage> {
                   ),
                   GestureDetector(
                     onTapDown: (details) {
-                      Navigator.of(context).popAndPushNamed("/user_homepage");
+                      Navigator.of(context).pushNamed("/user_request_state");
                     },
                     child: Stack(
                       alignment: AlignmentDirectional.center,
