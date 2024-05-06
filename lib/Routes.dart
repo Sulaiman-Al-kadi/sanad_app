@@ -25,6 +25,7 @@ import 'package:sanad_app/screans/maintenace-manager/manager_dashboard.dart';
 import 'package:sanad_app/screans/maintenace-manager/manager_homepage.dart';
 import 'package:sanad_app/screans/maintenace-manager/manager_settings.dart';
 import 'package:sanad_app/screans/maintenace-manager/manager_view_reqeust.dart';
+import 'package:sanad_app/screans/maintenace-manager/mp_status.dart';
 import 'package:sanad_app/screans/maintenace-personnel/mp_view_requests.dart';
 import 'package:sanad_app/screans/maintenace-personnel/mp_dashbaord.dart';
 import 'package:sanad_app/screans/maintenace-personnel/mp_homepage.dart';
@@ -104,15 +105,15 @@ var routes = <String, WidgetBuilder>{
 
   //Manager
   "/manager_homepage": (context) => ManagerHomepage(),
-  "/mp_request_list": (context) => RequestListPage(),
-  "/mp_request_detail": (context) => RequestDetailPage(
-        request: {},
-        requestId: '',
-        documentId: '',
-      ),
+  // "/mp_request_list": (context) => RequestListPage(),
+  // "/mp_request_detail": (context) => RequestDetailPage(
+  //       request: {},
+  //       requestId: '',
+  //       documentId: '',
+  //     ),
   "/manager_settings": (context) => ManagerSettings(),
   "/manager_dashboard": (context) => const ManagerDashbaord(),
   "/manager_add_employee": (context) => const AddEmployeePage(),
-
+  "/manager_change_available": (context) => ManagerMaintenancePersonnelPage(),
   // other routes
 };

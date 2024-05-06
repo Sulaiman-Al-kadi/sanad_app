@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sanad_app/screans/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:sanad_app/screans/login.dart';
+import 'package:sanad_app/screans/navigation-bar/manager_nav_bar.dart';
 
 class ManagerSettings extends StatefulWidget {
   const ManagerSettings({super.key});

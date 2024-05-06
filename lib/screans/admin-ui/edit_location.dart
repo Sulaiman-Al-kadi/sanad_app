@@ -352,7 +352,7 @@ class _EditLocationPageState extends State<EditLocationPage> {
     final imageByteData = await QrPainter(
       data: qrData,
       version: QrVersions.auto,
-      gapless: false,
+      gapless: true,
     ).toImageData(200);
 
     return base64Encode(imageByteData!.buffer.asUint8List());

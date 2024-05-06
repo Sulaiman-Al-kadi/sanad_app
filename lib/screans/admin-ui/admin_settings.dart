@@ -47,6 +47,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:sanad_app/screans/constants.dart';
 import 'package:sanad_app/screans/login.dart';
+import 'package:sanad_app/screans/navigation-bar/admin_nav_bar.dart';
 
 class AdminSettings extends StatefulWidget {
   const AdminSettings({Key? key});
@@ -59,11 +60,17 @@ class _AdminSettingsState extends State<AdminSettings> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   void _logout() async {
+    AdminNBar t = new AdminNBar();
+    t.setAdminSelectedIndex(1);
+
     await _auth.signOut();
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(builder: (context) => Login()),
-      (route) => false,
+    Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
+      MaterialPageRoute(
+        builder: (BuildContext context) {
+          return Login();
+        },
+      ),
+      (_) => false,
     );
   }
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sanad_app/Routes.dart';
 import 'package:sanad_app/screans/constants.dart';
+import 'package:sanad_app/screans/navigation-bar/manager_nav_bar.dart';
 
 class ManagerHomepage extends StatefulWidget {
   const ManagerHomepage({super.key});
@@ -206,6 +207,59 @@ class _ManagerHomepageState extends State<ManagerHomepage> {
                                     fontWeight: FontWeight.w800,
                                   )),
                               Text("   اضافة موضف الى القسم",
+                                  style: GoogleFonts.nunitoSans(
+                                    color: const Color.fromARGB(
+                                        255, 211, 210, 210),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w800,
+                                  )),
+                              Container(
+                                height: 15,
+                                width: 30,
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+
+                   GestureDetector(
+                    onTapDown: (details) {
+                      Navigator.pushNamed(context, "/manager_change_available",
+                          arguments: getCurrentUserId());
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(right: 10),
+                      child: Stack(
+                        alignment: AlignmentDirectional.center,
+                        textDirection: TextDirection.rtl,
+                        children: <Widget>[
+                          Container(
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(
+                                    15) // Adjust the radius as needed
+                                ),
+                            child: Image.asset(
+                              "images/eugen-str-CrhsIRY3JWY-unsplash.jpg",
+                              height: double.maxFinite,
+                              width: double.maxFinite,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text("الموظفين",
+                                  style: GoogleFonts.nunitoSans(
+                                    color: const Color.fromARGB(
+                                        255, 255, 255, 255),
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.w800,
+                                  )),
+                              Text(" رؤية معلومات الموظفين",
                                   style: GoogleFonts.nunitoSans(
                                     color: const Color.fromARGB(
                                         255, 211, 210, 210),

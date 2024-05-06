@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sanad_app/screans/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:sanad_app/screans/login.dart';
+import 'package:sanad_app/screans/navigation-bar/maintenace_nav_bar.dart';
+import 'package:sanad_app/screans/navigation-bar/user_nav_bar.dart';
 
 class UserSettingsPage extends StatefulWidget {
   const UserSettingsPage({super.key});
@@ -14,7 +16,8 @@ class _SettingsPage extends State<UserSettingsPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   void _logout() async {
-    await _auth.signOut();
+    
+        await _auth.signOut();
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => Login()),

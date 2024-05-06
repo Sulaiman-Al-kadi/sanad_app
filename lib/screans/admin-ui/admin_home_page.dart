@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sanad_app/screans/constants.dart';
+import 'package:sanad_app/screans/navigation-bar/admin_nav_bar.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -94,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
-      bottomNavigationBar: AdminNBar(),
+      bottomNavigationBar: const AdminNBar(),
       body: SingleChildScrollView(
         child: Column(
           textDirection: TextDirection.rtl,

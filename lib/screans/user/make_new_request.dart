@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class EnhancedRequestPage extends StatefulWidget {
   final String? building;
@@ -26,13 +27,15 @@ class EnhancedRequestPage extends StatefulWidget {
 class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
   final TextEditingController _descriptionController = TextEditingController();
   final ImagePicker _picker = ImagePicker();
-  File? file;
-  String? url;
+  File? _imageFile;
+  String? _imageUrl;
   String? _selectedCategory;
   String? _selectedEntity;
   List<String> _categories = [];
   List<String> _entities = [];
   bool _isLoadingEntities = false;
+  bool _isUploadingImage = false;
+  String? mpEmail;
 
   @override
   void initState() {
@@ -67,60 +70,126 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
     });
   }
 
-  Future<void> getImage() async {
-    final XFile? imageCamera =
-        await _picker.pickImage(source: ImageSource.camera);
-
-    if (imageCamera != null) {
+  Future<void> _getImage() async {
+    final XFile? image = await _picker.pickImage(source: ImageSource.camera);
+    if (image != null) {
       setState(() {
-        file = File(imageCamera.path);
+        _imageFile = File(image.path);
       });
-
-      var imageName = imageCamera.name;
-      var refStorage = FirebaseStorage.instance.ref('request-pic/$imageName');
-
-      try {
-        await refStorage.putFile(file!);
-        url = await refStorage.getDownloadURL();
-      } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error uploading image: $e')),
-        );
-      }
+      await _uploadImage();
     }
   }
 
-  Future<void> saveRequest() async {
-    if (url == null || _selectedCategory == null || _selectedEntity == null) {
+  Future<void> _uploadImage() async {
+    if (_imageFile == null) return;
+
+    setState(() {
+      _isUploadingImage = true;
+    });
+
+    try {
+      var imageName = _imageFile!.path.split('/').last;
+      var refStorage = FirebaseStorage.instance.ref('request-pic/$imageName');
+
+      await refStorage.putFile(_imageFile!);
+      String imageUrl = await refStorage.getDownloadURL();
+      setState(() {
+        _imageUrl = imageUrl;
+        _isUploadingImage = false;
+      });
+    } catch (e) {
+      setState(() {
+        _isUploadingImage = false;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error uploading image: $e')),
+      );
+    }
+  }
+
+  // This function will fetch the maintenance personnel with the minimum requests
+  Future<String> assignedTo() async {
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
+    
+    try {
+      // Fetch all unique maintenance personnel by their email
+      QuerySnapshot personnelSnapshot = await firestore
+          .collection('users')
+          .where('userType', isEqualTo: 'Maintenance Personnel')
+          .where('available', isEqualTo: true).where('department', isEqualTo: firestore.collection('entity').where('category' , isEqualTo: _selectedCategory)  )
+          .get();
+
+      String emailWithMinRequests = '';
+      int minNumberOfRequests = -1;
+
+      // Iterate over each personnel to count their assigned requests
+      for (var doc in personnelSnapshot.docs) {
+        String email = doc.get(
+            'email'); // Assuming each personnel document has an 'email' field
+
+        // Count requests for this personnel
+        QuerySnapshot requestSnapshot = await firestore
+            .collection('requests')
+            .where("assignedTo", isEqualTo: email)
+            .get();
+
+        int numberOfRequests = requestSnapshot.size;
+
+        // Check if this personnel has fewer requests than the current minimum
+        if (minNumberOfRequests == -1 ||
+            numberOfRequests < minNumberOfRequests) {
+          minNumberOfRequests = numberOfRequests;
+          emailWithMinRequests = email;
+        }
+      }
+
+      return emailWithMinRequests;
+    } catch (e) {
+      // Handle any errors appropriately
+      print('Error fetching maintenance personnel with minimum requests: $e');
+      return '';
+    }
+  }
+
+  Future<void> _saveRequest() async {
+    if (_imageUrl == null ||
+        _selectedCategory == null ||
+        _selectedEntity == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Please complete the form before submitting.')),
       );
       return;
     }
 
+    User? user = FirebaseAuth.instance.currentUser;
+    String? email = user?.email;
+
+    mpEmail = await assignedTo() as String?;
+
     try {
       await FirebaseFirestore.instance.collection('requests').add({
         'category': _selectedCategory,
         'entity': _selectedEntity,
-        'image_url': url,
+        'image_url': _imageUrl,
         'description': _descriptionController.text.trim(),
         'building': widget.building,
         'floor': widget.floor,
         'suit': widget.suit,
         'room': widget.room,
         'timestamp': FieldValue.serverTimestamp(),
-        'state': 'onRequestPool', // Initial state
-        'assignedTo': 'null', // Initially not assigned
-        'userEmail': '',
+        'state': 'onProgress',
+        'assignedTo': mpEmail,
+        'email': email,
+        'rate': 0,
       });
 
       Navigator.pop(context);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('تم ارسال الطلب بنجاح')),
+        SnackBar(content: Text('Request sent successfully')),
       );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('حدثت مشكلة اثناء رفع الطلب: $e')),
+        SnackBar(content: Text('Error submitting request: $e')),
       );
     }
   }
@@ -140,8 +209,7 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
               onChanged: (newValue) {
                 setState(() {
                   _selectedCategory = newValue!;
-                  _selectedEntity =
-                      null; // Reset the entity when category changes
+                  _selectedEntity = null;
                   _fetchEntities(newValue);
                 });
               },
@@ -151,7 +219,15 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
                   child: Text(value),
                 );
               }).toList(),
-              hint: Text('التصنيف'),
+              hint: Text('مانوع المشكلة'),
+              icon: Icon(Icons.arrow_drop_down),
+              elevation: 16,
+              style: TextStyle(color: Colors.black),
+              underline: Container(
+                height: 2,
+                width: 100,
+                color: Colors.blue,
+              ),
             ),
             SizedBox(height: 20),
             if (_isLoadingEntities)
@@ -170,40 +246,61 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
                     child: Text(value),
                   );
                 }).toList(),
-                hint: Text('الفئة'),
+                hint: Text('المكشلة تحديدا'),
+                icon: Icon(Icons.arrow_drop_down),
+                elevation: 16,
+                style: TextStyle(color: Colors.black),
+                underline: Container(
+                  height: 2,
+                  width: 100,
+                  color: Colors.blue,
+                ),
               ),
             SizedBox(height: 20),
             GestureDetector(
-              onTap: getImage,
-              child: Container(
-                height: 200,
-                width: 200,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: url != null
-                    ? Image.network(url!, fit: BoxFit.cover, height: 200)
-                    : Icon(Icons.camera_alt, size: 50, color: Colors.grey),
+              onTap: _getImage,
+              child: Stack(
+                children: <Widget>[
+                  Center(
+                    child: Container(
+                      height: 400,
+                      width: 400,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: _imageUrl != null
+                          ? Image.network(_imageUrl!,
+                              fit: BoxFit.fill, height: 400)
+                          : Icon(Icons.camera_alt,
+                              size: 50, color: Colors.grey),
+                    ),
+                  ),
+                  if (_isUploadingImage)
+                    Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                ],
               ),
             ),
             SizedBox(height: 20),
             TextField(
-              inputFormatters: [
-                LengthLimitingTextInputFormatter(149),
-              ],
+              maxLength: 10, // Limiting the length to 10 characters
+              maxLengthEnforcement: MaxLengthEnforcement
+                  .enforced, // This will prevent further input once the limit is reached
               controller: _descriptionController,
               decoration: InputDecoration(
                 labelText: "الوصف",
-                hintText: "الرجاء كتابة وصف للمشكلة",
+                hintText: "اختياري: اكتب وصفا للمشكلة",
                 border: OutlineInputBorder(),
               ),
               maxLines: 3,
             ),
             SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: saveRequest,
-              child: Text("ارسال الطلب"),
+            ElevatedButton.icon(
+              onPressed: _saveRequest,
+              icon: Icon(Icons.send),
+              label: Text("ارسال الطلب"),
             ),
           ],
         ),

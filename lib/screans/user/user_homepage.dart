@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sanad_app/screans/constants.dart';
+import 'package:sanad_app/screans/navigation-bar/user_nav_bar.dart';
 
+/// The user's home page widget.
 class UserHomePage extends StatefulWidget {
   const UserHomePage({super.key});
 
@@ -63,6 +65,7 @@ class _UserHomePageState extends State<UserHomePage> {
               ),
             ),
           ]),
+        
       bottomNavigationBar: const UserNBar(),
       body: Container(
         width: MediaQuery.of(context).copyWith().size.width,
@@ -210,7 +213,9 @@ class _UserHomePageState extends State<UserHomePage> {
                               height: 15,
                               width: 30,
                             )
+                            
                           ],
+
                         )
                       ],
                     ),
@@ -219,6 +224,7 @@ class _UserHomePageState extends State<UserHomePage> {
               )),
         ]),
       ),
+
     );
   }
 }
