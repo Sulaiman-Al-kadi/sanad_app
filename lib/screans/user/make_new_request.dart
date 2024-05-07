@@ -102,7 +102,7 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
         _isUploadingImage = false;
       });
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error uploading image: $e')),
+        SnackBar(content: Text('حدث خطأ اثنائ رفخ الصورة: $e')),
       );
     }
   }
@@ -110,13 +110,17 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
   // This function will fetch the maintenance personnel with the minimum requests
   Future<String> assignedTo() async {
     final FirebaseFirestore firestore = FirebaseFirestore.instance;
-    
+
     try {
       // Fetch all unique maintenance personnel by their email
       QuerySnapshot personnelSnapshot = await firestore
           .collection('users')
           .where('userType', isEqualTo: 'Maintenance Personnel')
-          .where('available', isEqualTo: true).where('department', isEqualTo: firestore.collection('entity').where('category' , isEqualTo: _selectedCategory)  )
+          .where('available', isEqualTo: true)
+          .where('department',
+              isEqualTo: firestore
+                  .collection('entity')
+                  .where('category', isEqualTo: _selectedCategory))
           .get();
 
       String emailWithMinRequests = '';
@@ -156,7 +160,7 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
         _selectedCategory == null ||
         _selectedEntity == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please complete the form before submitting.')),
+        SnackBar(content: Text('الرجاء ادخال البيانات المطلوبة')),
       );
       return;
     }
@@ -185,11 +189,17 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
 
       Navigator.pop(context);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Request sent successfully')),
+        SnackBar(
+          content: Text(
+            'تم ارسال الطلب بنجاح',
+            textAlign: TextAlign.center,
+          ),
+          backgroundColor: Colors.red,
+        ),
       );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error submitting request: $e')),
+        SnackBar(content: Text('حدث خطأ :$e')),
       );
     }
   }
@@ -204,6 +214,7 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
         padding: EdgeInsets.all(16),
         child: Column(
           children: <Widget>[
+            Text("مانوع المشكلة"),
             DropdownButton<String>(
               value: _selectedCategory,
               onChanged: (newValue) {
@@ -219,7 +230,7 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
                   child: Text(value),
                 );
               }).toList(),
-              hint: Text('مانوع المشكلة'),
+              hint: Text('عطل كهربائي'),
               icon: Icon(Icons.arrow_drop_down),
               elevation: 16,
               style: TextStyle(color: Colors.black),
@@ -229,6 +240,7 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
                 color: Colors.blue,
               ),
             ),
+            Text("ماهي المشكلة تحديدت"),
             SizedBox(height: 20),
             if (_isLoadingEntities)
               CircularProgressIndicator()
@@ -246,7 +258,7 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
                     child: Text(value),
                   );
                 }).toList(),
-                hint: Text('المكشلة تحديدا'),
+                hint: Text('الافياش لاتعمل'),
                 icon: Icon(Icons.arrow_drop_down),
                 elevation: 16,
                 style: TextStyle(color: Colors.black),
