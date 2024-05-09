@@ -134,6 +134,7 @@ class _RatingPageState extends State<RatingPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           textDirection: TextDirection.rtl,
           children: <Widget>[
+
             Text(
               'نوع المشكلة',
               style: TextStyle(fontSize: 28.0),
@@ -151,7 +152,7 @@ class _RatingPageState extends State<RatingPage> {
               style: TextStyle(fontSize: 28.0),
             ),
             Text(
-              'الصورة المرفقة',
+              'صورة المشكلة بعد الحل',
               style: TextStyle(fontSize: 28.0),
             ),
             //  Container(
@@ -164,10 +165,7 @@ class _RatingPageState extends State<RatingPage> {
             //           child:
             //         ),
 
-            Text(
-              'كيف تقيّم خدمتنا ؟',
-              style: TextStyle(fontSize: 28.0),
-            ),
+
             Text(
               'هل لديك اي ملاحضات ؟',
               style: TextStyle(fontSize: 28.0),

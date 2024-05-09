@@ -24,10 +24,6 @@ class EnhancedRequestPage extends StatefulWidget {
   _EnhancedRequestPageState createState() => _EnhancedRequestPageState();
 
   getImage() {}
-
-    
-  
-
 }
 
 class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
@@ -191,7 +187,9 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
         'assignedTo': mpEmail,
         'email': email,
         'rate': 0,
-
+        'mpComment': 'null',
+        'mpImage': 'null',
+        'userFeedback': 'null',
       });
 
       Navigator.pop(context);
