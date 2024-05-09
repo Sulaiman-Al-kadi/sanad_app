@@ -123,7 +123,7 @@ class _RatingPageState extends State<RatingPage> {
   double _rating = 4.5; // Initial rating
   EnhancedRequestPage img = EnhancedRequestPage();
 
-  @override 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -202,6 +202,7 @@ class _RatingPageState extends State<RatingPage> {
                 'Rating: $_rating',
                 style: TextStyle(fontSize: 22.0),
               ),
+              ElevatedButton(onPressed: () {}, child: Text("ارسال التقييم"))
             ],
           ),
         ),
