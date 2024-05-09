@@ -135,11 +135,11 @@ class _RatingPageState extends State<RatingPage> {
           textDirection: TextDirection.rtl,
           children: <Widget>[
             Text(
-              'التصنيف',
+              'نوع المشكلة',
               style: TextStyle(fontSize: 28.0),
             ),
             Text(
-              'الفئة',
+              'المشكلة بالتحديد',
               style: TextStyle(fontSize: 28.0),
             ),
             Text(
