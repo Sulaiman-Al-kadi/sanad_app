@@ -134,7 +134,6 @@ class _RatingPageState extends State<RatingPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           textDirection: TextDirection.rtl,
           children: <Widget>[
-
             Text(
               'نوع المشكلة',
               style: TextStyle(fontSize: 28.0),
@@ -165,7 +164,6 @@ class _RatingPageState extends State<RatingPage> {
             //           child:
             //         ),
 
-
             Text(
               'هل لديك اي ملاحضات ؟',
               style: TextStyle(fontSize: 28.0),
@@ -174,6 +172,10 @@ class _RatingPageState extends State<RatingPage> {
               decoration: InputDecoration(
                 hintText: 'أدخل تعليقك هنا',
               ),
+            ),
+            Text(
+              'كيف تقيّم خدمتنا ؟',
+              style: TextStyle(fontSize: 28.0),
             ),
             SizedBox(height: 20.0),
             RatingBar.builder(
