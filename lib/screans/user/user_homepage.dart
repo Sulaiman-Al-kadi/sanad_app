@@ -65,7 +65,6 @@ class _UserHomePageState extends State<UserHomePage> {
               ),
             ),
           ]),
-        
       bottomNavigationBar: const UserNBar(),
       body: Container(
         width: MediaQuery.of(context).copyWith().size.width,
@@ -212,10 +211,56 @@ class _UserHomePageState extends State<UserHomePage> {
                             Container(
                               height: 15,
                               width: 30,
-                            )
-                            
+                            ),
                           ],
-
+                        )
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTapDown: (details) {
+                      Navigator.of(context).pushNamed("/rate_page");
+                    },
+                    child: Stack(
+                      alignment: AlignmentDirectional.center,
+                      textDirection: TextDirection.rtl,
+                      children: <Widget>[
+                        Container(
+                          clipBehavior: Clip.antiAlias,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(
+                                  15) // Adjust the radius as needed
+                              ),
+                          child: Image.asset(
+                            "images/pexels-pixabay-159213.jpg",
+                            height: double.maxFinite,
+                            width: double.maxFinite,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text("حالة الطلب",
+                                style: GoogleFonts.nunitoSans(
+                                  color:
+                                      const Color.fromARGB(255, 255, 255, 255),
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w800,
+                                )),
+                            Text("الاستعلام عن حالة الطلب",
+                                style: GoogleFonts.nunitoSans(
+                                  color:
+                                      const Color.fromARGB(255, 211, 210, 210),
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w800,
+                                )),
+                            Container(
+                              height: 15,
+                              width: 30,
+                            ),
+                          ],
                         )
                       ],
                     ),
@@ -224,7 +269,6 @@ class _UserHomePageState extends State<UserHomePage> {
               )),
         ]),
       ),
-
     );
   }
 }

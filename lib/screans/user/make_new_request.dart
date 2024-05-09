@@ -22,6 +22,12 @@ class EnhancedRequestPage extends StatefulWidget {
 
   @override
   _EnhancedRequestPageState createState() => _EnhancedRequestPageState();
+
+  getImage() {}
+
+    
+  
+
 }
 
 class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
@@ -70,7 +76,7 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
     });
   }
 
-  Future<void> _getImage() async {
+  Future<void> getImage() async {
     final XFile? image = await _picker.pickImage(source: ImageSource.camera);
     if (image != null) {
       setState(() {
@@ -185,6 +191,7 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
         'assignedTo': mpEmail,
         'email': email,
         'rate': 0,
+
       });
 
       Navigator.pop(context);
@@ -208,13 +215,13 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Enhanced User Request"),
+        title: Text("املأ البيانات لارسال الطلب"),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16),
         child: Column(
           children: <Widget>[
-            Text("مانوع المشكلة"),
+            Text(" مانوع المشكلة؟ أختر من القائمة ادناه"),
             DropdownButton<String>(
               value: _selectedCategory,
               onChanged: (newValue) {
@@ -240,7 +247,7 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
                 color: Colors.blue,
               ),
             ),
-            Text("ماهي المشكلة تحديدت"),
+            Text("ماهي المشكلة تحديدا ؟ اختر من القائمة ادناه"),
             SizedBox(height: 20),
             if (_isLoadingEntities)
               CircularProgressIndicator()
@@ -269,8 +276,9 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
                 ),
               ),
             SizedBox(height: 20),
+            Text("فضلا قم بأخذ صورة للمشكلة لتسهيل عملية الصيانة *"),
             GestureDetector(
-              onTap: _getImage,
+              onTap: getImage,
               child: Stack(
                 children: <Widget>[
                   Center(
@@ -297,19 +305,23 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
             ),
             SizedBox(height: 20),
             TextField(
-              maxLength: 10, // Limiting the length to 10 characters
+              maxLength: 149, // Limiting the length to 10 characters
               maxLengthEnforcement: MaxLengthEnforcement
                   .enforced, // This will prevent further input once the limit is reached
               controller: _descriptionController,
               decoration: InputDecoration(
-                labelText: "الوصف",
-                hintText: "اختياري: اكتب وصفا للمشكلة",
+                labelText: "ختياري: الوصف",
+                hintText:
+                    "الافياش الكهربائية لا تعمل رجاءا تصليحها بأسرع وقت ممكن",
                 border: OutlineInputBorder(),
               ),
               maxLines: 3,
             ),
             SizedBox(height: 20),
             ElevatedButton.icon(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+              ),
               onPressed: _saveRequest,
               icon: Icon(Icons.send),
               label: Text("ارسال الطلب"),

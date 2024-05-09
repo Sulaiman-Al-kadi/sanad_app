@@ -29,7 +29,8 @@ class _ScanQRPageState extends State<ScanQRPage> {
             textDirection: TextDirection.rtl,
             child: AlertDialog(
               title: Text('التعليمات'),
-              content: Text(' الرجاء مسح الباركود'),
+              content:
+                  Text(' الرجاء مسح الباركود الخاص بالغرفة لإنشاء طلب جديد'),
               actions: <Widget>[
                 TextButton(
                   child: Text('حسنا'),
@@ -91,7 +92,7 @@ class _ScanQRPageState extends State<ScanQRPage> {
                       style: TextStyle(fontSize: 16),
                       textAlign: TextAlign.center,
                     )
-                  : Text('الرجاء مسح الباركود الخاص بالغرفة',
+                  : Text('الرجاء مسح الباركود الخاص بالغرفة لإنشاء طلب جديد',
                       style: TextStyle(fontSize: 16)),
             ),
           )
@@ -138,7 +139,7 @@ class _ScanQRPageState extends State<ScanQRPage> {
           );
         } else {
           // If JSON is not a Map, handle the error
-          _showError('Scanned data format is incorrect.');
+          _showError('معلومات الباركود غير صحيحة');
         }
       } catch (e) {
         _showError('Error decoding QR code: $e');
