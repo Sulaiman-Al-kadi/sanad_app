@@ -68,7 +68,7 @@ class _CompleteRequestPageState extends State<CompleteRequestPage> {
   Future<void> _completeRequest() async {
     if (_imageFile == null || _commentController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please complete the form before submitting.')),
+        SnackBar(content: Text('.الرجاء تعبئة حميع البيانات المطلوبة')),
       );
       return;
     }
@@ -101,7 +101,7 @@ class _CompleteRequestPageState extends State<CompleteRequestPage> {
       );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error completing request: $e')),
+        SnackBar(content: Text('حدث خطأ:')),
       );
     }
   }

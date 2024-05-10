@@ -1,10 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sanad_app/screans/constants.dart';
 import 'package:sanad_app/screans/navigation-bar/user_nav_bar.dart';
 
-/// The user's home page widget.
+/**
+ * The user's home page widget.
+ */
 class UserHomePage extends StatefulWidget {
   const UserHomePage({super.key});
 
@@ -13,58 +17,85 @@ class UserHomePage extends StatefulWidget {
 }
 
 class _UserHomePageState extends State<UserHomePage> {
+  late String _firstName = '';
+  late String _lastName = '';
+  Future<void> _loadUserData() async {
+    // Get the current user
+    User? user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      // Access the "users" collection in Firestore
+      DocumentSnapshot userData = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .get();
+
+      // Retrieve first and last name from the document
+      setState(() {
+        _firstName = userData['firstName'] ?? '';
+        _lastName = userData['lastName'] ?? '';
+      });
+    }
+  }
+
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffF8F9FC),
       appBar: AppBar(
-          shadowColor: Colors.grey,
-          toolbarHeight: 90,
-          backgroundColor: const Color(0xffFDFDFD),
-          leading: IconButton(
-            padding: const EdgeInsets.all(10),
-            onPressed: () {},
-            icon: const Icon(Icons.notifications_none),
-            iconSize: 37,
-          ),
-          actions: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 10.0),
-                  child: Text(
-                    'مرحبا',
-                    style: GoogleFonts.nunitoSans(
-                      color: const Color.fromARGB(255, 85, 85, 85),
-                      fontSize: 15,
-                      fontWeight: FontWeight.w800,
-                    ),
+        shadowColor: Colors.grey,
+        toolbarHeight: 90,
+        backgroundColor: const Color(0xffFDFDFD),
+        leading: IconButton(
+          padding: const EdgeInsets.all(10),
+          onPressed: () {
+            // Navigator.of(context).pushNamed("/user_notification");
+          },
+          icon: const Icon(Icons.notifications_none),
+          iconSize: 37,
+        ),
+        actions: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 10.0),
+                child: Text(
+                  'مرحبا',
+                  style: GoogleFonts.nunitoSans(
+                    color: const Color.fromARGB(255, 85, 85, 85),
+                    fontSize: 15,
+                    fontWeight: FontWeight.w800,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 10.0),
-                  child: Text('احمد محسن',
-                      style: GoogleFonts.nunitoSans(
-                        color: const Color.fromARGB(255, 59, 59, 61),
-                        fontSize: 17,
-                        fontWeight: FontWeight.w900,
-                      )),
-                )
-              ],
-            ),
-            GestureDetector(
-              onTap: () {
-                return print("object");
-              },
-              child: const CircleAvatar(
-                radius: 35.0,
-                backgroundImage: AssetImage("images/تنزيل (3).jpeg"),
-                backgroundColor: Colors.transparent,
               ),
+              Padding(
+                padding: const EdgeInsets.only(right: 10.0),
+                child: Text('$_firstName $_lastName',
+                    style: GoogleFonts.nunitoSans(
+                      color: const Color.fromARGB(255, 59, 59, 61),
+                      fontSize: 17,
+                      fontWeight: FontWeight.w700,
+                    )),
+              )
+            ],
+          ),
+          GestureDetector(
+            onTap: () {},
+            child: const CircleAvatar(
+              radius: 35.0,
+              backgroundImage: AssetImage("images/تنزيل (3).jpeg"),
+              backgroundColor: Colors.transparent,
             ),
-          ]),
+          ),
+        ],
+      ),
       bottomNavigationBar: const UserNBar(),
       body: Container(
         width: MediaQuery.of(context).copyWith().size.width,

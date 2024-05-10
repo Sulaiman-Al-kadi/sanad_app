@@ -1,131 +1,130 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:sanad_app/screans/maintenace-personnel/Finshed_requests.dart';
+import 'package:sanad_app/screans/maintenace-personnel/in_progress_Requests.dart';
+import 'package:sanad_app/screans/navigation-bar/maintenace_nav_bar.dart';
+import 'package:sanad_app/screans/user/user_finished.dart';
 
-void main() {
-  runApp(MyApp());
+class TaskScreen extends StatefulWidget {
+  const TaskScreen({super.key});
+
+  @override
+  State<TaskScreen> createState() => _TaskScreenState();
 }
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: TaskScreen(),
-    );
+class _TaskScreenState extends State<TaskScreen>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+  late String _firstName = '';
+  late String _lastName = '';
+
+  Future<void> _loadUserData() async {
+    // Get the current user
+    User? user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      // Access the "users" collection in Firestore
+      DocumentSnapshot userData = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .get();
+
+      // Retrieve first and last name from the document
+      setState(() {
+        _firstName = userData['firstName'] ?? '';
+        _lastName = userData['lastName'] ?? '';
+      });
+    }
   }
-}
 
-class TaskScreen extends StatelessWidget {
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text("Tasks"),
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.black,
-          elevation: 0,
-          bottom: TabBar(
-            tabs: [
-              Tab(text: "Backlog 3"),
-              Tab(text: "Featured 3"),
-              Tab(text: "In Progress 3"),
+    return Scaffold(
+      appBar: AppBar(
+        shadowColor: Colors.grey,
+        toolbarHeight: 90,
+        backgroundColor: const Color(0xffFDFDFD),
+        leading: IconButton(
+          padding: const EdgeInsets.all(10),
+          onPressed: () {},
+          icon: const Icon(Icons.notifications_none),
+          iconSize: 37,
+        ),
+        bottom: TabBar(
+          controller: _tabController,
+          tabs: [
+            Tab(
+                child: Text('تم الانتهاء',
+                    style: GoogleFonts.nunitoSans(
+                      color: const Color.fromARGB(255, 59, 59, 61),
+                      fontSize: 17,
+                      fontWeight: FontWeight.w800,
+                    ))),
+            Tab(
+              child: Text('تحت الصيانه',
+                  style: GoogleFonts.nunitoSans(
+                    color: const Color.fromARGB(255, 59, 59, 61),
+                    fontSize: 17,
+                    fontWeight: FontWeight.w800,
+                  )),
+            ),
+          ],
+        ),
+        actions: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 10.0),
+                child: Text(
+                  'مرحبا',
+                  style: GoogleFonts.nunitoSans(
+                    color: const Color.fromARGB(255, 85, 85, 85),
+                    fontSize: 15,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 10.0),
+                child: Text('$_firstName $_lastName',
+                    style: GoogleFonts.nunitoSans(
+                      color: const Color.fromARGB(255, 59, 59, 61),
+                      fontSize: 17,
+                      fontWeight: FontWeight.w700,
+                    )),
+              )
             ],
-            labelColor: Colors.black,
-            indicatorColor: Colors.blue,
           ),
-        ),
-        body: TabBarView(
-          children: [
-            TaskListView(tasks: [
-              Task(title: "Backlog Task 1", progress: 0, days: 10),
-              Task(title: "Backlog Task 2", progress: 20, days: 5),
-            ]),
-            TaskListView(tasks: [
-              Task(title: "Featured Task 1", progress: 50, days: 3),
-              Task(title: "Featured Task 2", progress: 60, days: 7),
-            ]),
-            TaskListView(tasks: [
-              Task(title: "In Progress Task 1", progress: 70, days: 4),
-              Task(title: "In Progress Task 2", progress: 80, days: 2),
-            ]),
-          ],
-        ),
+          GestureDetector(
+            onTap: () {},
+            child: const CircleAvatar(
+              radius: 35.0,
+              backgroundImage: AssetImage("images/تنزيل (3).jpeg"),
+              backgroundColor: Colors.transparent,
+            ),
+          ),
+        ],
       ),
-    );
-  }
-}
-
-class TaskListView extends StatelessWidget {
-  final List<Task> tasks;
-
-  TaskListView({required this.tasks});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: EdgeInsets.all(8.0),
-      itemCount: tasks.length,
-      itemBuilder: (context, index) {
-        return TaskCard(task: tasks[index]);
-      },
-    );
-  }
-}
-
-class Task {
-  final String title;
-  final int progress;
-  final int days;
-
-  Task({required this.title, required this.progress, required this.days});
-}
-
-class TaskCard extends StatelessWidget {
-  final Task task;
-
-  TaskCard({required this.task});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      child: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  task.title,
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                Icon(Icons.more_vert),
-              ],
-            ),
-            SizedBox(height: 10),
-            LinearProgressIndicator(
-              value: task.progress / 100,
-              backgroundColor: Colors.grey[200],
-              color: Colors.blue,
-            ),
-            SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    CircleAvatar(),
-                    CircleAvatar(),
-                    CircleAvatar(),
-                  ],
-                ),
-                Text("${task.days} days")
-              ],
-            ),
-          ],
-        ),
+      body: TabBarView(
+        controller: _tabController,
+        children: [UserFinished(), InprogressPage()],
       ),
     );
   }

@@ -115,6 +115,12 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:sanad_app/screans/user/make_new_request.dart';
 
 class RatingPage extends StatefulWidget {
+  final String requestId;
+  final Map<String, dynamic> requestData;
+
+  const RatingPage(
+      {Key? key, required this.requestId, required this.requestData})
+      : super(key: key);
   @override
   _RatingPageState createState() => _RatingPageState();
 }
@@ -129,81 +135,114 @@ class _RatingPageState extends State<RatingPage> {
       appBar: AppBar(
         title: Text('قيّمنا'),
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            textDirection: TextDirection.rtl,
-            children: <Widget>[
-              Text(
-                'نوع المشكلة',
-                style: TextStyle(fontSize: 28.0),
-              ),
-              Text(
-                'المشكلة بالتحديد',
-                style: TextStyle(fontSize: 28.0),
-              ),
-              Text(
-                'الموظف',
-                style: TextStyle(fontSize: 28.0),
-              ),
-              Text(
-                'تعليق الموظف',
-                style: TextStyle(fontSize: 28.0),
-              ),
-              Text(
-                'صورة المشكلة بعد الحل',
-                style: TextStyle(fontSize: 28.0),
-              ),
-              //  Container(
-              //           height: 400,
-              //           width: 400,
-              //           decoration: BoxDecoration(
-              //             border: Border.all(color: Colors.grey),
-              //             borderRadius: BorderRadius.circular(12),
-              //           ),
-              //           child:
-              //         ),
+      body: Directionality(
+        textDirection: TextDirection.rtl,
+        child: SafeArea(
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                textDirection: TextDirection.rtl,
+                children: <Widget>[
+                  Text('التصنيف: ${widget.requestData['category']}',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  SizedBox(height: 20),
+                  Text('الفئة: ${widget.requestData['entity']}',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  SizedBox(height: 20),
+                  Text(':وصف المشكلة',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  SizedBox(height: 1),
+                  if (widget.requestData['description'] != "")
+                    Text(widget.requestData['description'],
+                        style: TextStyle(
+                          fontSize: 18,
+                        ))
+                  else
+                    Text("لا يوجد وصف",
+                        style:
+                            TextStyle(fontSize: 18, color: Colors.grey[600])),
+                  SizedBox(
+                    height: 20,
+                  ),
 
-              Text(
-                'هل لديك اي ملاحضات ؟',
-                style: TextStyle(fontSize: 28.0),
+                  Text(
+                    'تعليق الموظف',
+                    style: TextStyle(fontSize: 28.0),
+                  ),
+                  if (widget.requestData['mpComment'] != "")
+                    Text(widget.requestData['mpComment'],
+                        style: TextStyle(
+                          fontSize: 18,
+                        ))
+                  else
+                    Text("لا يوجد وصف",
+                        style:
+                            TextStyle(fontSize: 18, color: Colors.grey[600])),
+                  SizedBox(
+                    height: 20,
+                  ),
+
+                  Text(
+                    'صورة المشكلة بعد الحل',
+                    style: TextStyle(fontSize: 28.0),
+                  ),
+                  //  Container(
+                  //           height: 400,
+                  //           width: 400,
+                  //           decoration: BoxDecoration(
+                  //             border: Border.all(color: Colors.grey),
+                  //             borderRadius: BorderRadius.circular(12),
+                  //           ),
+                  //           child:
+                  //         ),
+
+                  Text(
+                    'هل لديك اي ملاحضات ؟',
+                    style: TextStyle(fontSize: 28.0),
+                  ),
+                  TextField(
+                    decoration: InputDecoration(
+                      hintText: 'أدخل تعليقك هنا',
+                    ),
+                  ),
+                  Text(
+                    'كيف تقيّم خدمتنا ؟',
+                    style: TextStyle(fontSize: 28.0),
+                  ),
+                  SizedBox(height: 20.0),
+                  RatingBar.builder(
+                    initialRating: _rating,
+                    minRating: 1,
+                    direction: Axis.horizontal,
+                    allowHalfRating: true,
+                    itemCount: 5,
+                    itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                    itemBuilder: (context, _) => Icon(
+                      Icons.star,
+                      color: Colors.amber,
+                    ),
+                    onRatingUpdate: (rating) {
+                      setState(() {
+                        _rating = rating;
+                      });
+                    },
+                  ),
+                  SizedBox(height: 20.0),
+                  Text(
+                    'Rating: $_rating',
+                    style: TextStyle(fontSize: 22.0),
+                  ),
+                  ElevatedButton(onPressed: () {}, child: Text("ارسال التقييم"))
+                ],
               ),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'أدخل تعليقك هنا',
-                ),
-              ),
-              Text(
-                'كيف تقيّم خدمتنا ؟',
-                style: TextStyle(fontSize: 28.0),
-              ),
-              SizedBox(height: 20.0),
-              RatingBar.builder(
-                initialRating: _rating,
-                minRating: 1,
-                direction: Axis.horizontal,
-                allowHalfRating: true,
-                itemCount: 5,
-                itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                itemBuilder: (context, _) => Icon(
-                  Icons.star,
-                  color: Colors.amber,
-                ),
-                onRatingUpdate: (rating) {
-                  setState(() {
-                    _rating = rating;
-                  });
-                },
-              ),
-              SizedBox(height: 20.0),
-              Text(
-                'Rating: $_rating',
-                style: TextStyle(fontSize: 22.0),
-              ),
-              ElevatedButton(onPressed: () {}, child: Text("ارسال التقييم"))
-            ],
+            ),
           ),
         ),
       ),

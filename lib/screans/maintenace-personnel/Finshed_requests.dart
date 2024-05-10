@@ -25,6 +25,7 @@ class _FinishedState extends State<Finished> {
                 .where('assignedTo', isEqualTo: assignedTo)
                 .orderBy('timestamp', descending: true)
                 .where('state', isEqualTo: 'completed')
+                .where('state', isEqualTo: 'canceld')
                 .snapshots(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {

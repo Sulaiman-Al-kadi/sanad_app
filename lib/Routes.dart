@@ -32,6 +32,7 @@ import 'package:sanad_app/screans/user/make_new_request.dart';
 import 'package:sanad_app/screans/user/rate_page.dart';
 import 'package:sanad_app/screans/user/requestState.dart';
 import 'package:sanad_app/screans/user/scan_qr_code.dart';
+import 'package:sanad_app/screans/user/user_notifcations.dart';
 import 'package:sanad_app/screans/user/user_settings.dart';
 import 'package:sanad_app/screans/user/user.dashbaord.dart';
 import 'package:sanad_app/screans/user/user_homepage.dart';
@@ -74,7 +75,12 @@ var routes = <String, WidgetBuilder>{
   "/user_new_request": (context) => const EnhancedRequestPage(),
   "/scan_qr_code": (context) => ScanQRPage(),
   "/user_request_state": (context) => TaskScreen(),
-  "/rate_page": (context) => RatingPage(),
+  "/rate_page": (context) => RatingPage(
+        requestId: '',
+        requestData: {},
+      ),
+  // "/user_notification": (context) => NotificationPage(),
+
   //admin
   "/admin_homepage": (context) => const MyHomePage(),
   "/admin_dashboard": (context) => const Dashboard(),
