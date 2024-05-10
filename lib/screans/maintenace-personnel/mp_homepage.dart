@@ -2,8 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sanad_app/Routes.dart';
-import 'package:sanad_app/screans/constants.dart';
 import 'package:sanad_app/screans/maintenace-personnel/Finshed_requests.dart';
 import 'package:sanad_app/screans/maintenace-personnel/in_progress_Requests.dart';
 import 'package:sanad_app/screans/navigation-bar/maintenace_nav_bar.dart';
@@ -44,7 +42,7 @@ class _MPHomepageState extends State<MPHomepage>
   void initState() {
     super.initState();
     _loadUserData();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
   }
 
   @override
@@ -69,8 +67,21 @@ class _MPHomepageState extends State<MPHomepage>
         bottom: TabBar(
           controller: _tabController,
           tabs: [
-            Tab(text: 'تحت الصيانه'),
-            Tab(text: 'منتهية'),
+            Tab(
+                child: Text('تم الانتهاء',
+                    style: GoogleFonts.nunitoSans(
+                      color: const Color.fromARGB(255, 59, 59, 61),
+                      fontSize: 17,
+                      fontWeight: FontWeight.w800,
+                    ))),
+            Tab(
+              child: Text('تحت الصيانه',
+                  style: GoogleFonts.nunitoSans(
+                    color: const Color.fromARGB(255, 59, 59, 61),
+                    fontSize: 17,
+                    fontWeight: FontWeight.w800,
+                  )),
+            ),
           ],
         ),
         actions: [
@@ -95,7 +106,7 @@ class _MPHomepageState extends State<MPHomepage>
                     style: GoogleFonts.nunitoSans(
                       color: const Color.fromARGB(255, 59, 59, 61),
                       fontSize: 17,
-                      fontWeight: FontWeight.w900,
+                      fontWeight: FontWeight.w700,
                     )),
               )
             ],
@@ -113,7 +124,7 @@ class _MPHomepageState extends State<MPHomepage>
       bottomNavigationBar: MpNBar(),
       body: TabBarView(
         controller: _tabController,
-        children: [InprogressPage(), Finished()],
+        children: [Finished(), InprogressPage()],
       ),
     );
   }

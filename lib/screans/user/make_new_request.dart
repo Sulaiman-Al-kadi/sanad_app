@@ -114,42 +114,54 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
     final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
     try {
-      // Fetch all unique maintenance personnel by their email
-      QuerySnapshot personnelSnapshot = await firestore
-          .collection('users')
-          .where('userType', isEqualTo: 'Maintenance Personnel')
-          .where('available', isEqualTo: true)
-          .where('department',
-              isEqualTo: firestore
-                  .collection('entity')
-                  .where('category', isEqualTo: _selectedCategory))
+      // Fetch the department based on selected entity and category
+      QuerySnapshot department = await firestore
+          .collection('entity')
+          .where('name', isEqualTo: _selectedEntity)
+          .where('category', isEqualTo: _selectedCategory)
           .get();
 
-      String emailWithMinRequests = '';
-      int minNumberOfRequests = -1;
+      // Assuming only one department matches the criteria
+      if (department.docs.isNotEmpty) {
+        String departmentId = department.docs.first.get('department');
 
-      // Iterate over each personnel to count their assigned requests
-      for (var doc in personnelSnapshot.docs) {
-        String email = doc.get(
-            'email'); // Assuming each personnel document has an 'email' field
-
-        // Count requests for this personnel
-        QuerySnapshot requestSnapshot = await firestore
-            .collection('requests')
-            .where("assignedTo", isEqualTo: email)
+        // Fetch all maintenance personnel and managers who are available and belong to the fetched department
+        QuerySnapshot personnelSnapshot = await firestore
+            .collection('users')
+            .where('available', isEqualTo: true)
+            .where('userType', whereIn: ['Maintenance Personnel', 'Manager'])
+            .where('department', isEqualTo: departmentId)
             .get();
 
-        int numberOfRequests = requestSnapshot.size;
+        String emailWithMinRequests = '';
+        int minNumberOfRequests = -1;
 
-        // Check if this personnel has fewer requests than the current minimum
-        if (minNumberOfRequests == -1 ||
-            numberOfRequests < minNumberOfRequests) {
-          minNumberOfRequests = numberOfRequests;
-          emailWithMinRequests = email;
+        // Iterate over each personnel to count their assigned requests
+        for (var doc in personnelSnapshot.docs) {
+          String email = doc.get('email');
+
+          // Count requests for this personnel
+          QuerySnapshot requestSnapshot = await firestore
+              .collection('requests')
+              .where("assignedTo", isEqualTo: email)
+              .get();
+
+          int numberOfRequests = requestSnapshot.size;
+
+          // Check if this personnel has fewer requests than the current minimum
+          if (minNumberOfRequests == -1 ||
+              numberOfRequests < minNumberOfRequests) {
+            minNumberOfRequests = numberOfRequests;
+            emailWithMinRequests = email;
+          }
         }
-      }
 
-      return emailWithMinRequests;
+        return emailWithMinRequests;
+      } else {
+        // Handle if no department is found
+        print('No department found for the selected entity and category');
+        return '';
+      }
     } catch (e) {
       // Handle any errors appropriately
       print('Error fetching maintenance personnel with minimum requests: $e');
@@ -198,8 +210,9 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
           content: Text(
             'تم ارسال الطلب بنجاح',
             textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.white),
           ),
-          backgroundColor: Colors.red,
+          backgroundColor: const Color.fromARGB(255, 54, 244, 82),
         ),
       );
     } catch (e) {
@@ -303,7 +316,7 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
             ),
             SizedBox(height: 20),
             TextField(
-              maxLength: 149, // Limiting the length to 10 characters
+              maxLength: 149, 
               maxLengthEnforcement: MaxLengthEnforcement
                   .enforced, // This will prevent further input once the limit is reached
               controller: _descriptionController,
@@ -320,7 +333,9 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
               ),
-              onPressed: _saveRequest,
+              onPressed: () {
+                _saveRequest();
+              },
               icon: Icon(Icons.send),
               label: Text("ارسال الطلب"),
             ),

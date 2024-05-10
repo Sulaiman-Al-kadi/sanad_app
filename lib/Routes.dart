@@ -19,14 +19,11 @@ import 'package:sanad_app/screans/admin-ui/add_category.dart';
 import 'package:sanad_app/screans/admin-ui/view_employee.dart';
 import 'package:sanad_app/screans/admin-ui/view_location.dart';
 import 'package:sanad_app/screans/forget_passwprd.dart';
-import 'package:sanad_app/screans/login.dart';
 import 'package:sanad_app/screans/maintenace-manager/add_employee.dart';
 import 'package:sanad_app/screans/maintenace-manager/manager_dashboard.dart';
 import 'package:sanad_app/screans/maintenace-manager/manager_homepage.dart';
 import 'package:sanad_app/screans/maintenace-manager/manager_settings.dart';
-import 'package:sanad_app/screans/maintenace-manager/manager_view_reqeust.dart';
 import 'package:sanad_app/screans/maintenace-manager/mp_status.dart';
-import 'package:sanad_app/screans/maintenace-personnel/mp_view_requests.dart';
 import 'package:sanad_app/screans/maintenace-personnel/mp_dashbaord.dart';
 import 'package:sanad_app/screans/maintenace-personnel/mp_homepage.dart';
 import 'package:sanad_app/screans/maintenace-personnel/mp_settings.dart';
@@ -103,7 +100,8 @@ var routes = <String, WidgetBuilder>{
   "/mp_homepage": (context) => const MPHomepage(),
   "/mp_dashboard": (context) => const MPDashboard(),
   "/mp_settings": (context) => MPSettigns(),
-  "/maintenance_personnel_page": (context) => MaintenancePersonnelPage(),
+  // "/view_requests": (context) => ViewRequestPage(),
+  // "/maintenance_personnel_page": (context) => MaintenancePersonnelPage(),
 
   //Manager
   "/manager_homepage": (context) => ManagerHomepage(),
