@@ -96,7 +96,7 @@ class _AddEmplyeeState extends State<AddEmplyee> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Update Department'),
+        title: Text('تعيين مدير'),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -105,7 +105,7 @@ class _AddEmplyeeState extends State<AddEmplyee> {
           children: [
             DropdownButton<String>(
               value: _selectedManager,
-              hint: Text('Select Manager'),
+              hint: Text('اختر المدير المراد تعيينه'),
               onChanged: (String? newValue) {
                 setState(() {
                   _selectedManager = newValue;
@@ -120,7 +120,7 @@ class _AddEmplyeeState extends State<AddEmplyee> {
             ),
             DropdownButton<String>(
               value: _selectedDepartment,
-              hint: Text('Select Department'),
+              hint: Text('اختر القسم'),
               onChanged: (String? newValue) {
                 setState(() {
                   _selectedDepartment = newValue;
@@ -136,7 +136,7 @@ class _AddEmplyeeState extends State<AddEmplyee> {
             SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: _updateDepartment,
-              child: Text('Update Department'),
+              child: Text('تحديث القسم'),
             ),
           ],
         ),

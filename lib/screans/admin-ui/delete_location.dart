@@ -23,7 +23,7 @@ class _DeleteLocationState extends State<DeleteLocation> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Delete Location'),
+        title: Text('حذف موقع'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -32,7 +32,7 @@ class _DeleteLocationState extends State<DeleteLocation> {
           children: [
             DropdownButton<String>(
               value: _selectedBuilding,
-              hint: Text('Select Building'),
+              hint: Text('اختر المبنى'),
               onChanged: (String? newValue) {
                 setState(() {
                   _selectedBuilding = newValue;
@@ -55,7 +55,7 @@ class _DeleteLocationState extends State<DeleteLocation> {
             if (_selectedBuilding != null)
               DropdownButton<String>(
                 value: _selectedFloor,
-                hint: Text('Select Floor'),
+                hint: Text('اختر الطابق'),
                 onChanged: (String? newValue) {
                   setState(() {
                     _selectedFloor = newValue;
@@ -77,7 +77,7 @@ class _DeleteLocationState extends State<DeleteLocation> {
             if (_selectedFloor != null)
               DropdownButton<String>(
                 value: _selectedRoom,
-                hint: Text('Select Room'),
+                hint: Text('اختر الغرفة'),
                 onChanged: (String? newValue) {
                   setState(() {
                     _selectedRoom = newValue;
@@ -98,7 +98,7 @@ class _DeleteLocationState extends State<DeleteLocation> {
             if (_selectedRoom != null)
               DropdownButton<String>(
                 value: _selectedSuite,
-                hint: Text('Select Suite'),
+                hint: Text('اختر الجناح'),
                 onChanged: (String? newValue) {
                   setState(() {
                     _selectedSuite = newValue;
@@ -123,7 +123,7 @@ class _DeleteLocationState extends State<DeleteLocation> {
                       _selectedRoom!, _selectedSuite!);
                 }
               },
-              child: Text('Delete'),
+              child: Text('حذف'),
             ),
           ],
         ),
@@ -244,7 +244,7 @@ class _DeleteLocationState extends State<DeleteLocation> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('OK'),
+              child: Text('حسنا'),
             ),
           ],
         );

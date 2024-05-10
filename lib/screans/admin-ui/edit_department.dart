@@ -63,7 +63,7 @@ class _EditDepartmentState extends State<EditDepartment> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Department'),
+        title: Text('تعديل القسم'),
       ),
       body: SafeArea(
         child: Column(
@@ -111,10 +111,10 @@ class _EditDepartmentState extends State<EditDepartment> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Edit Department Name'),
+          title: Text('تعديل اسم القسم'),
           content: TextField(
             controller: _departmentNameController,
-            decoration: InputDecoration(hintText: 'Enter new department name'),
+            decoration: InputDecoration(hintText: 'اختر اسم القسم الجديد'),
           ),
           actions: <Widget>[
             TextButton(
@@ -132,12 +132,12 @@ class _EditDepartmentState extends State<EditDepartment> {
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text('Please enter a valid department name'),
+                      content: Text('الرجاء ادخال اسم صالح'),
                     ),
                   );
                 }
               },
-              child: Text('Save'),
+              child: Text('حفظ'),
             ),
           ],
         );

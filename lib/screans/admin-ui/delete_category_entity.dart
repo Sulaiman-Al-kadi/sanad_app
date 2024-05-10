@@ -21,7 +21,7 @@ class _DeleteCategoryEntityState extends State<DeleteCategoryEntity> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Delete Category/Entity'),
+        title: Text('حذف تصنيف أو فئة من النظام'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -30,7 +30,7 @@ class _DeleteCategoryEntityState extends State<DeleteCategoryEntity> {
           children: [
             DropdownButton<String>(
               value: _selectedOption,
-              hint: Text('Select Option'),
+              hint: Text('الرجاء الاختيار'),
               onChanged: (String? newValue) {
                 setState(() {
                   _selectedOption = newValue;
@@ -58,7 +58,7 @@ class _DeleteCategoryEntityState extends State<DeleteCategoryEntity> {
             if (_selectedOption == 'Category')
               DropdownButton<String>(
                 value: _selectedCategory,
-                hint: Text('Select Category to Delete'),
+                hint: Text('اختر تصنيف لحذفه'),
                 onChanged: (String? newValue) {
                   setState(() {
                     _selectedCategory = newValue;
@@ -75,7 +75,7 @@ class _DeleteCategoryEntityState extends State<DeleteCategoryEntity> {
             if (_selectedOption == 'Entity' && _categories.isNotEmpty)
               DropdownButton<String>(
                 value: _selectedCategory,
-                hint: Text('Select Category'),
+                hint: Text('اختر تصنيف لحذفها'),
                 onChanged: (String? newValue) {
                   setState(() {
                     _selectedCategory = newValue;
@@ -97,7 +97,7 @@ class _DeleteCategoryEntityState extends State<DeleteCategoryEntity> {
                 _entities.isNotEmpty)
               DropdownButton<String>(
                 value: _selectedEntity,
-                hint: Text('Select Entity to Delete'),
+                hint: Text('اختر فئة لحذفها'),
                 onChanged: (String? newValue) {
                   setState(() {
                     _selectedEntity = newValue;

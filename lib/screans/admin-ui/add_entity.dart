@@ -695,7 +695,7 @@ class _AddEntityState extends State<AddEntity> {
 
   void _addEntity(String name) async {
     if (_selectedCategory == null || _selectedDepartment == null) {
-      _showAlert('Error: Please select a category and department');
+      _showAlert('خطأ: الرجاء تحديد التصنيف والقسم');
       return;
     }
 
@@ -707,7 +707,7 @@ class _AddEntityState extends State<AddEntity> {
         .get();
 
     if (querySnapshot.docs.isNotEmpty) {
-      _showAlert('Error: Entity already exists in selected category');
+      _showAlert('خطأ: الفئة موجود بالفعل في التصنيف المحدد');
       return;
     }
 
@@ -717,11 +717,11 @@ class _AddEntityState extends State<AddEntity> {
         'department': _selectedDepartment,
         'category': _selectedCategory,
       });
-      _showAlert('Success: Entity added successfully');
+      _showAlert('نجاح: تمت إضافة الفىة بنجاح');
       _entityNameController.clear();
     } catch (e) {
       print('Error adding entity: $e');
-      _showAlert('Error: Failed to add entity');
+      _showAlert('خطأ: فشل في إضافة الفئة');
     }
   }
 
@@ -737,7 +737,7 @@ class _AddEntityState extends State<AddEntity> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('OK'),
+              child: Text('خطأ'),
             ),
           ],
         );
@@ -758,7 +758,7 @@ class _AddEntityState extends State<AddEntity> {
           children: [
             DropdownButton<String>(
               value: _selectedCategory,
-              hint: Text('Select Category'),
+              hint: Text('اختر التصنيف'),
               onChanged: (String? newValue) {
                 setState(() {
                   _selectedCategory = newValue;
@@ -773,7 +773,7 @@ class _AddEntityState extends State<AddEntity> {
             ),
             DropdownButton<String>(
               value: _selectedDepartment,
-              hint: Text('Select Department'),
+              hint: Text('اختر القسم'),
               onChanged: (String? newValue) {
                 setState(() {
                   _selectedDepartment = newValue;
@@ -789,7 +789,7 @@ class _AddEntityState extends State<AddEntity> {
             TextField(
               controller: _entityNameController,
               decoration: InputDecoration(
-                labelText: 'Entity Name',
+                labelText: 'اسم الفئة',
               ),
             ),
             SizedBox(height: 16.0),
@@ -800,7 +800,7 @@ class _AddEntityState extends State<AddEntity> {
                   _addEntity(name);
                 }
               },
-              child: Text('Add Entity'),
+              child: Text('إضافة الفئة'),
             ),
           ],
         ),

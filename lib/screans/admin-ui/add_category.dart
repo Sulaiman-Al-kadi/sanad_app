@@ -61,7 +61,7 @@ class _ChangeCategoryEntityState extends State<ChangeCategoryEntity> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('OK'),
+              child: Text('حسنا'),
             ),
           ],
         );
@@ -100,7 +100,7 @@ class _ChangeCategoryEntityState extends State<ChangeCategoryEntity> {
                           });
                         },
                       ),
-                      Text('Change Category'),
+                      Text('تعديل التصنيفات'),
                     ],
                   ),
                   SizedBox(width: 16),
@@ -119,7 +119,7 @@ class _ChangeCategoryEntityState extends State<ChangeCategoryEntity> {
                           });
                         },
                       ),
-                      Text('Change Entity'),
+                      Text('تغيير التصنيف'),
                     ],
                   ),
                 ],
@@ -129,7 +129,7 @@ class _ChangeCategoryEntityState extends State<ChangeCategoryEntity> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text('Choose Category'),
+                    Text('اختر التصنيف'),
                     DropdownButton<String>(
                       value: _selectedCategory,
                       onChanged: (String? newValue) {
@@ -226,10 +226,10 @@ class _ChangeCategoryEntityState extends State<ChangeCategoryEntity> {
                     _changeEntity(_selectedEntity!);
                   } else {
                     _showAlert(
-                        'Please select a category or entity and provide a name');
+                        'خطأ: يجب اختيار التصنيف والفئة وادخال الاسم الجديد للتصنيف او الفئة الجديد');
                   }
                 },
-                child: Text('Submit'),
+                child: Text('ارسال'),
               ),
             ],
           ),
