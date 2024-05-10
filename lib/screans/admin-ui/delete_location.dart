@@ -218,7 +218,7 @@ class _DeleteLocationState extends State<DeleteLocation> {
           doc.reference.delete();
         });
       });
-      _showAlert('Success: Location deleted successfully');
+      _showAlert('نجاح: تم حذف الموقع بنجاح');
       // Reset dropdown selections
       setState(() {
         _selectedBuilding = null;
@@ -228,7 +228,7 @@ class _DeleteLocationState extends State<DeleteLocation> {
       });
     } catch (e) {
       print('Error deleting location: $e');
-      _showAlert('Error: Failed to delete location');
+      _showAlert('خطأ: حدث خطأ أثناء حذف الموقع');
     }
   }
 

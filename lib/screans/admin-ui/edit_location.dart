@@ -132,7 +132,7 @@ class _EditLocationPageState extends State<EditLocationPage> {
                       onPressed: () {
                         _submitChanges();
                       },
-                      child: Text('Submit'),
+                      child: Text('ارسال'),
                     ),
                   ],
                 ],

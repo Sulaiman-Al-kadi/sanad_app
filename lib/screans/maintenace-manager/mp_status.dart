@@ -217,11 +217,11 @@ class _ManagerMaintenancePersonnelPageState
                     items: [
                       DropdownMenuItem(
                         value: true,
-                        child: Text('Available'),
+                        child: Text('متاح'),
                       ),
                       DropdownMenuItem(
                         value: false,
-                        child: Text('Unavailable'),
+                        child: Text('غير متاح'),
                       ),
                     ],
                   ),
