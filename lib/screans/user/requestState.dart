@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sanad_app/screans/maintenace-personnel/Finshed_requests.dart';
@@ -56,72 +57,12 @@ class _TaskScreenState extends State<TaskScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        shadowColor: Colors.grey,
-        toolbarHeight: 90,
-        backgroundColor: const Color(0xffFDFDFD),
-        leading: IconButton(
-          padding: const EdgeInsets.all(10),
-          onPressed: () {},
-          icon: const Icon(Icons.notifications_none),
-          iconSize: 37,
+          title: Center(
+        child: Text(
+          "الطلبات",
+          style: TextStyle(fontSize: 28),
         ),
-        bottom: TabBar(
-          controller: _tabController,
-          tabs: [
-            Tab(
-                child: Text('تم الانتهاء',
-                    style: GoogleFonts.nunitoSans(
-                      color: const Color.fromARGB(255, 59, 59, 61),
-                      fontSize: 17,
-                      fontWeight: FontWeight.w800,
-                    ))),
-            Tab(
-              child: Text('تحت الصيانه',
-                  style: GoogleFonts.nunitoSans(
-                    color: const Color.fromARGB(255, 59, 59, 61),
-                    fontSize: 17,
-                    fontWeight: FontWeight.w800,
-                  )),
-            ),
-          ],
-        ),
-        actions: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 10.0),
-                child: Text(
-                  'مرحبا',
-                  style: GoogleFonts.nunitoSans(
-                    color: const Color.fromARGB(255, 85, 85, 85),
-                    fontSize: 15,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 10.0),
-                child: Text('$_firstName $_lastName',
-                    style: GoogleFonts.nunitoSans(
-                      color: const Color.fromARGB(255, 59, 59, 61),
-                      fontSize: 17,
-                      fontWeight: FontWeight.w700,
-                    )),
-              )
-            ],
-          ),
-          GestureDetector(
-            onTap: () {},
-            child: const CircleAvatar(
-              radius: 35.0,
-              backgroundImage: AssetImage("images/تنزيل (3).jpeg"),
-              backgroundColor: Colors.transparent,
-            ),
-          ),
-        ],
-      ),
+      )),
       body: TabBarView(
         controller: _tabController,
         children: [UserFinished(), InprogressPage()],

@@ -58,8 +58,6 @@ class _InprogressPageState extends State<InprogressPage> {
                 .collection('requests')
                 .where('assignedTo', isEqualTo: assignedTo)
                 .orderBy('timestamp', descending: true)
-                .where('timestamp',
-                    isGreaterThan: DateTime.now().subtract(Duration(hours: 24)))
                 .where('state', isEqualTo: 'onProgress')
                 .snapshots(),
             builder: (context, snapshot) {

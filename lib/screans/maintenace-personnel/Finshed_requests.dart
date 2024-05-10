@@ -23,10 +23,10 @@ class _FinishedState extends State<Finished> {
             stream: FirebaseFirestore.instance
                 .collection('requests')
                 .where('assignedTo', isEqualTo: assignedTo)
-                .orderBy('timestamp', descending: true)
-                .where('state', isEqualTo: 'completed')
-                .where('state', isEqualTo: 'canceld')
-                .snapshots(),
+                .orderBy('timestamp', descending: false)
+                .where('timestamp',
+                    isGreaterThan: DateTime.now().subtract(Duration(days: 30)))
+                .where('state', whereIn: ['completed', 'canceled']).snapshots(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(child: CircularProgressIndicator());
