@@ -117,18 +117,11 @@ class ManageLocation extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          MaterialButton(
-            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-            onPressed: () {
-              Navigator.of(context).pushNamed("/delete_location");
-            },
-            color: Colors.blue,
-            child: Text("حذف موقع ",
-                style: TextStyle(color: Colors.white, fontSize: 20)),
-            shape: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(50),
-              borderSide: BorderSide.none,
-            ),
+          miniServiceButton(
+            context: context,
+            icon: Icons.file_copy,
+            title: "حذف موقع",
+            routeName: "/delete_location",
           ),
         ]));
   }

@@ -546,17 +546,17 @@ class _MainPageState extends State<MainPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter Tab Bar Example'),
+        title: Text('ادارة التصنيفات'),
         bottom: TabBar(
           controller: _tabController,
           tabs: [
             Tab(
               icon: Icon(Icons.category),
-              text: 'Add Category',
+              text: 'اضالة تصنيف',
             ),
             Tab(
               icon: Icon(Icons.business),
-              text: 'Add Entity',
+              text: 'اضافة فئة',
             ),
           ],
         ),
@@ -587,11 +587,11 @@ class _AddCategoryState extends State<AddCategory> {
       await FirebaseFirestore.instance.collection('category').add({
         'name': category,
       });
-      _showAlert('Success: Category added successfully');
+      _showAlert('نجاح: تمت إضافة التصنيف بنجاح');
       _categoryController.clear();
     } catch (e) {
       print('Error adding category: $e');
-      _showAlert('Error: Failed to add category');
+      _showAlert('Error: فشل في إضافة التصنيف الى الفئة');
     }
   }
 
@@ -624,11 +624,11 @@ class _AddCategoryState extends State<AddCategory> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text('Add Category', style: TextStyle(fontSize: 18)),
+            Text('اضف تصنيف', style: TextStyle(fontSize: 18)),
             TextField(
               controller: _categoryController,
               decoration: InputDecoration(
-                labelText: 'Category Name',
+                labelText: 'اسم التصنيف',
               ),
             ),
             ElevatedButton(
@@ -638,7 +638,7 @@ class _AddCategoryState extends State<AddCategory> {
                   _addCategory(category);
                 }
               },
-              child: Text('Add Category'),
+              child: Text('اضافة تصنيف'),
             ),
           ],
         ),

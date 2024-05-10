@@ -37,18 +37,11 @@ class Employee extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          MaterialButton(
-            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-            onPressed: () {
-              Navigator.of(context).pushNamed("/view_employee");
-            },
-            color: Colors.blue,
-            child: Text("عرض معلومات الموظف",
-                style: TextStyle(color: Colors.white, fontSize: 20)),
-            shape: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(50),
-              borderSide: BorderSide.none,
-            ),
+          miniServiceButton(
+            context: context,
+            icon: Icons.file_copy,
+            title: "عرض معلومات الموظفين",
+            routeName: "/view_employee",
           ),
         ],
       ),

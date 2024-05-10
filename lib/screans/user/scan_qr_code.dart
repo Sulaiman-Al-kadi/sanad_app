@@ -152,11 +152,11 @@ class _ScanQRPageState extends State<ScanQRPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Error'),
+          title: Text('خطأ'),
           content: Text(message),
           actions: <Widget>[
             TextButton(
-              child: Text('OK'),
+              child: Text('حسنا'),
               onPressed: () {
                 Navigator.of(context).pop();
               },

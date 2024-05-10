@@ -65,10 +65,10 @@ class _AddEmplyeeState extends State<AddEmplyee> {
         'department': _selectedDepartment,
       });
 
-      _showAlert('Success: Department updated successfully');
+      _showAlert('نجحت عملية تحديث القسم بنجاح');
     } catch (e) {
       print('Error updating department: $e');
-      _showAlert('Error: Failed to update department');
+      _showAlert('خطأ: لم يتم تحديث القسم ');
     }
   }
 
@@ -84,7 +84,7 @@ class _AddEmplyeeState extends State<AddEmplyee> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('OK'),
+              child: Text('اغلاق'),
             ),
           ],
         );
