@@ -128,12 +128,12 @@ class _AdminPageState extends State<EditEmployee> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('User Information:'),
-                    Text('Email: ${userData!['email']}'),
-                    Text('Phone Number: ${userData!['phoneNumber']}'),
-                    Text('First Name: ${userData!['firstName']}'),
-                    Text('Last Name: ${userData!['lastName']}'),
-                    Text('userType : ${userData!['userType']}'),
+                    Text(':معلومات المستخدم'),
+                    Text(' : البريد الاكتروني ${userData!['email']}'),
+                    Text(':رقم الهاتف ${userData!['phoneNumber']}'),
+                    Text(': الاسم الاول ${userData!['firstName']}'),
+                    Text(':العائلة ${userData!['lastName']}'),
+                    Text(':صلاحية المستخدم ${userData!['userType']}'),
                     SizedBox(
                       height: 15,
                     ),
@@ -162,11 +162,11 @@ class _AdminPageState extends State<EditEmployee> {
                         _updateUserType();
                         Navigator.of(context).pushNamed("/admin_homepage");
                       },
-                      child: Text('Update User Type'),
+                      child: Text('تحديث صلاحية المستخدم'),
                     ),
                   ],
                 ),
-              if (userData == null) Text('User not found!'),
+              if (userData == null) Text('!لم يتم العثور على المستخدم'),
             ],
           ),
         ),

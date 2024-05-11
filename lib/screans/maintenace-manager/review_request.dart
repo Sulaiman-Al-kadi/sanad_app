@@ -126,7 +126,7 @@ class _InReviewState extends State<InReview> {
                                   MaterialPageRoute(
                                     builder: (context) => ReassignPage(
                                       requestId: requestId,
-                                      requestData: request,
+                                      request: request,
                                     ),
                                   ),
                                 );

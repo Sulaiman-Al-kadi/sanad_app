@@ -23,107 +23,112 @@ class _DeleteCategoryEntityState extends State<DeleteCategoryEntity> {
       appBar: AppBar(
         title: Text('حذف تصنيف أو فئة من النظام'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            DropdownButton<String>(
-              value: _selectedOption,
-              hint: Text('الرجاء الاختيار'),
-              onChanged: (String? newValue) {
-                setState(() {
-                  _selectedOption = newValue;
-                  _selectedCategory = null;
-                  _selectedEntity = null;
-                  _categories = [];
-                  _entities = [];
-                  if (_selectedOption == 'Category') {
-                    _fetchCategories();
-                  }
-                  // Call _fetchEntities when the user selects the "Entity" option
-                  else if (_selectedOption == 'Entity') {
-                    _fetchCategories(); // Fetch categories first
-                  }
-                });
-              },
-              items: _options.map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-            ),
-            SizedBox(height: 16.0),
-            if (_selectedOption == 'Category')
+      body: Directionality(
+        textDirection: TextDirection.rtl,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text("entity = فئة category = ملاحظة : تصنيف  "),
               DropdownButton<String>(
-                value: _selectedCategory,
-                hint: Text('اختر تصنيف لحذفه'),
+                value: _selectedOption,
+                hint: Text('الرجاء الاختيار'),
                 onChanged: (String? newValue) {
                   setState(() {
-                    _selectedCategory = newValue;
-                  });
-                },
-                items:
-                    _categories.map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-              ),
-            if (_selectedOption == 'Entity' && _categories.isNotEmpty)
-              DropdownButton<String>(
-                value: _selectedCategory,
-                hint: Text('اختر تصنيف لحذفها'),
-                onChanged: (String? newValue) {
-                  setState(() {
-                    _selectedCategory = newValue;
+                    _selectedOption = newValue;
+                    _selectedCategory = null;
+                    _selectedEntity = null;
+                    _categories = [];
                     _entities = [];
-                    _fetchEntities();
+                    if (_selectedOption == 'Category') {
+                      _fetchCategories();
+                    }
+                    // Call _fetchEntities when the user selects the "Entity" option
+                    else if (_selectedOption == 'Entity') {
+                      _fetchCategories(); // Fetch categories first
+                    }
                   });
                 },
-                items:
-                    _categories.map<DropdownMenuItem<String>>((String value) {
+                items: _options.map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Text(value),
                   );
                 }).toList(),
               ),
-            SizedBox(height: 16.0),
-            if (_selectedOption == 'Entity' &&
-                _selectedCategory != null &&
-                _entities.isNotEmpty)
-              DropdownButton<String>(
-                value: _selectedEntity,
-                hint: Text('اختر فئة لحذفها'),
-                onChanged: (String? newValue) {
-                  setState(() {
-                    _selectedEntity = newValue;
-                  });
+              SizedBox(height: 16.0),
+              if (_selectedOption == 'Category')
+                DropdownButton<String>(
+                  value: _selectedCategory,
+                  hint: Text('اختر تصنيف لحذفه'),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      _selectedCategory = newValue;
+                    });
+                  },
+                  items:
+                      _categories.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
+              if (_selectedOption == 'Entity' && _categories.isNotEmpty)
+                DropdownButton<String>(
+                  value: _selectedCategory,
+                  hint: Text('اختر تصنيف لحذفها'),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      _selectedCategory = newValue;
+                      _entities = [];
+                      _fetchEntities();
+                    });
+                  },
+                  items:
+                      _categories.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
+              SizedBox(height: 16.0),
+              if (_selectedOption == 'Entity' &&
+                  _selectedCategory != null &&
+                  _entities.isNotEmpty)
+                DropdownButton<String>(
+                  value: _selectedEntity,
+                  hint: Text('اختر فئة لحذفها'),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      _selectedEntity = newValue;
+                    });
+                  },
+                  items:
+                      _entities.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
+              SizedBox(height: 16.0),
+              ElevatedButton(
+                onPressed: () {
+                  if (_selectedOption == 'Category' &&
+                      _selectedCategory != null) {
+                    _deleteCategory(_selectedCategory!);
+                  } else if (_selectedOption == 'Entity' &&
+                      _selectedEntity != null) {
+                    _deleteEntity(_selectedEntity!);
+                  }
                 },
-                items: _entities.map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
+                child: Text('حذف'),
               ),
-            SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: () {
-                if (_selectedOption == 'Category' &&
-                    _selectedCategory != null) {
-                  _deleteCategory(_selectedCategory!);
-                } else if (_selectedOption == 'Entity' &&
-                    _selectedEntity != null) {
-                  _deleteEntity(_selectedEntity!);
-                }
-              },
-              child: Text('Delete'),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

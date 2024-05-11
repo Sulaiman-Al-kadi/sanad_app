@@ -46,51 +46,43 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(248, 249, 252, 1),
       appBar: AppBar(
-        elevation: 0.2,
         shadowColor: Colors.grey,
         toolbarHeight: 90,
         backgroundColor: const Color(0xffFDFDFD),
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: GestureDetector(
-            onTap: () {
-              print("object");
-            },
-            child: CircleAvatar(
+        actions: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 10.0),
+                child: Text(
+                  'مرحبا',
+                  style: GoogleFonts.nunitoSans(
+                    color: const Color.fromARGB(255, 85, 85, 85),
+                    fontSize: 15,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 10.0),
+                child: Text('$_firstName $_lastName',
+                    style: GoogleFonts.nunitoSans(
+                      color: const Color.fromARGB(255, 59, 59, 61),
+                      fontSize: 17,
+                      fontWeight: FontWeight.w700,
+                    )),
+              )
+            ],
+          ),
+          GestureDetector(
+            onTap: () {},
+            child: const CircleAvatar(
               radius: 30.0,
               backgroundImage: AssetImage("images/تنزيل (3).jpeg"),
               backgroundColor: Colors.transparent,
             ),
-          ),
-        ),
-        title: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Welcome,',
-              style: GoogleFonts.nunitoSans(
-                color: const Color.fromARGB(255, 85, 85, 85),
-                fontSize: 13,
-                fontWeight: FontWeight.w800,
-              ),
-            ),
-            Text(
-              '$_firstName $_lastName',
-              style: GoogleFonts.nunitoSans(
-                color: const Color.fromARGB(255, 59, 59, 61),
-                fontSize: 17,
-                fontWeight: FontWeight.w900,
-              ),
-            )
-          ],
-        ),
-        actions: [
-          IconButton(
-            padding: const EdgeInsets.all(10),
-            onPressed: () {},
-            icon: const Icon(Icons.notifications_none),
-            iconSize: 37,
           ),
         ],
       ),

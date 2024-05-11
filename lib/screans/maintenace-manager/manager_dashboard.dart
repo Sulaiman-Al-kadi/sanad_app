@@ -9,7 +9,7 @@ class ManagerDashbaord extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Dashbaord"),
+        title: Center(child: Text("لوحة التحكم")),
       ),
       bottomNavigationBar: ManagerNBar(),
     );

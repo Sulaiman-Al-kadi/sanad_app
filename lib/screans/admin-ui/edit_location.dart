@@ -36,108 +36,113 @@ class _EditLocationPageState extends State<EditLocationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Location'),
+        title: Text('تعديل موقع'),
+        centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              _buildDropdownButton(
-                label: 'Building',
-                value: _selectedBuilding,
-                onChanged: (String? newValue) {
-                  setState(() {
-                    _selectedBuilding = newValue;
-                    _selectedFloor = null;
-                    _selectedRoom = null;
-                    _selectedSuite = null;
-                  });
-                  _fetchFloors(newValue);
-                },
-                items: buildings.map((building) {
-                  return DropdownMenuItem(
-                    value: building,
-                    child: Text(building),
-                  );
-                }).toList(),
-              ),
-              SizedBox(height: 16.0),
-              if (_selectedBuilding != null) ...[
+      body: Directionality(
+        textDirection: TextDirection.rtl,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
                 _buildDropdownButton(
-                  label: 'Floor',
-                  value: _selectedFloor,
+                  label: 'مبنى',
+                  value: _selectedBuilding,
                   onChanged: (String? newValue) {
                     setState(() {
-                      _selectedFloor = newValue;
+                      _selectedBuilding = newValue;
+                      _selectedFloor = null;
                       _selectedRoom = null;
                       _selectedSuite = null;
                     });
-                    _fetchRooms(_selectedBuilding, newValue);
+                    _fetchFloors(newValue);
                   },
-                  items: floors.map((floor) {
+                  items: buildings.map((building) {
                     return DropdownMenuItem(
-                      value: floor,
-                      child: Text(floor),
+                      value: building,
+                      child: Text(building),
                     );
                   }).toList(),
                 ),
                 SizedBox(height: 16.0),
-                if (_selectedFloor != null) ...[
+                if (_selectedBuilding != null) ...[
                   _buildDropdownButton(
-                    label: 'Room',
-                    value: _selectedRoom,
+                    label: 'طابق',
+                    value: _selectedFloor,
                     onChanged: (String? newValue) {
                       setState(() {
-                        _selectedRoom = newValue;
+                        _selectedFloor = newValue;
+                        _selectedRoom = null;
                         _selectedSuite = null;
                       });
-                      _fetchSuites(_selectedBuilding, _selectedFloor, newValue);
+                      _fetchRooms(_selectedBuilding, newValue);
                     },
-                    items: rooms.map((room) {
+                    items: floors.map((floor) {
                       return DropdownMenuItem(
-                        value: room,
-                        child: Text(room),
+                        value: floor,
+                        child: Text(floor),
                       );
                     }).toList(),
                   ),
                   SizedBox(height: 16.0),
-                  if (_selectedRoom != null) ...[
+                  if (_selectedFloor != null) ...[
                     _buildDropdownButton(
-                      label: 'Suite',
-                      value: _selectedSuite,
+                      label: 'غرفة',
+                      value: _selectedRoom,
                       onChanged: (String? newValue) {
                         setState(() {
-                          _selectedSuite = newValue;
+                          _selectedRoom = newValue;
+                          _selectedSuite = null;
                         });
+                        _fetchSuites(
+                            _selectedBuilding, _selectedFloor, newValue);
                       },
-                      items: suites.map((suite) {
+                      items: rooms.map((room) {
                         return DropdownMenuItem(
-                          value: suite,
-                          child: Text(suite),
+                          value: room,
+                          child: Text(room),
                         );
                       }).toList(),
                     ),
                     SizedBox(height: 16.0),
-                    _buildTextField('New Building', _newBuilding),
-                    SizedBox(height: 8.0),
-                    _buildTextField('New Floor', _newFloor),
-                    SizedBox(height: 8.0),
-                    _buildTextField('New Room', _newRoom),
-                    SizedBox(height: 8.0),
-                    _buildTextField('New Suite', _newSuite),
-                    SizedBox(height: 16.0),
-                    ElevatedButton(
-                      onPressed: () {
-                        _submitChanges();
-                      },
-                      child: Text('ارسال'),
-                    ),
+                    if (_selectedRoom != null) ...[
+                      _buildDropdownButton(
+                        label: 'جناح',
+                        value: _selectedSuite,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            _selectedSuite = newValue;
+                          });
+                        },
+                        items: suites.map((suite) {
+                          return DropdownMenuItem(
+                            value: suite,
+                            child: Text(suite),
+                          );
+                        }).toList(),
+                      ),
+                      SizedBox(height: 16.0),
+                      _buildTextField('New Building', _newBuilding),
+                      SizedBox(height: 8.0),
+                      _buildTextField('New Floor', _newFloor),
+                      SizedBox(height: 8.0),
+                      _buildTextField('New Room', _newRoom),
+                      SizedBox(height: 8.0),
+                      _buildTextField('New Suite', _newSuite),
+                      SizedBox(height: 16.0),
+                      ElevatedButton(
+                        onPressed: () {
+                          _submitChanges();
+                        },
+                        child: Text('ارسال'),
+                      ),
+                    ],
                   ],
                 ],
               ],
-            ],
+            ),
           ),
         ),
       ),

@@ -1,40 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:sanad_app/screans/maintenace-personnel/in_progress_Requests.dart';
 
 class ReassignPage extends StatefulWidget {
-  final String requestId;
-  final Map<String, dynamic> requestData;
+  final Map<String, dynamic> request;
+  final String requestId; // Add requestId here
 
-  ReassignPage({Key? key, required this.requestId, required this.requestData})
-      : super(key: key);
+  const ReassignPage({
+    Key? key,
+    required this.request,
+    required this.requestId, // Update constructor to accept requestId
+  }) : super(key: key);
 
   @override
   _ReassignPageState createState() => _ReassignPageState();
 }
 
 class _ReassignPageState extends State<ReassignPage> {
-  String? _selectedPersonEmail;
+  String? _selectedMaintenancePersonnelEmail;
   List<DropdownMenuItem<String>> _dropdownMenuItems = [];
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   @override
   void initState() {
     super.initState();
-    fetchPersonnel();
+    _fetchMaintenancePersonnelEmails();
   }
 
-  Future<void> fetchPersonnel() async {
-    QuerySnapshot querySnapshot = await _firestore
+  Future<void> _fetchMaintenancePersonnelEmails() async {
+    final QuerySnapshot querySnapshot = await _firestore
         .collection('users')
         .where('userType', isEqualTo: 'Maintenance Personnel')
+        .where('department', isEqualTo: widget.request['department'])
         .get();
+
     List<DropdownMenuItem<String>> items = querySnapshot.docs.map((doc) {
-      Map<String, dynamic> data =
-          doc.data() as Map<String, dynamic>; // Cast to avoid runtime error.
+      Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+      String email = data['email'] as String;
+      String displayName =
+          '${data['firstName'] ?? 'No first name'} ${data['lastName'] ?? 'No last name'}';
       return DropdownMenuItem<String>(
-        value: data['email'], // Use email as the value for the dropdown
-        child: Text(data['Firstname'] ??
-            'Unnamed'), // Safely access 'name' with a fallback.
+        value: email,
+        child: Text(displayName),
       );
     }).toList();
 
@@ -45,13 +52,16 @@ class _ReassignPageState extends State<ReassignPage> {
     }
   }
 
-  Future<void> reassignRequest() async {
-    if (_selectedPersonEmail != null) {
+  Future<void> _reassignRequest() async {
+    if (_selectedMaintenancePersonnelEmail != null) {
       await _firestore
           .collection('requests')
-          .doc(widget.requestId)
-          .update({'assignedTo': _selectedPersonEmail}).then((_) {
-        print('Request reassigned to $_selectedPersonEmail');
+          .doc(widget.requestId) // Use widget.requestId here
+          .update({
+        'assignedTo': _selectedMaintenancePersonnelEmail,
+        'state': 'onProgress'
+      }).then((_) {
+        print('Request reassigned to $_selectedMaintenancePersonnelEmail');
         Navigator.pop(context); // Navigate back after updating
       }).catchError((error) {
         print('Error updating document: $error');
@@ -61,36 +71,46 @@ class _ReassignPageState extends State<ReassignPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Reassign Request"),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Request ID: ${widget.requestId}"),
-            SizedBox(height: 20),
-            DropdownButton<String>(
-              value: _selectedPersonEmail,
-              items: _dropdownMenuItems,
-              onChanged: (value) {
-                setState(() {
-                  _selectedPersonEmail = value;
-                });
-              },
-              hint: Text('Select Personnel by Email'),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                reassignRequest();
-              },
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
-              child: Text("Reassign"),
-            ),
-          ],
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('اعادة توجيه الطلب'),
+          centerTitle: true,
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('التصنيف: ${widget.request['category']}'),
+              Text('الفئة: ${widget.request['entity']}'),
+              Text('لوصف: ${widget.request['description']}'),
+              SizedBox(height: 20),
+              Text('ايميل المرسل: mp1@gmail.com '), // Display sender's email
+              DropdownButtonFormField<String>(
+                value: _selectedMaintenancePersonnelEmail,
+                onChanged: (newValue) {
+                  setState(() {
+                    _selectedMaintenancePersonnelEmail = newValue;
+                  });
+                },
+                items: _dropdownMenuItems,
+                hint: Text('اختر فني صيانة'),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: _selectedMaintenancePersonnelEmail != null
+                    ? _reassignRequest
+                    : null,
+                child: Text('اعادة توجيه الطلب'),
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.blue,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -92,7 +92,7 @@ class ManageLocation extends StatelessWidget {
           ),
           miniServiceButton(
             context: context,
-            icon: Icons.file_copy,
+            icon: Icons.add_location,
             title: "اضافة موقع",
             routeName: "/add_location",
           ),
@@ -101,7 +101,7 @@ class ManageLocation extends StatelessWidget {
           ),
           miniServiceButton(
             context: context,
-            icon: Icons.file_copy,
+            icon: Icons.change_circle,
             title: "تعديل موقع",
             routeName: "/admin_edit_location",
           ),
@@ -110,7 +110,7 @@ class ManageLocation extends StatelessWidget {
           ),
           miniServiceButton(
             context: context,
-            icon: Icons.file_copy,
+            icon: Icons.qr_code,
             title: "QR code عرض ",
             routeName: "/admin_view_location",
           ),
@@ -119,7 +119,7 @@ class ManageLocation extends StatelessWidget {
           ),
           miniServiceButton(
             context: context,
-            icon: Icons.file_copy,
+            icon: Icons.delete,
             title: "حذف موقع",
             routeName: "/delete_location",
           ),

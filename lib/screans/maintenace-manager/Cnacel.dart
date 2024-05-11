@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/widgets.dart';
 
 class CancelPage extends StatelessWidget {
   final String requestId;
@@ -39,27 +40,32 @@ class CancelPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Cancel Request"),
+        title: Text("الغاء الطلب"),
         centerTitle: true,
       ),
       body: Center(
         child: Column(
           children: [
-            Text("Request ID: $requestId"),
-            Column(
+            SizedBox(height: 20),
+            Text("هل انت متأكد انك تريد الغاء الطلب ",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    // Invoke the accept cancellation function
-                    acceptCancellation();
-                    Navigator.pop(context); // Optionally navigate back
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          const Color.fromARGB(255, 255, 255, 255)),
-                  child: Text("قبول"),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Invoke the accept cancellation function
+                      acceptCancellation();
+                      Navigator.pop(context); // Optionally navigate back
+                    },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            const Color.fromARGB(255, 255, 255, 255)),
+                    child: Text("قبول"),
+                  ),
                 ),
                 SizedBox(height: 20),
                 ElevatedButton(
