@@ -66,15 +66,14 @@ class CreateDepartment extends StatelessWidget {
                   ),
                 ),
                 shape: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(50),
+                  borderRadius: BorderRadius.circular(15),
                   borderSide: BorderSide.none,
                 ),
                 onPressed: () async {
                   await _firestorer.collection('department').add({
                     'name': dep,
                   });
-              Navigator.of(context).pushNamed("/admin_homepage");
-
+                  Navigator.of(context).pushNamed("/admin_homepage");
                 },
               ),
             ],

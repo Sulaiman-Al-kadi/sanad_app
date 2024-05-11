@@ -42,7 +42,7 @@ class _AdminPageState extends State<EditEmployee> {
 
   Future<void> _updateUserType() async {
     if (userData != null && selectedUserType != null) {
-      print('Selected userType: $selectedUserType');
+      print('اختر صلاحية المستخدم: $selectedUserType');
       print('User UID: ${userData!['uid']}');
       try {
         await _firestore.collection('users').doc(userData!['uid']).update({
@@ -70,7 +70,7 @@ class _AdminPageState extends State<EditEmployee> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('OK'),
+              child: Text('حسناً'),
             ),
           ],
         );

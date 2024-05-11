@@ -23,7 +23,7 @@ class Department extends StatelessWidget {
           ),
           miniServiceButton(
             context: context,
-            icon: Icons.file_copy,
+            icon: Icons.add_box_outlined,
             title: "اضافة قسم",
             routeName: "/craete_department",
           ),
@@ -32,7 +32,7 @@ class Department extends StatelessWidget {
           ),
           miniServiceButton(
             context: context,
-            icon: Icons.file_copy,
+            icon: Icons.compare,
             title: "تعديل قسم",
             routeName: "/edit_depatment",
           ),

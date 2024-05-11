@@ -121,7 +121,7 @@ class _EditDepartmentState extends State<EditDepartment> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Cancel'),
+              child: Text('إلغاء'),
             ),
             TextButton(
               onPressed: () async {
@@ -169,13 +169,13 @@ class _EditDepartmentState extends State<EditDepartment> {
 
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Department name updated successfully'),
+            content: Text('تم تحديث اسم القسم بنجاح'),
           ),
         );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Department not found'),
+            content: Text('لم يتم العثور على القسم المحدد'),
           ),
         );
       }

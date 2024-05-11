@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:sanad_app/screans/maintenace-manager/manager_complete.dart';
+
 var requestId;
 
 class MInprogressPage extends StatefulWidget {
@@ -108,7 +109,8 @@ class _MInprogressPageState extends State<MInprogressPage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => ManagerRequestDetailsPage(
+                                      builder: (context) =>
+                                          ManagerRequestDetailsPage(
                                         requestId: requestId,
                                         requestData: request,
                                       ),
@@ -138,16 +140,6 @@ class _MInprogressPageState extends State<MInprogressPage> {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
 class ManagerRequestDetailsPage extends StatefulWidget {
   final String requestId;
   final Map<String, dynamic> requestData;
@@ -157,7 +149,8 @@ class ManagerRequestDetailsPage extends StatefulWidget {
       : super(key: key);
 
   @override
-  _ManagerRequestDetailsPageState createState() => _ManagerRequestDetailsPageState();
+  _ManagerRequestDetailsPageState createState() =>
+      _ManagerRequestDetailsPageState();
 }
 
 class _ManagerRequestDetailsPageState extends State<ManagerRequestDetailsPage> {
@@ -188,9 +181,7 @@ class _ManagerRequestDetailsPageState extends State<ManagerRequestDetailsPage> {
                 color: Colors.black, fontSize: 22, fontWeight: FontWeight.bold),
           ),
         ),
-        actions: [IconButton(onPressed: () {
-          
-        }, icon: Icon(Icons.more_vert))],
+        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.more_vert))],
       ),
       body: Container(
         child: Directionality(

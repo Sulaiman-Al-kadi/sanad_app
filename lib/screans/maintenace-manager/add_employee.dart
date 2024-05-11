@@ -135,7 +135,7 @@ class _AddEmployeePageState extends State<AddEmployeePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Employee'),
+        title: Text('تعديل اتاحة موظف الصيانة'),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
@@ -144,7 +144,7 @@ class _AddEmployeePageState extends State<AddEmployeePage> {
           children: [
             DropdownButton<String>(
               value: _selectedUser,
-              hint: Text('Select Maintenance Personnel'),
+              hint: Text('اختر موظف الصيانة'),
               onChanged: (String? newValue) {
                 setState(() {
                   _selectedUser = newValue;
@@ -164,7 +164,7 @@ class _AddEmployeePageState extends State<AddEmployeePage> {
             SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: _addEmployee,
-              child: Text('Add Employee'),
+              child: Text('اضافة موظف'),
             ),
           ],
         ),

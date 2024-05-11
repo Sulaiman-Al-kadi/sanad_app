@@ -119,14 +119,14 @@ class _ManagerMaintenancePersonnelPageState
         // Update _personnelInfo to reflect the updated availability
         await _fetchPersonnelInfo(_selectedPersonnel!);
 
-        _showAlert('Success: Availability updated successfully');
+        _showAlert('نجاح: تم تحديث الحالة بنجاح');
       } else {
-        _showAlert('Error: Maintenance Personnel document not found');
+        _showAlert('خطأ: فشل تحديث الحالة');
       }
     } catch (e, stackTrace) {
       print('Error updating availability: $e');
       print('Stack Trace: $stackTrace');
-      _showAlert('Error: Failed to update availability');
+      _showAlert('خطأ: فشل تحديث الحالة');
     }
   }
 
@@ -142,7 +142,7 @@ class _ManagerMaintenancePersonnelPageState
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('OK'),
+              child: Text('حسناً'),
             ),
           ],
         );
@@ -154,7 +154,7 @@ class _ManagerMaintenancePersonnelPageState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Manager Page'),
+        title: Text('صفحة حالة الصيانة '),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
@@ -163,7 +163,7 @@ class _ManagerMaintenancePersonnelPageState
           children: [
             DropdownButton<String>(
               value: _selectedPersonnel,
-              hint: Text('Select Maintenance Personnel'),
+              hint: Text('اختر الشخص المراد تحديث حالته'),
               onChanged: (String? newValue) {
                 setState(() {
                   _selectedPersonnel = newValue;
@@ -195,7 +195,7 @@ class _ManagerMaintenancePersonnelPageState
                   Text(
                     _personnelInfo!['available'] ? 'Yes' : 'No',
                     style: TextStyle(
-                      color: _personnelInfo!['available']
+                      color: _personnelInfo!['not available']
                           ? Colors.green
                           : Colors.red,
                     ),
@@ -207,7 +207,7 @@ class _ManagerMaintenancePersonnelPageState
                 children: [
                   Text('Set Availability: '),
                   DropdownButton<bool>(
-                    value: _personnelInfo!['available'],
+                    value: _personnelInfo!['متاح'],
                     onChanged: (newValue) {
                       setState(() {
                         _personnelInfo!['available'] = newValue!;

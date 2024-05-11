@@ -21,7 +21,7 @@ class Employee extends StatelessWidget {
           ),
           miniServiceButton(
             context: context,
-            icon: Icons.file_copy,
+            icon: Icons.person_add,
             title: "اضافة موظف",
             routeName: "/add_employee",
           ),
@@ -30,7 +30,7 @@ class Employee extends StatelessWidget {
           ),
           miniServiceButton(
             context: context,
-            icon: Icons.file_copy,
+            icon: Icons.people_alt_rounded,
             title: "تعديل موظف",
             routeName: "/admin_edit_employee",
           ),
@@ -39,7 +39,7 @@ class Employee extends StatelessWidget {
           ),
           miniServiceButton(
             context: context,
-            icon: Icons.file_copy,
+            icon: Icons.info,
             title: "عرض معلومات الموظفين",
             routeName: "/view_employee",
           ),

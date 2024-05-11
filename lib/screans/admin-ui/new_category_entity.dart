@@ -31,14 +31,14 @@ class CategoryAndEntity extends StatelessWidget {
           Divider(),
           miniServiceButton(
             context: context,
-            icon: Icons.file_copy,
+            icon: Icons.add,
             title: "اضافة التصنيف و الفئة",
             routeName: "/admin_add_entity",
           ),
           Divider(),
           miniServiceButton(
             context: context,
-            icon: Icons.file_copy,
+            icon: Icons.delete_forever_outlined,
             title: "حذف التصنيف و الفئة",
             routeName: "/delete_category_entity",
           ),
