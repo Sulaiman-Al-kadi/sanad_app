@@ -95,6 +95,7 @@ class _UserHomePageState extends State<UserHomePage> {
             ),
           ),
         ],
+        
       ),
       bottomNavigationBar: const UserNBar(),
       body: Container(

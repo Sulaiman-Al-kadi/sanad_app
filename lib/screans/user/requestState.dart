@@ -57,12 +57,33 @@ class _TaskScreenState extends State<TaskScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Center(
-        child: Text(
-          "الطلبات",
-          style: TextStyle(fontSize: 28),
+        title: Center(
+          child: Text(
+            "الطلبات",
+            style: TextStyle(fontSize: 28),
+          ),
         ),
-      )),
+        bottom: TabBar(
+          controller: _tabController,
+          tabs: [
+            Tab(
+                child: Text('تم الانتهاء',
+                    style: GoogleFonts.nunitoSans(
+                      color: const Color.fromARGB(255, 59, 59, 61),
+                      fontSize: 17,
+                      fontWeight: FontWeight.w800,
+                    ))),
+            Tab(
+              child: Text('تحت الصيانه',
+                  style: GoogleFonts.nunitoSans(
+                    color: const Color.fromARGB(255, 59, 59, 61),
+                    fontSize: 17,
+                    fontWeight: FontWeight.w800,
+                  )),
+            ),
+          ],
+        ),
+      ),
       body: TabBarView(
         controller: _tabController,
         children: [UserFinished(), InprogressPage()],

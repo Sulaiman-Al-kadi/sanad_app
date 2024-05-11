@@ -186,12 +186,11 @@ class _DeleteCategoryEntityState extends State<DeleteCategoryEntity> {
       // Update categories list after deletion
       _fetchCategories();
 
-      _showAlert(
-          'Success: Category and associated entities deleted successfully');
+      _showAlert('نجاح: تم حذف التصنيف والفئة المرتبطة بنجاح');
       _selectedCategory = null;
     } catch (e) {
       print('Error deleting category and entities: $e');
-      _showAlert('Error: Failed to delete category and associated entities');
+      _showAlert('خطأ   : فشل في حذف التصنيف والفئة المرتبطة');
     }
   }
 
@@ -210,11 +209,11 @@ class _DeleteCategoryEntityState extends State<DeleteCategoryEntity> {
       // Update entities list after deletion
       _fetchEntities();
 
-      _showAlert('Success: Entity deleted successfully');
+      _showAlert('نجاح: تم حذف الفئة بنجاح');
       _selectedEntity = null;
     } catch (e) {
       print('Error deleting entity: $e');
-      _showAlert('Error: Failed to delete entity');
+      _showAlert('خطأ: فشل في حذف الفئة');
     }
   }
 

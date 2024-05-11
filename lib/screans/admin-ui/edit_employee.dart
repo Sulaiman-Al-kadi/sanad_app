@@ -63,8 +63,8 @@ class _AdminPageState extends State<EditEmployee> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Success'),
-          content: Text('UserType updated successfully.'),
+          title: Text('نجاح'),
+          content: Text('تم تحديث صلاحية المستخدم بنجاح.'),
           actions: <Widget>[
             TextButton(
               onPressed: () {
@@ -84,13 +84,13 @@ class _AdminPageState extends State<EditEmployee> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Error'),
-          content: Text('Failed to update UserType.'),
+          content: Text('فشل تحديث صلاحية المستخدم. حاول مرة أخرى.'),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('OK'),
+              child: Text('حسناً'),
             ),
           ],
         );
@@ -114,14 +114,14 @@ class _AdminPageState extends State<EditEmployee> {
               TextField(
                 controller: _emailController,
                 decoration: InputDecoration(
-                  labelText: 'Enter Email',
+                  labelText: 'ادخل البريد الإلكتروني للمستخدم',
                   border: OutlineInputBorder(),
                 ),
               ),
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _searchUser,
-                child: Text('Search User'),
+                child: Text('ابحث عن المستخدم'),
               ),
               SizedBox(height: 20),
               if (userData != null)
@@ -152,7 +152,7 @@ class _AdminPageState extends State<EditEmployee> {
                         );
                       }).toList(),
                       decoration: InputDecoration(
-                        labelText: 'Select User Type',
+                        labelText: 'اختر صلاحية المستخدم',
                         border: OutlineInputBorder(),
                       ),
                     ),
