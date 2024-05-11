@@ -14,43 +14,12 @@ class _InprogressPageState extends State<InprogressPage> {
   String fetch_requestId() {
     return requestId;
   }
-  // void completeRequest(String requestId) async {
-  //   try {
-  //     await FirebaseFirestore.instance
-  //         .collection('requests')
-  //         .doc(requestId)
-  //         .update({
-  //       'state': 'completed',
-  //     });
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       SnackBar(
-  //         content: Text("Request marked as completed"),
-  //         backgroundColor: Colors.green,
-  //       ),
-  //     );
-  //   } catch (e) {
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       SnackBar(
-  //         content: Text("Failed to complete request: $e"),
-  //         backgroundColor: Colors.red,
-  //       ),
-  //     );
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(237, 232, 232, 1),
       body: Container(
-        // decoration: BoxDecoration(
-        //   image: DecorationImage(
-        //     image: AssetImage("images/inprogrespage.jpeg"),
-        //     fit: BoxFit.cover,
-        //     colorFilter: ColorFilter.mode(
-        //         Colors.black.withOpacity(0.1), BlendMode.dstATop),
-        //   ),
-        // ),
         child: Directionality(
           textDirection: TextDirection.rtl,
           child: StreamBuilder<QuerySnapshot>(

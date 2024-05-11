@@ -58,10 +58,7 @@ class _UserNBarState extends State<UserNBar> {
             icon: Icon(Icons.home),
             label: 'الرئيسية',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.analytics),
-            label: 'صفحة البيانات',
-          ),
+
         ],
         currentIndex: _userSelectedIndex,
         selectedItemColor: const Color.fromARGB(255, 0, 0, 0),
