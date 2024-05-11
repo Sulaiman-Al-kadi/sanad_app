@@ -14,7 +14,7 @@ class _MPDashboardState extends State<MPDashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text('Dashboard')),
+        title: Center(child: Text('لوحة')),
       ),
       body: GridView.count(
         padding: EdgeInsets.all(20),
@@ -23,8 +23,8 @@ class _MPDashboardState extends State<MPDashboard> {
         mainAxisSpacing: 10,
         children: <Widget>[
           DashboardTile(
-            title: 'عدد الطلبات',
-            value: '100',
+            title: ' عدد الطلبات الكلي',
+            value: '10',
             iconData: Icons.format_list_numbered,
           ),
           DashboardTile(
@@ -38,9 +38,9 @@ class _MPDashboardState extends State<MPDashboard> {
             iconData: Icons.check_circle_outline,
           ),
           DashboardTile(
-            title: 'متوسط مدة الطلب الواحد',
-            value: '24 mins',
-            iconData: Icons.timer,
+            title: 'الطلبات الجاري تنفيذها',
+            value: '14 ',
+            iconData: Icons.pending_actions,
           ),
           DashboardTile(
             title: 'عدد الغرف في  النظام',
