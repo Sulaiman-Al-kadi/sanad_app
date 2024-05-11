@@ -169,6 +169,7 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
       return '';
     }
   }
+  
 Future<String> fetchDept() async {
   final QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance
       .collection('entity')

@@ -12,6 +12,29 @@ class InReview extends StatefulWidget {
 
 class _InReviewState extends State<InReview> {
   get email => FirebaseAuth.instance.currentUser?.email;
+  late String department = ''; // Variable to store the department
+  void initState() {
+    super.initState();
+    fetchUserDepartment().then((value) {
+      setState(() {
+        department = value;
+      });
+    });
+  }
+
+  Future<String> fetchUserDepartment() async {
+    // Retrieve department of the current user (manager) from the users collection
+    // Assuming you have a field 'department' in the users collection for each user
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      DocumentSnapshot userDoc = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .get();
+      return userDoc['department'];
+    }
+    return ''; // Return empty string if user is not found or department is not available
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +44,16 @@ class _InReviewState extends State<InReview> {
         child: Directionality(
           textDirection: TextDirection.rtl,
           child: StreamBuilder<QuerySnapshot>(
-            stream: FirebaseFirestore.instance.collection('requests').where("assignedTo", isEqualTo: 
+            stream: FirebaseFirestore.instance
+                .collection('requests')
+                .where('department',
+                    isEqualTo: department) // Filter requests by department
+                .snapshots(),
 
-                // .collection('requests')
-                // .where('email', isEqualTo: email)
-                // .where('state',
-                //     whereIn: ['reassign', 'askcanceled']).snapshots(),
+            // .collection('requests')
+            // .where('email', isEqualTo: email)
+            // .where('state',
+            //     whereIn: ['reassign', 'askcanceled']).snapshots(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(child: CircularProgressIndicator());

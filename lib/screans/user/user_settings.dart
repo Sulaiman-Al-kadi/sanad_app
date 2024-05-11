@@ -15,6 +15,11 @@ class UserSettingsPage extends StatefulWidget {
 class _SettingsPage extends State<UserSettingsPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+
+  Future<void> _changePassword() async {
+    // Implement password change logic
+  }
+
   void _logout() async {
     UserNBar u = new UserNBar();
     u.setUserSelectedIndex(1);
@@ -25,17 +30,11 @@ class _SettingsPage extends State<UserSettingsPage> {
       (route) => false,
     );
   }
-
-  Future<void> _changePassword() async {
-    // Implement password change logic
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("الاعدادات"),
-        backgroundColor: Colors.blue,
+        title: Center(child: const Text("الاعدادات")),
       ),
       bottomNavigationBar: const UserNBar(),
       body: Padding(
@@ -43,24 +42,38 @@ class _SettingsPage extends State<UserSettingsPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            ElevatedButton(
-              onPressed: _logout,
-              child: Text(
+            ListTile(
+              title: Text(
                 'تسجيل الخروج',
                 style: TextStyle(
                   color: Colors.black,
                 ),
               ),
+              leading: Icon(Icons.logout),
+              onTap: _logout,
+              contentPadding:
+                  EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              tileColor: Colors.blue.withOpacity(0.1),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              dense: true,
             ),
             SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _changePassword,
-              child: Text(
+            ListTile(
+              title: Text(
                 'تغيير كلمة المرور',
                 style: TextStyle(
                   color: Colors.black,
                 ),
               ),
+              leading: Icon(Icons.lock),
+              onTap: _changePassword,
+              contentPadding:
+                  EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              tileColor: Colors.blue.withOpacity(0.1),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              dense: true,
             ),
           ],
         ),

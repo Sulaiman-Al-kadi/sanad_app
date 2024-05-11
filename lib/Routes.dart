@@ -105,7 +105,7 @@ var routes = <String, WidgetBuilder>{
 
   //mp
   "/mp_homepage": (context) => const MPHomepage(),
-  "/mp_dashboard": (context) => const MPDashboard(),
+  "/mp_dashboard": (context) => MPDashboard(),
   "/mp_settings": (context) => MPSettigns(),
   // "/view_requests": (context) => ViewRequestPage(),
   // "/maintenance_personnel_page": (context) => MaintenancePersonnelPage(),
