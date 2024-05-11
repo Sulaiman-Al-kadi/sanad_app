@@ -23,6 +23,7 @@ import 'package:sanad_app/screans/maintenace-manager/add_employee.dart';
 import 'package:sanad_app/screans/maintenace-manager/manager_dashboard.dart';
 import 'package:sanad_app/screans/maintenace-manager/manager_homepage.dart';
 import 'package:sanad_app/screans/maintenace-manager/manager_settings.dart';
+import 'package:sanad_app/screans/maintenace-manager/manager_view_reqeust.dart';
 import 'package:sanad_app/screans/maintenace-manager/mp_status.dart';
 import 'package:sanad_app/screans/maintenace-personnel/mp_dashbaord.dart';
 import 'package:sanad_app/screans/maintenace-personnel/mp_homepage.dart';
@@ -111,7 +112,7 @@ var routes = <String, WidgetBuilder>{
 
   //Manager
   "/manager_homepage": (context) => ManagerHomepage(),
-  // "/mp_request_list": (context) => RequestListPage(),
+  "/m_request_list": (context) => RequestListPage(),
   // "/mp_request_detail": (context) => RequestDetailPage(
   //       request: {},
   //       requestId: '',

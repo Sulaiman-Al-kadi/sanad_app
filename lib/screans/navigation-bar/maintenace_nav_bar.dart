@@ -4,6 +4,9 @@ class MpNBar extends StatefulWidget {
   final int initialIndex;
 
   const MpNBar({Key? key, this.initialIndex = 1}) : super(key: key);
+  void setMpSelectedIndex(int index) {
+    _selectedIndex = index;
+  }
 
   @override
   _MpNBarState createState() => _MpNBarState();

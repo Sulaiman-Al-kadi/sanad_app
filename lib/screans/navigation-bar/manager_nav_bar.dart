@@ -7,7 +7,9 @@ class ManagerNBar extends StatefulWidget {
   final int initialIndex;
 
   const ManagerNBar({Key? key, this.initialIndex = 1}) : super(key: key);
-
+    void setManagerIndex(int index) {
+    _managerSelectedIndex = index;
+  }
   @override
   _ManagerNBarState createState() => _ManagerNBarState();
 }

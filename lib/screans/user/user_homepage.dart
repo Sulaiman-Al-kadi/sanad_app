@@ -51,14 +51,6 @@ class _UserHomePageState extends State<UserHomePage> {
         shadowColor: Colors.grey,
         toolbarHeight: 90,
         backgroundColor: const Color(0xffFDFDFD),
-        leading: IconButton(
-          padding: const EdgeInsets.all(10),
-          onPressed: () {
-            // Navigator.of(context).pushNamed("/user_notification");
-          },
-          icon: const Icon(Icons.notifications_none),
-          iconSize: 37,
-        ),
         actions: [
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -95,7 +87,6 @@ class _UserHomePageState extends State<UserHomePage> {
             ),
           ),
         ],
-        
       ),
       bottomNavigationBar: const UserNBar(),
       body: Container(

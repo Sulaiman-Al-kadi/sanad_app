@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:sanad_app/screans/admin-ui/department.dart';
 
 class EnhancedRequestPage extends StatefulWidget {
   final String? building;
@@ -168,7 +169,19 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
       return '';
     }
   }
+Future<String> fetchDept() async {
+  final QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance
+      .collection('entity')
+      .where('name', isEqualTo: _selectedEntity)
+      .get();
 
+  if (snapshot.docs.isNotEmpty) {
+    var department = snapshot.docs.first.data()['department'];
+    return department;
+  } else {
+    return ''; // or any default value you prefer
+  }
+}
   Future<void> _saveRequest() async {
     if (_imageUrl == null ||
         _selectedCategory == null ||
@@ -183,7 +196,7 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
     String? email = user?.email;
 
     mpEmail = await assignedTo() as String?;
-
+    var h = await fetchDept() as String?;
     try {
       await FirebaseFirestore.instance.collection('requests').add({
         'category': _selectedCategory,
@@ -202,7 +215,7 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
         'mpComment': 'null',
         'mpImage': 'null',
         'userFeedback': 'null',
-      });
+        'department':h});
 
       Navigator.pop(context);
       ScaffoldMessenger.of(context).showSnackBar(

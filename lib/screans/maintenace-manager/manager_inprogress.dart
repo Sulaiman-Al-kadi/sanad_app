@@ -1,37 +1,176 @@
-import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:sanad_app/screans/maintenace-personnel/complete_request.dart';
-import 'package:sanad_app/screans/maintenace-personnel/in_progress_Requests.dart';
 import 'package:intl/intl.dart' as intl;
+import 'package:sanad_app/screans/maintenace-manager/manager_complete.dart';
+var requestId;
 
-class RequestDetailsPage extends StatefulWidget {
+class MInprogressPage extends StatefulWidget {
+  _MInprogressPageState createState() => _MInprogressPageState();
+}
+
+class _MInprogressPageState extends State<MInprogressPage> {
+  final String? assignedTo = FirebaseAuth.instance.currentUser?.email;
+  String fetch_requestId() {
+    return requestId;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color.fromRGBO(237, 232, 232, 1),
+      body: Container(
+        child: Directionality(
+          textDirection: TextDirection.rtl,
+          child: StreamBuilder<QuerySnapshot>(
+            stream: FirebaseFirestore.instance
+                .collection('requests')
+                .where('assignedTo', isEqualTo: assignedTo)
+                .orderBy('timestamp', descending: true)
+                .where('state', isEqualTo: 'onProgress')
+                .snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(child: CircularProgressIndicator());
+              } else if (snapshot.hasError) {
+                return Center(child: Text('Error: ${snapshot.error}'));
+              } else {
+                final requests = snapshot.data!.docs;
+
+                if (requests.isEmpty) {
+                  return Center(child: Text('لا يوجد طلبات قيد التنفيذ حاليا'));
+                }
+
+                return ListView.builder(
+                  itemCount: requests.length,
+                  itemBuilder: (context, index) {
+                    final request =
+                        requests[index].data() as Map<String, dynamic>;
+                    requestId = requests[index].id.toString();
+
+                    return Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Card(
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          elevation: 5,
+                          child: ListTileTheme(
+                            contentPadding: EdgeInsets.all(30),
+                            tileColor: Color.fromARGB(255, 255, 255, 255),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: ListTile(
+                              title: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text('التصنيف : ${request['category']}',
+                                          style: TextStyle(
+                                              fontSize: 17,
+                                              fontWeight: FontWeight.bold)),
+                                    ],
+                                  ),
+                                  Text('الفئة: ${request['entity']}',
+                                      style: TextStyle(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.bold)),
+                                  Text(
+                                    'وصف المشكلة:',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    '${(request['description'] as String).length > 25 ? '${request['description'].toString().substring(0, 25)}...' : request['description']}',
+                                  ),
+                                  // Text(
+                                  //   'منذ: ${(request['timestamp'].asTimestamp() as Timestamp).toDate().toString().substring(0, 16)}',
+                                  //   style: TextStyle(
+                                  //       fontWeight: FontWeight.bold,
+                                  //       color: const Color.fromARGB(
+                                  //           255, 117, 72, 224)),
+                                  // )
+                                ],
+                              ),
+                              trailing: ElevatedButton(
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Color.fromARGB(255, 25, 59, 77)),
+                                  shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => ManagerRequestDetailsPage(
+                                        requestId: requestId,
+                                        requestData: request,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: Text(
+                                  'عرض الطلب',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ));
+                  },
+                );
+              }
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+class ManagerRequestDetailsPage extends StatefulWidget {
   final String requestId;
   final Map<String, dynamic> requestData;
 
-  const RequestDetailsPage(
+  const ManagerRequestDetailsPage(
       {Key? key, required this.requestId, required this.requestData})
       : super(key: key);
 
   @override
-  _RequestDetailsPageState createState() => _RequestDetailsPageState();
+  _ManagerRequestDetailsPageState createState() => _ManagerRequestDetailsPageState();
 }
 
-class _RequestDetailsPageState extends State<RequestDetailsPage> {
+class _ManagerRequestDetailsPageState extends State<ManagerRequestDetailsPage> {
   void navigateToValidationPage() async {
     final bool completed = await Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (context) => CompleteRequestPage(
+          builder: (context) => ManagerCompleteRequestPage(
                 requestId: requestId,
                 userId: FirebaseAuth.instance.currentUser!.uid,
               )),
     );
   }
-
-  String? _selectedOption;
 
   @override
   Widget build(BuildContext context) {
@@ -49,21 +188,9 @@ class _RequestDetailsPageState extends State<RequestDetailsPage> {
                 color: Colors.black, fontSize: 22, fontWeight: FontWeight.bold),
           ),
         ),
-        actions: [
-          PopupMenuButton<String>(
-            itemBuilder: (BuildContext context) {
-              return ['الغاء الطلب', 'اعادة تعيين الطلب'].map((String choice) {
-                return PopupMenuItem<String>(
-                  value: choice,
-                  child: Text(choice),
-                );
-              }).toList();
-            },
-            onSelected: (String choice) {
-              _showConfirmationDialog(choice);
-            },
-          ),
-        ],
+        actions: [IconButton(onPressed: () {
+          
+        }, icon: Icon(Icons.more_vert))],
       ),
       body: Container(
         child: Directionality(
@@ -285,54 +412,5 @@ class _RequestDetailsPageState extends State<RequestDetailsPage> {
         ),
       ),
     );
-  }
-
-  void _showConfirmationDialog(String choice) {
-    String x;
-    if (choice == 'الغاء الطلب') {
-      x = 'askcanceled';
-    } else {
-      x = 'reassign';
-    }
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('تأكيد الاختيار'),
-          content: Text('هل أنت متأكد أنك تريد $choice؟'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('إلغاء'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                _updateFirestoreState(x);
-                Navigator.of(context)
-                    .pop(); // Pop twice to return to InProgressPage
-              },
-              child: Text('موافق'),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  Future<void> _updateFirestoreState(String newState) async {
-    try {
-      await FirebaseFirestore.instance
-          .collection('requests') // Replace with your collection
-          .doc(widget.requestId) // Assuming requestId is the document ID
-          .update({'state': newState});
-      // Document updated successfully
-    } catch (e) {
-      // Error updating document
-      print('Error updating document: $e');
-      // You can show a snackbar or dialog to indicate the error to the user
-    }
   }
 }

@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 
 // Global index for UserNBar
-int _userSelectedIndex = 1;
 
 class UserNBar extends StatefulWidget {
   final int initialIndex;
 
   const UserNBar({Key? key, this.initialIndex = 1}) : super(key: key);
+  void setUserSelectedIndex(int index) {
+    _userSelectedIndex = index;
+  }
 
   @override
   _UserNBarState createState() => _UserNBarState();
 }
+
+int _userSelectedIndex = 1;
 
 class _UserNBarState extends State<UserNBar> {
   @override
@@ -58,7 +62,6 @@ class _UserNBarState extends State<UserNBar> {
             icon: Icon(Icons.home),
             label: 'الرئيسية',
           ),
-
         ],
         currentIndex: _userSelectedIndex,
         selectedItemColor: const Color.fromARGB(255, 0, 0, 0),

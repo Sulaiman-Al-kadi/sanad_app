@@ -1,19 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:sanad_app/screans/maintenace-personnel/display_request.dart';
+import 'package:sanad_app/screans/user/rate_page.dart';
 
-var requestId;
+class InReview extends StatefulWidget {
+  const InReview({Key? key});
 
-class InprogressPage extends StatefulWidget {
-  _InprogressPageState createState() => _InprogressPageState();
+  @override
+  State<InReview> createState() => _InReviewState();
 }
 
-class _InprogressPageState extends State<InprogressPage> {
-  final String? assignedTo = FirebaseAuth.instance.currentUser?.email;
-  String fetch_requestId() {
-    return requestId;
-  }
+class _InReviewState extends State<InReview> {
+  get email => FirebaseAuth.instance.currentUser?.email;
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +21,12 @@ class _InprogressPageState extends State<InprogressPage> {
         child: Directionality(
           textDirection: TextDirection.rtl,
           child: StreamBuilder<QuerySnapshot>(
-            stream: FirebaseFirestore.instance
-                .collection('requests')
-                .where('assignedTo', isEqualTo: assignedTo)
-                .orderBy('timestamp', descending: true)
-                .where('state', isEqualTo: 'onProgress')
-                .snapshots(),
+            stream: FirebaseFirestore.instance.collection('requests').where("assignedTo", isEqualTo: 
+
+                // .collection('requests')
+                // .where('email', isEqualTo: email)
+                // .where('state',
+                //     whereIn: ['reassign', 'askcanceled']).snapshots(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(child: CircularProgressIndicator());
@@ -38,7 +36,7 @@ class _InprogressPageState extends State<InprogressPage> {
                 final requests = snapshot.data!.docs;
 
                 if (requests.isEmpty) {
-                  return Center(child: Text('لا يوجد طلبات قيد التنفيذ حاليا'));
+                  return Center(child: Text('لا يوجد طلبات مكتملة حالياً'));
                 }
 
                 return ListView.builder(
@@ -46,16 +44,13 @@ class _InprogressPageState extends State<InprogressPage> {
                   itemBuilder: (context, index) {
                     final request =
                         requests[index].data() as Map<String, dynamic>;
-                    requestId = requests[index].id.toString();
+                    final requestId = requests[index].id.toString();
 
                     return Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Card(
-                          color: Color.fromARGB(255, 255, 255, 255),
-                          elevation: 5,
-                          child: ListTileTheme(
-                            contentPadding: EdgeInsets.all(30),
-                            tileColor: Color.fromARGB(255, 255, 255, 255),
+                            color: Colors.white,
+                            elevation: 0.7,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),
                             ),
@@ -83,13 +78,6 @@ class _InprogressPageState extends State<InprogressPage> {
                                   Text(
                                     '${(request['description'] as String).length > 25 ? '${request['description'].toString().substring(0, 25)}...' : request['description']}',
                                   ),
-                                  // Text(
-                                  //   'منذ: ${(request['timestamp'].asTimestamp() as Timestamp).toDate().toString().substring(0, 16)}',
-                                  //   style: TextStyle(
-                                  //       fontWeight: FontWeight.bold,
-                                  //       color: const Color.fromARGB(
-                                  //           255, 117, 72, 224)),
-                                  // )
                                 ],
                               ),
                               trailing: ElevatedButton(
@@ -108,7 +96,7 @@ class _InprogressPageState extends State<InprogressPage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => RequestDetailsPage(
+                                      builder: (context) => RatingPage(
                                         requestId: requestId,
                                         requestData: request,
                                       ),
@@ -124,9 +112,7 @@ class _InprogressPageState extends State<InprogressPage> {
                                   ),
                                 ),
                               ),
-                            ),
-                          ),
-                        ));
+                            )));
                   },
                 );
               }

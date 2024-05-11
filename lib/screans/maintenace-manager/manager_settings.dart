@@ -15,6 +15,8 @@ class _SettingsPage extends State<ManagerSettings> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   void _logout() async {
+    ManagerNBar a = new ManagerNBar();
+    a.setManagerIndex(1);
     await _auth.signOut();
     Navigator.pushAndRemoveUntil(
       context,

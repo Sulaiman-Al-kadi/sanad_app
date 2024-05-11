@@ -9,7 +9,8 @@ class MPSettigns extends StatelessWidget {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   void _logout(BuildContext context) async {
-    
+    MpNBar h = new MpNBar();
+    h.setMpSelectedIndex(1);
     await _auth.signOut();
     Navigator.pushAndRemoveUntil(
       context,

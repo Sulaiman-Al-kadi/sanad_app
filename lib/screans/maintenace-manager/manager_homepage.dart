@@ -122,7 +122,7 @@ class _ManagerHomepageState extends State<ManagerHomepage> {
                   icon: Icons.category,
                   title: " تصفح الطلبات",
                   subTitle: "تصفح احدث البلاغات المرفوعة",
-                  routeName: "/mp_request_list",
+                  routeName: "/m_request_list",
                 ),
                 Divider(),
                 serviceButton(

@@ -1,321 +1,104 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:sanad_app/screans/maintenace-manager/manager_inprogress.dart';
+import 'package:sanad_app/screans/maintenace-manager/review_request.dart';
+import 'package:sanad_app/screans/maintenace-personnel/Finshed_requests.dart';
+import 'package:sanad_app/screans/maintenace-personnel/in_progress_Requests.dart';
+import 'package:sanad_app/screans/navigation-bar/maintenace_nav_bar.dart';
+import 'package:sanad_app/screans/user/user_finished.dart';
+import 'package:sanad_app/screans/user/user_inprogress.dart';
 
-// class RequestListPage extends StatelessWidget {
-//   const RequestListPage({super.key});
+class RequestListPage extends StatefulWidget {
+  const RequestListPage({super.key});
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Maintenance Requests'),
-//       ),
-//       body: StreamBuilder<QuerySnapshot>(
-//         stream: FirebaseFirestore.instance.collection('requests').snapshots(),
-//         builder: (context, snapshot) {
-//           if (snapshot.connectionState == ConnectionState.waiting) {
-//             return Center(child: CircularProgressIndicator());
-//           } else if (snapshot.hasError) {
-//             return Center(child: Text('Error: ${snapshot.error}'));
-//           } else {
-//             final requests = snapshot.data!.docs;
+  @override
+  State<RequestListPage> createState() => _RequestListPageState();
+}
 
-//             return ListView.builder(
-//               itemCount: requests.length,
-//               itemBuilder: (context, index) {
-//                 final request = requests[index].data() as Map<String, dynamic>;
-//                 final requestId = requests[index].id; // Get the document ID
+class _RequestListPageState extends State<RequestListPage>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+  late String _firstName = '';
+  late String _lastName = '';
 
-//                 return Card(
-//                   margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-//                   child: ListTile(
-//                     title: Text('Category: ${request['category']}'),
-//                     subtitle: Column(
-//                       crossAxisAlignment: CrossAxisAlignment.start,
-//                       children: [
-//                         Text('Entity: ${request['entity']}'),
-//                         Text('Description: ${request['description']}'),
-//                         Text('State: ${request['state']}'),
-//                       ],
-//                     ),
-//                     trailing: ElevatedButton(
-//                       onPressed: () {
-//                         Navigator.push(
-//                           context,
-//                           MaterialPageRoute(
-//                             builder: (context) => RequestDetailPage(
-//                               request: request,
-//                               requestId: requestId,
-//                               documentId: '',
-//                             ),
-//                           ),
-//                         );
-//                       },
-//                       child: Text('View'),
-//                     ),
-//                   ),
-//                 );
-//               },
-//             );
-//           }
-//         },
-//       ),
-//     );
-//   }
-// }
+  Future<void> _loadUserData() async {
+    // Get the current user
+    User? user = FirebaseAuth.instance.currentUser;
 
-// // class RequestDetailPage extends StatelessWidget {
-// //   final Map<String, dynamic> request;
-// //   final String requestId; // Document ID
+    if (user != null) {
+      // Access the "users" collection in Firestore
+      DocumentSnapshot userData = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .get();
 
-// //   const RequestDetailPage({Key? key, required this.request, required this.requestId}) : super(key: key);
+      // Retrieve first and last name from the document
+      setState(() {
+        _firstName = userData['firstName'] ?? '';
+        _lastName = userData['lastName'] ?? '';
+      });
+    }
+  }
 
-// //   @override
-// //   Widget build(BuildContext context) {
-// //     return Scaffold(
-// //       appBar: AppBar(
-// //         title: Text('Request Details'),
-// //       ),
-// //       body: Padding(
-// //         padding: const EdgeInsets.all(16.0),
-// //         child: Column(
-// //           crossAxisAlignment: CrossAxisAlignment.start,
-// //           children: [
-// //             Text('Category: ${request['category']}'),
-// //             Text('Entity: ${request['entity']}'),
-// //             Text('Description: ${request['description']}'),
-// //             Text('State: ${request['state']}'),
-// //             SizedBox(height: 20),
-// //             Row(
-// //               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-// //               children: [
-// //                 ElevatedButton(
-// //                   onPressed: () {
-// //                     _updateRequestState(requestId, 'In progress');
-// //                   },
-// //                   child: Text('Assign Request'),
-// //                 ),
-// //                 ElevatedButton(
-// //                   onPressed: () {
-// //                     _updateRequestState(requestId, 'Canceled');
-// //                   },
-// //                   child: Text('Request Cancellation'),
-// //                 ),
-// //               ],
-// //             ),
-// //           ],
-// //         ),
-// //       ),
-// //     );
-// //   }
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+    _tabController = TabController(length: 3, vsync: this);
+  }
 
-// //   void _updateRequestState(String requestId, String newState) {
-// //     FirebaseFirestore.instance.collection('requests').doc(requestId).update({
-// //       'state': newState,
-// //     }).then((_) {
-// //       print('Request state updated to $newState');
-// //     }).catchError((error) {
-// //       print('Failed to update request state: $error');
-// //     });
-// //   }
-// // }
- 
-// enum RequestState {
-//   onRequestPool,
-//   assigned,
-//   onProgress,
-//   finished,
-//   canceled,
-// }
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
-// class RequestDetailPage extends StatefulWidget {
-//   final Map<String, dynamic> request;
-
-//   const RequestDetailPage(
-//       {Key? key,
-//       required this.request,
-//       required String documentId,
-//       required String requestId})
-//       : super(key: key);
-
-//   @override
-//   _RequestDetailPageState createState() => _RequestDetailPageState();
-// }
-
-// class _RequestDetailPageState extends State<RequestDetailPage> {
-//   RequestState _currentState = RequestState.onRequestPool;
-//   String? _selectedMaintenancePersonnelEmail;
-//   Map<String, String> _maintenancePersonnelMap = {};
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     _fetchMaintenancePersonnelMap();
-//   }
-
-//   Future<void> _fetchMaintenancePersonnelMap() async {
-//     final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-//         .collection('users')
-//         .where('userType', isEqualTo: 'Maintenance Personnel')
-//         .get();
-//     setState(() {
-//       _maintenancePersonnelMap = Map.fromEntries(querySnapshot.docs
-//           .map((doc) => MapEntry(doc['email'], doc['email'])));
-//     });
-//   }
-
-//   Future<void> _assignRequestToMaintenancePersonnel() async {
-//     // Update Firestore document with assigned maintenance personnel email and change state to Assigned
-//     await FirebaseFirestore.instance
-//         .collection('requests')
-//         .doc(widget.request['id'])
-//         .update({
-//       'assignedTo': _selectedMaintenancePersonnelEmail,
-//       'state': RequestState.onProgress.toString().split('.').last,
-//     });
-
-//     setState(() {
-//       _currentState = RequestState.onProgress;
-//     });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Request Details'),
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.all(16.0),
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             Text('Category: ${widget.request['category']}'),
-//             Text('Entity: ${widget.request['entity']}'),
-//             Text('Description: ${widget.request['description']}'),
-//             // Add more details as needed
-//             SizedBox(height: 20),
-//             // Display current state
-//             Text('State: $_currentState'),
-//             // Dropdown to select maintenance personnel
-//             DropdownButtonFormField<String>(
-//               value: _selectedMaintenancePersonnelEmail,
-//               onChanged: (newValue) {
-//                 setState(() {
-//                   _selectedMaintenancePersonnelEmail = newValue;
-//                 });
-//               },
-//               items: _maintenancePersonnelMap.entries.map((entry) {
-//                 return DropdownMenuItem(
-//                   value: entry.key,
-//                   child: Text(entry.value),
-//                 );
-//               }).toList(),
-//               hint: Text('Select Maintenance Personnel'),
-//             ),
-//             // Button to assign request to selected maintenance personnel
-//             if (_currentState == RequestState.onRequestPool)
-//               ElevatedButton(
-//                 onPressed: _selectedMaintenancePersonnelEmail != null
-//                     ? _assignRequestToMaintenancePersonnel
-//                     : null,
-//                 child: Text('Assign to Maintenance Personnel'),
-//               ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-
-
-// // class RequestDetailPage extends StatefulWidget {
-// //   final Map<String, dynamic> request;
-
-// //   const RequestDetailPage({Key? key, required this.request, required String requestId}) : super(key: key);
-
-// //   @override
-// //   _RequestDetailPageState createState() => _RequestDetailPageState();
-// // }
-
-// // class _RequestDetailPageState extends State<RequestDetailPage> {
-// //   RequestState _currentState = RequestState.onRequestPool;
-// //   String? _selectedMaintenancePersonnelId;
-// //   List<String> _maintenancePersonnelIds = [];
-
-// //   @override
-// //   void initState() {
-// //     super.initState();
-// //     _fetchMaintenancePersonnelIds();
-// //   }
-
-// //   Future<void> _fetchMaintenancePersonnelIds() async {
-// //     final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-// //         .collection('users')
-// //         .where('userType', isEqualTo: 'Maintenance Personnel')
-// //         .get();
-// //     setState(() {
-// //       _maintenancePersonnelIds = querySnapshot.docs.map((doc) => doc.id).toList();
-// //     });
-// //   }
-
-// //   Future<void> _assignRequestToMaintenancePersonnel() async {
-// //     // Update Firestore document with assigned maintenance personnel ID and change state to Assigned
-// //     await FirebaseFirestore.instance.collection('requests').doc(widget.request['id']).update({
-// //       'assignedTo': _selectedMaintenancePersonnelId,
-// //       'state': RequestState.onProgress.toString().split('.').last,
-// //     });
-
-// //     setState(() {
-// //       _currentState = RequestState.onProgress;
-// //     });
-// //   }
-
-// //   @override
-// //   Widget build(BuildContext context) {
-// //     return Scaffold(
-// //       appBar: AppBar(
-// //         title: Text('Request Details'),
-// //       ),
-// //       body: Padding(
-// //         padding: const EdgeInsets.all(16.0),
-// //         child: Column(
-// //           crossAxisAlignment: CrossAxisAlignment.start,
-// //           children: [
-// //             Text('Category: ${widget.request['category']}'),
-// //             Text('Entity: ${widget.request['entity']}'),
-// //             Text('Description: ${widget.request['description']}'),
-// //             // Add more details as needed
-// //             SizedBox(height: 20),
-// //             // Display current state
-// //             Text('State: $_currentState'),
-// //             // Dropdown to select maintenance personnel
-// //             DropdownButtonFormField<String>(
-// //               value: _selectedMaintenancePersonnelId,
-// //               onChanged: (newValue) {
-// //                 setState(() {
-// //                   _selectedMaintenancePersonnelId = newValue;
-// //                 });
-// //               },
-// //               items: _maintenancePersonnelIds.map((id) {
-// //                 return DropdownMenuItem(
-// //                   value: id,
-// //                   child: Text(id),
-// //                 );
-// //               }).toList(),
-// //               hint: Text('Select Maintenance Personnel'),
-// //             ),
-// //             // Button to assign request to selected maintenance personnel
-// //             if (_currentState == RequestState.onRequestPool)
-// //               ElevatedButton(
-// //                 onPressed: _selectedMaintenancePersonnelId != null ? _assignRequestToMaintenancePersonnel : null,
-// //                 child: Text('Assign to Maintenance Personnel'),
-// //               ),
-// //           ],
-// //         ),
-// //       ),
-// //     );
-// //   }
-// // }
-
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Center(
+          child: Text(
+            "الطلبات",
+            style: TextStyle(fontSize: 28),
+          ),
+        ),
+        bottom: TabBar(
+          controller: _tabController,
+          tabs: [
+            Tab(
+                child: Text('تم الانتهاء',
+                    style: GoogleFonts.nunitoSans(
+                      color: const Color.fromARGB(255, 59, 59, 61),
+                      fontSize: 17,
+                      fontWeight: FontWeight.w800,
+                    ))),
+            Tab(
+              child: Text('تحت الصيانه',
+                  style: GoogleFonts.nunitoSans(
+                    color: const Color.fromARGB(255, 59, 59, 61),
+                    fontSize: 17,
+                    fontWeight: FontWeight.w800,
+                  )),
+            ),
+            Tab(
+              child: Text('تحت المراجعه',
+                  style: GoogleFonts.nunitoSans(
+                    color: const Color.fromARGB(255, 59, 59, 61),
+                    fontSize: 17,
+                    fontWeight: FontWeight.w800,
+                  )),
+            ),
+          ],
+        ),
+      ),
+      body: TabBarView(
+        controller: _tabController,
+        children: [Finished(), MInprogressPage(), InReview()],
+      ),
+    );
+  }
+}

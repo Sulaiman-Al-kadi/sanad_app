@@ -7,6 +7,7 @@ import 'package:sanad_app/screans/maintenace-personnel/Finshed_requests.dart';
 import 'package:sanad_app/screans/maintenace-personnel/in_progress_Requests.dart';
 import 'package:sanad_app/screans/navigation-bar/maintenace_nav_bar.dart';
 import 'package:sanad_app/screans/user/user_finished.dart';
+import 'package:sanad_app/screans/user/user_inprogress.dart';
 
 class TaskScreen extends StatefulWidget {
   const TaskScreen({super.key});
@@ -86,7 +87,7 @@ class _TaskScreenState extends State<TaskScreen>
       ),
       body: TabBarView(
         controller: _tabController,
-        children: [UserFinished(), InprogressPage()],
+        children: [UserFinished(), UserInprogress()],
       ),
     );
   }

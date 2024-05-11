@@ -15,8 +15,6 @@ class _UserFinishedState extends State<UserFinished> {
 
   @override
   Widget build(BuildContext context) {
-    final String? assignedTo = FirebaseAuth.instance.currentUser?.email;
-
     return Scaffold(
       backgroundColor: Color.fromRGBO(237, 232, 232, 1),
       body: Container(
@@ -94,14 +92,15 @@ class _UserFinishedState extends State<UserFinished> {
                                   ),
                                 ),
                                 onPressed: () {
-                                    Navigator.push(
+                                  Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => RatingPage(
                                         requestId: requestId,
                                         requestData: request,
                                       ),
-                                    ),);
+                                    ),
+                                  );
                                 },
                                 child: Text(
                                   'عرض الطلب',

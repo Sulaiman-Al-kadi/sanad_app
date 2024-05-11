@@ -16,8 +16,9 @@ class _SettingsPage extends State<UserSettingsPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   void _logout() async {
-    
-        await _auth.signOut();
+    UserNBar u = new UserNBar();
+    u.setUserSelectedIndex(1);
+    await _auth.signOut();
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => Login()),
