@@ -58,12 +58,6 @@ class _MPHomepageState extends State<MPHomepage>
         shadowColor: Colors.grey,
         toolbarHeight: 90,
         backgroundColor: const Color(0xffFDFDFD),
-        leading: IconButton(
-          padding: const EdgeInsets.all(10),
-          onPressed: () {},
-          icon: const Icon(Icons.notifications_none),
-          iconSize: 37,
-        ),
         bottom: TabBar(
           controller: _tabController,
           tabs: [

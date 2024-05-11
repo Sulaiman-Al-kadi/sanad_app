@@ -35,6 +35,8 @@ class _RequestDetailsPageState extends State<RequestDetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+
+        
         elevation: 6.2,
         titleTextStyle: TextStyle(
             color: Colors.black,
