@@ -122,29 +122,29 @@ class _SignupState extends State<Signup> {
                 ),
               ),
               SizedBox(height: 24),
-              DropdownButtonFormField<String>(
-                value: userType,
-                onChanged: (value) {
-                  setState(() {
-                    userType = value!;
-                  });
-                },
-                items: ['User', 'Admin', 'Manager', 'Maintenance Personnel']
-                    .map((type) {
-                  return DropdownMenuItem<String>(
-                    value: type,
-                    child: Text(type),
-                  );
-                }).toList(),
-                decoration: InputDecoration(
-                  label: Text("نوع المستخدم"),
-                  prefixIcon: Icon(Icons.person),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
-                          color: Colors.black, style: BorderStyle.none)),
-                ),
-              ),
+              // DropdownButtonFormField<String>(
+              //   value: userType,
+              //   onChanged: (value) {
+              //     setState(() {
+              //       userType = value!;
+              //     });
+              //   },
+              //   items: ['User', 'Admin', 'Manager', 'Maintenance Personnel']
+              //       .map((type) {
+              //     return DropdownMenuItem<String>(
+              //       value: type,
+              //       child: Text(type),
+              //     );
+              //   }).toList(),
+              //   decoration: InputDecoration(
+              //     label: Text("نوع المستخدم"),
+              //     prefixIcon: Icon(Icons.person),
+              //     border: OutlineInputBorder(
+              //         borderRadius: BorderRadius.circular(10),
+              //         borderSide: BorderSide(
+              //             color: Colors.black, style: BorderStyle.none)),
+              //   ),
+              // ),
               SizedBox(height: 24),
               MaterialButton(
                 onPressed: () async {
@@ -155,21 +155,17 @@ class _SignupState extends State<Signup> {
                       password: password,
                     );
 
-
-                
-
-                  await _firestore
-                      .collection('users')
-                      .doc(newUserCredential.user!.uid)
-                      .set({
-                    'email': email,
-                    'phoneNumber': phoneNumber,
-                    'firstName': firstName,
-                    'lastName': lastName,
-                    'userType': userType,
-                    'department': 'null',
-                  });
-
+                    await _firestore
+                        .collection('users')
+                        .doc(newUserCredential.user!.uid)
+                        .set({
+                      'email': email,
+                      'phoneNumber': phoneNumber,
+                      'firstName': firstName,
+                      'lastName': lastName,
+                      'userType': userType,
+                      'department': 'null',
+                    });
 
                     Navigator.of(context)
                         .pop(); // Go back to previous screen after signup
@@ -181,12 +177,12 @@ class _SignupState extends State<Signup> {
                 elevation: 0.0,
                 splashColor: Colors.blue,
                 color: Color.fromARGB(255, 255, 255, 255),
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 120),
+                padding: EdgeInsets.symmetric(vertical: 14, horizontal: 110),
                 child: Text(
                   'تسجيل',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 26,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

@@ -11,6 +11,7 @@ class InprogressPage extends StatefulWidget {
 
 class _InprogressPageState extends State<InprogressPage> {
   final String? assignedTo = FirebaseAuth.instance.currentUser?.email;
+
   String fetch_requestId() {
     return requestId;
   }
@@ -49,72 +50,78 @@ class _InprogressPageState extends State<InprogressPage> {
                     requestId = requests[index].id.toString();
 
                     return Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Card(
-                          color: Color.fromARGB(255, 255, 255, 255),
-                          elevation: 5,
-                          child: ListTileTheme(
-                            contentPadding: EdgeInsets.all(30),
-                            tileColor: Color.fromARGB(255, 255, 255, 255),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: ListTile(
-                              title: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text('التصنيف : ${request['category']}',
-                                          style: TextStyle(
-                                              fontSize: 17,
-                                              fontWeight: FontWeight.bold)),
-                                    ],
-                                  ),
-                                  Text('الفئة: ${request['entity']}',
+                      padding: const EdgeInsets.all(10.0),
+                      child: Card(
+                        color: Color.fromARGB(255, 255, 255, 255),
+                        elevation: 5,
+                        child: ListTileTheme(
+                          contentPadding: EdgeInsets.all(30),
+                          tileColor: Color.fromARGB(255, 255, 255, 255),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: ListTile(
+                            title: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      'التصنيف : ${request['category']}',
                                       style: TextStyle(
                                           fontSize: 17,
-                                          fontWeight: FontWeight.bold)),
-                                  Text(
-                                    'وصف المشكلة:',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    '${(request['description'] as String).length > 25 ? '${request['description'].toString().substring(0, 25)}...' : request['description']}',
-                                  ),
-                                  // Text(
-                                  //   'منذ: ${(request['timestamp'].asTimestamp() as Timestamp).toDate().toString().substring(0, 16)}',
-                                  //   style: TextStyle(
-                                  //       fontWeight: FontWeight.bold,
-                                  //       color: const Color.fromARGB(
-                                  //           255, 117, 72, 224)),
-                                  // )
-                                ],
-                              ),
-                              trailing: ElevatedButton(
-                                style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          Color.fromARGB(255, 25, 59, 77)),
-                                  shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
+                                          fontWeight: FontWeight.bold),
                                     ),
+                                  ],
+                                ),
+                                Text(
+                                  'الفئة: ${request['entity']}',
+                                  style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  'وصف المشكلة:',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  '${(request['description'] as String).length > 25 ? '${request['description'].toString().substring(0, 25)}...' : request['description']}',
+                                ),
+                                // Text(
+                                //   'منذ: ${(request['timestamp'].asTimestamp() as Timestamp).toDate().toString().substring(0, 16)}',
+                                //   style: TextStyle(
+                                //       fontWeight: FontWeight.bold,
+                                //       color: const Color.fromARGB(
+                                //           255, 117, 72, 224)),
+                                // )
+                              ],
+                            ),
+                            trailing: ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Color.fromARGB(255, 25, 59, 77)),
+                                shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
                                 ),
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => RequestDetailsPage(
-                                        requestId: requestId,
-                                        requestData: request,
-                                      ),
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => RequestDetailsPage(
+                                      requestId: requestId,
+                                      requestData: request,
                                     ),
-                                  );
-                                },
+                                  ),
+                                );
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 8.0, horizontal: 12.0),
                                 child: Text(
                                   'عرض الطلب',
                                   style: TextStyle(
@@ -126,7 +133,9 @@ class _InprogressPageState extends State<InprogressPage> {
                               ),
                             ),
                           ),
-                        ));
+                        ),
+                      ),
+                    );
                   },
                 );
               }

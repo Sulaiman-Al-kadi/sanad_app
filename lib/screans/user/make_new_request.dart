@@ -169,20 +169,22 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
       return '';
     }
   }
-  
-Future<String> fetchDept() async {
-  final QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance
-      .collection('entity')
-      .where('name', isEqualTo: _selectedEntity)
-      .get();
 
-  if (snapshot.docs.isNotEmpty) {
-    var department = snapshot.docs.first.data()['department'];
-    return department;
-  } else {
-    return ''; // or any default value you prefer
+  Future<String> fetchDept() async {
+    final QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
+        .instance
+        .collection('entity')
+        .where('name', isEqualTo: _selectedEntity)
+        .get();
+
+    if (snapshot.docs.isNotEmpty) {
+      var department = snapshot.docs.first.data()['department'];
+      return department;
+    } else {
+      return ''; // or any default value you prefer
+    }
   }
-}
+
   Future<void> _saveRequest() async {
     if (_imageUrl == null ||
         _selectedCategory == null ||
@@ -216,7 +218,8 @@ Future<String> fetchDept() async {
         'mpComment': 'null',
         'mpImage': 'null',
         'userFeedback': 'null',
-        'department':h});
+        'department': h
+      });
 
       Navigator.pop(context);
       ScaffoldMessenger.of(context).showSnackBar(
@@ -290,7 +293,7 @@ Future<String> fetchDept() async {
                     child: Text(value),
                   );
                 }).toList(),
-                hint: Text('الافياش لاتعمل'),
+                hint: Text('مثال :الافياش لاتعمل'),
                 icon: Icon(Icons.arrow_drop_down),
                 elevation: 16,
                 style: TextStyle(color: Colors.black),
@@ -330,14 +333,14 @@ Future<String> fetchDept() async {
             ),
             SizedBox(height: 20),
             TextField(
-              maxLength: 149, 
+              maxLength: 149,
               maxLengthEnforcement: MaxLengthEnforcement
                   .enforced, // This will prevent further input once the limit is reached
               controller: _descriptionController,
               decoration: InputDecoration(
-                labelText: "ختياري: الوصف",
+                labelText: "اختياري: الوصف",
                 hintText:
-                    "الافياش الكهربائية لا تعمل رجاءا تصليحها بأسرع وقت ممكن",
+                    "مثال :الافياش الكهربائية لا تعمل رجاءا تصليحها بأسرع وقت ممكن",
                 border: OutlineInputBorder(),
               ),
               maxLines: 3,

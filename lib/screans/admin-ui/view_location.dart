@@ -286,7 +286,7 @@ class _LocationDataState extends State<LocationData> {
                     Text('المبنى: $building'),
                     Text('الطابق: $floor'),
                     Text('الغرفة: $room'),
-                    Text('الحناح: $suite'),
+                    Text('الجناح: $suite'),
                     SizedBox(height: 20),
                   ],
                 ),
