@@ -56,7 +56,7 @@ class _ManagerHomepageState extends State<ManagerHomepage> {
               print("object");
             },
             child: CircleAvatar(
-              radius: 30.0,
+              radius: 35.0,
               backgroundImage: AssetImage("images/تنزيل (3).jpeg"),
               backgroundColor: Colors.transparent,
             ),
@@ -84,14 +84,6 @@ class _ManagerHomepageState extends State<ManagerHomepage> {
             )
           ],
         ),
-        actions: [
-          IconButton(
-            padding: const EdgeInsets.all(10),
-            onPressed: () {},
-            icon: const Icon(Icons.notifications_none),
-            iconSize: 37,
-          ),
-        ],
       ),
       bottomNavigationBar: const ManagerNBar(),
       body: SingleChildScrollView(
