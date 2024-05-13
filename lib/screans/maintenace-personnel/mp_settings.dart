@@ -29,7 +29,7 @@ class MPSettigns extends StatelessWidget {
         backgroundColor: Colors.blue,
       ),
       bottomNavigationBar:
-          MpNBar(initialIndex: 1), // Ensuring the settings index is active
+          MpNBar(), // Ensuring the settings index is active
       body: Directionality(
         textDirection: TextDirection.rtl,
         child: Padding(

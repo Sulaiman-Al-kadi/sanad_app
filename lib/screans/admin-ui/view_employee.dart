@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/widgets.dart';
 
 class ViewEmployeesPage extends StatelessWidget {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -38,36 +39,32 @@ class ViewEmployeesPage extends StatelessWidget {
               }
 
               employeeWidgets.add(
-                Card(
-                 
-                  elevation: 3,
-                  margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  child: Directionality(
-                    textDirection: TextDirection.rtl,
+                Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Card(
+                    elevation: 2,
+                    margin:
+                        EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
                     child: ListTile(
                       contentPadding: EdgeInsets.all(16.0),
                       title: Text(
-                            'الاسم: $fname $lname',
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold
-                            ),
-                          ), 
-                     
+                        'الاسم: $fname $lname',
+                        style: TextStyle(
+                            fontSize: 20.0, fontWeight: FontWeight.bold),
+                      ),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(height: 8.0),
-                           Text(
-                        email,
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          
-                        ),
-                      ),
+                          Text(
+                            email,
+                            style: TextStyle(
+                              fontSize: 18.0,
+                            ),
+                          ),
                           SizedBox(height: 8.0),
                           Text(
                             ' الوظيفة: $userType',

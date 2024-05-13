@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -30,7 +28,7 @@ class _MainPageState extends State<MainPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ادارة التصنيفات'),
+        title: Center(child: Text('ادارة التصنيفات')),
         bottom: TabBar(
           controller: _tabController,
           tabs: const [
@@ -105,26 +103,29 @@ class _AddCategoryState extends State<AddCategory> {
       scrollDirection: Axis.vertical,
       child: Padding(
         padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text('اضف تصنيف', style: TextStyle(fontSize: 18)),
-            TextField(
-              controller: _categoryController,
-              decoration: const InputDecoration(
-                labelText: 'اسم التصنيف',
+        child: Directionality(
+          textDirection: TextDirection.rtl,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text('اضف تصنيف', style: TextStyle(fontSize: 18)),
+              TextField(
+                controller: _categoryController,
+                decoration: const InputDecoration(
+                  labelText: 'اسم التصنيف',
+                ),
               ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                String category = _categoryController.text.trim();
-                if (category.isNotEmpty) {
-                  _addCategory(category);
-                }
-              },
-              child: Text('اضافة تصنيف'),
-            ),
-          ],
+              ElevatedButton(
+                onPressed: () {
+                  String category = _categoryController.text.trim();
+                  if (category.isNotEmpty) {
+                    _addCategory(category);
+                  }
+                },
+                child: Text('اضافة تصنيف'),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -237,56 +238,61 @@ class _AddEntityState extends State<AddEntity> {
       scrollDirection: Axis.vertical,
       child: Padding(
         padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            DropdownButton<String>(
-              value: _selectedCategory,
-              hint: Text('اختر التصنيف'),
-              onChanged: (String? newValue) {
-                setState(() {
-                  _selectedCategory = newValue;
-                });
-              },
-              items: _categories.map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-            ),
-            DropdownButton<String>(
-              value: _selectedDepartment,
-              hint: Text('اختر القسم'),
-              onChanged: (String? newValue) {
-                setState(() {
-                  _selectedDepartment = newValue;
-                });
-              },
-              items: _departments.map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-            ),
-            TextField(
-              controller: _entityNameController,
-              decoration: InputDecoration(
-                labelText: 'اسم الفئة',
+        child: Directionality(
+          textDirection: TextDirection.rtl,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              DropdownButton<String>(
+                value: _selectedCategory,
+                hint: Text('اختر التصنيف'),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    _selectedCategory = newValue;
+                  });
+                },
+                items:
+                    _categories.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
               ),
-            ),
-            SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: () {
-                String name = _entityNameController.text.trim();
-                if (name.isNotEmpty) {
-                  _addEntity(name);
-                }
-              },
-              child: Text('إضافة الفئة'),
-            ),
-          ],
+              DropdownButton<String>(
+                value: _selectedDepartment,
+                hint: Text('اختر القسم'),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    _selectedDepartment = newValue;
+                  });
+                },
+                items:
+                    _departments.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              ),
+              TextField(
+                controller: _entityNameController,
+                decoration: InputDecoration(
+                  labelText: 'اسم الفئة',
+                ),
+              ),
+              SizedBox(height: 16.0),
+              ElevatedButton(
+                onPressed: () {
+                  String name = _entityNameController.text.trim();
+                  if (name.isNotEmpty) {
+                    _addEntity(name);
+                  }
+                },
+                child: Text('إضافة الفئة'),
+              ),
+            ],
+          ),
         ),
       ),
     );

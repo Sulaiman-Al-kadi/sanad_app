@@ -96,49 +96,53 @@ class _AddEmplyeeState extends State<AddEmplyee> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('تعيين مدير'),
+        title: Center(child: Text('تعيين مدير')),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            DropdownButton<String>(
-              value: _selectedManager,
-              hint: Text('اختر المدير المراد تعيينه'),
-              onChanged: (String? newValue) {
-                setState(() {
-                  _selectedManager = newValue;
-                });
-              },
-              items: _managers.map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-            ),
-            DropdownButton<String>(
-              value: _selectedDepartment,
-              hint: Text('اختر القسم'),
-              onChanged: (String? newValue) {
-                setState(() {
-                  _selectedDepartment = newValue;
-                });
-              },
-              items: _departments.map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-            ),
-            SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: _updateDepartment,
-              child: Text('تحديث القسم'),
-            ),
-          ],
+      body: Directionality(
+        textDirection: TextDirection.rtl,
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              DropdownButton<String>(
+                value: _selectedManager,
+                hint: Text('اختر المدير المراد تعيينه'),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    _selectedManager = newValue;
+                  });
+                },
+                items: _managers.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              ),
+              DropdownButton<String>(
+                value: _selectedDepartment,
+                hint: Text('اختر القسم'),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    _selectedDepartment = newValue;
+                  });
+                },
+                items:
+                    _departments.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              ),
+              SizedBox(height: 16.0),
+              ElevatedButton(
+                onPressed: _updateDepartment,
+                child: Text('تحديث القسم'),
+              ),
+            ],
+          ),
         ),
       ),
     );

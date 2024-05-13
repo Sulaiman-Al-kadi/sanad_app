@@ -22,7 +22,7 @@ class _LoginState extends State<Login> {
     final mediaQuery = MediaQuery.of(context);
     final screenWidth = mediaQuery.size.width;
     final screenHeight = mediaQuery.size.height;
-    final padding = mediaQuery.padding;
+  
 
     return Scaffold(
       body: Container(

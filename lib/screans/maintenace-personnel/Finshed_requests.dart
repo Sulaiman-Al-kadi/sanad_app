@@ -44,7 +44,6 @@ class _FinishedState extends State<Finished> {
                   itemBuilder: (context, index) {
                     final request =
                         requests[index].data() as Map<String, dynamic>;
-                    final requestId = requests[index].id.toString();
 
                     return Padding(
                       padding: const EdgeInsets.all(10.0),

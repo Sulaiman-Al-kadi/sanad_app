@@ -23,109 +23,112 @@ class _DeleteLocationState extends State<DeleteLocation> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('حذف موقع'),
+        title: Center(child: Text('حذف موقع')),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            DropdownButton<String>(
-              value: _selectedBuilding,
-              hint: Text('اختر المبنى'),
-              onChanged: (String? newValue) {
-                setState(() {
-                  _selectedBuilding = newValue;
-                  _selectedFloor = null; // Reset selected floor
-                  _selectedRoom = null; // Reset selected room
-                  _selectedSuite = null; // Reset selected suite
-                  _floors = []; // Reset floors list
-                  _fetchFloors(
-                      newValue!); // Fetch floors based on selected building
-                });
-              },
-              items: _buildings.map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-            ),
-            SizedBox(height: 16.0),
-            if (_selectedBuilding != null)
+      body: Directionality(
+        textDirection: TextDirection.rtl,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
               DropdownButton<String>(
-                value: _selectedFloor,
-                hint: Text('اختر الطابق'),
+                value: _selectedBuilding,
+                hint: Text('اختر المبنى'),
                 onChanged: (String? newValue) {
                   setState(() {
-                    _selectedFloor = newValue;
+                    _selectedBuilding = newValue;
+                    _selectedFloor = null; // Reset selected floor
                     _selectedRoom = null; // Reset selected room
                     _selectedSuite = null; // Reset selected suite
-                    _rooms = []; // Reset rooms list
-                    _fetchRooms(_selectedBuilding!,
-                        newValue!); // Fetch rooms based on selected building and floor
+                    _floors = []; // Reset floors list
+                    _fetchFloors(
+                        newValue!); // Fetch floors based on selected building
                   });
                 },
-                items: _floors.map<DropdownMenuItem<String>>((String value) {
+                items: _buildings.map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Text(value),
                   );
                 }).toList(),
               ),
-            SizedBox(height: 16.0),
-            if (_selectedFloor != null)
-              DropdownButton<String>(
-                value: _selectedRoom,
-                hint: Text('اختر الغرفة'),
-                onChanged: (String? newValue) {
-                  setState(() {
-                    _selectedRoom = newValue;
-                    _selectedSuite = null; // Reset selected suite
-                    _suites = []; // Reset suites list
-                    _fetchSuites(_selectedBuilding!, _selectedFloor!,
-                        newValue!); // Fetch suites based on selected building, floor, and room
-                  });
+              SizedBox(height: 16.0),
+              if (_selectedBuilding != null)
+                DropdownButton<String>(
+                  value: _selectedFloor,
+                  hint: Text('اختر الطابق'),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      _selectedFloor = newValue;
+                      _selectedRoom = null; // Reset selected room
+                      _selectedSuite = null; // Reset selected suite
+                      _rooms = []; // Reset rooms list
+                      _fetchRooms(_selectedBuilding!,
+                          newValue!); // Fetch rooms based on selected building and floor
+                    });
+                  },
+                  items: _floors.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
+              SizedBox(height: 16.0),
+              if (_selectedFloor != null)
+                DropdownButton<String>(
+                  value: _selectedRoom,
+                  hint: Text('اختر الغرفة'),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      _selectedRoom = newValue;
+                      _selectedSuite = null; // Reset selected suite
+                      _suites = []; // Reset suites list
+                      _fetchSuites(_selectedBuilding!, _selectedFloor!,
+                          newValue!); // Fetch suites based on selected building, floor, and room
+                    });
+                  },
+                  items: _rooms.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
+              SizedBox(height: 16.0),
+              if (_selectedRoom != null)
+                DropdownButton<String>(
+                  value: _selectedSuite,
+                  hint: Text('اختر الجناح'),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      _selectedSuite = newValue;
+                    });
+                  },
+                  items: _suites.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
+              SizedBox(height: 16.0),
+              ElevatedButton(
+                onPressed: () {
+                  // Check if all fields are selected
+                  if (_selectedBuilding != null &&
+                      _selectedFloor != null &&
+                      _selectedRoom != null &&
+                      _selectedSuite != null) {
+                    _deleteLocation(_selectedBuilding!, _selectedFloor!,
+                        _selectedRoom!, _selectedSuite!);
+                  }
                 },
-                items: _rooms.map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
+                child: Text('حذف'),
               ),
-            SizedBox(height: 16.0),
-            if (_selectedRoom != null)
-              DropdownButton<String>(
-                value: _selectedSuite,
-                hint: Text('اختر الجناح'),
-                onChanged: (String? newValue) {
-                  setState(() {
-                    _selectedSuite = newValue;
-                  });
-                },
-                items: _suites.map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-              ),
-            SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: () {
-                // Check if all fields are selected
-                if (_selectedBuilding != null &&
-                    _selectedFloor != null &&
-                    _selectedRoom != null &&
-                    _selectedSuite != null) {
-                  _deleteLocation(_selectedBuilding!, _selectedFloor!,
-                      _selectedRoom!, _selectedSuite!);
-                }
-              },
-              child: Text('حذف'),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

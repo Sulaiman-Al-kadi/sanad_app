@@ -115,7 +115,7 @@ class _LocationDataState extends State<LocationData> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('عرض المواقع'),
+        title: Center(child: Text('عرض المواقع')),
         actions: [
           IconButton(
             icon: Icon(Icons.print),

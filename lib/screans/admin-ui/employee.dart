@@ -22,7 +22,7 @@ class Employee extends StatelessWidget {
           miniServiceButton(
             context: context,
             icon: Icons.person_add,
-            title: "اضافة موظف",
+            title: "تعيين مدير قسم",
             routeName: "/add_employee",
           ),
           SizedBox(
@@ -31,7 +31,7 @@ class Employee extends StatelessWidget {
           miniServiceButton(
             context: context,
             icon: Icons.people_alt_rounded,
-            title: "تعديل موظف",
+            title: "تغيير صلاحيات الموظف",
             routeName: "/admin_edit_employee",
           ),
           SizedBox(

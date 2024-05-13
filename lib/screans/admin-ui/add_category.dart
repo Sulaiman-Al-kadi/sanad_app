@@ -73,165 +73,168 @@ class _ChangeCategoryEntityState extends State<ChangeCategoryEntity> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('تعديل التصينفات والفئة'),
+        title: Center(child: Text('تعديل التصينفات والفئة')),
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Padding(
           padding: EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Row(
-                children: [
-                  Row(
-                    children: [
-                      Checkbox(
-                        value: _changeCategoryChecked,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            _changeCategoryChecked = value!;
-                            _changeEntityChecked = !_changeCategoryChecked;
-                            if (_changeCategoryChecked) {
-                              _selectedCategory = null;
-                              _selectedEntity = null;
-                              _fetchCategories();
-                            }
-                          });
-                        },
-                      ),
-                      Text('تعديل التصنيفات'),
-                    ],
-                  ),
-                  SizedBox(width: 16),
-                  Row(
-                    children: [
-                      Checkbox(
-                        value: _changeEntityChecked,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            _changeEntityChecked = value!;
-                            _changeCategoryChecked = !_changeEntityChecked;
-                            if (_changeEntityChecked) {
-                              _selectedCategory = null;
-                              _selectedEntity = null;
-                            }
-                          });
-                        },
-                      ),
-                      Text('تغيير التصنيف'),
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(height: 16.0),
-              if (_changeCategoryChecked)
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+          child: Directionality(
+            textDirection: TextDirection.rtl,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Row(
                   children: [
-                    Text('اختر التصنيف'),
-                    DropdownButton<String>(
-                      value: _selectedCategory,
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          _selectedCategory = newValue;
-                          _selectedEntity = null;
-                          if (_selectedCategory != null) {
-                            _fetchEntities(_selectedCategory!);
-                          }
-                        });
-                      },
-                      items: _categories
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
+                    Row(
+                      children: [
+                        Checkbox(
+                          value: _changeCategoryChecked,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              _changeCategoryChecked = value!;
+                              _changeEntityChecked = !_changeCategoryChecked;
+                              if (_changeCategoryChecked) {
+                                _selectedCategory = null;
+                                _selectedEntity = null;
+                                _fetchCategories();
+                              }
+                            });
+                          },
+                        ),
+                        Text('تعديل التصنيفات'),
+                      ],
                     ),
-                    SizedBox(height: 16),
-                    TextField(
-                      controller: _categoryNameController,
-                      decoration: InputDecoration(
-                        labelText: 'ادخل الاسم الجديد',
-                      ),
-                    ),
-                  ],
-                )
-              else
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Text('Choose Category'),
-                    DropdownButton<String>(
-                      value: _selectedCategory,
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          _selectedCategory = newValue;
-                          if (_selectedCategory != null) {
-                            _fetchEntities(_selectedCategory!);
-                          }
-                        });
-                      },
-                      items: _categories
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-                    ),
-                    SizedBox(height: 16),
-                    Text('Choose Entity'),
-                    DropdownButton<String>(
-                      value: _selectedEntity,
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          _selectedEntity = newValue;
-                        });
-                      },
-                      items: _selectedCategory != null
-                          ? _entities
-                              .map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList()
-                          : [],
-                    ),
-                    SizedBox(height: 16),
-                    TextField(
-                      controller: _entityNameController,
-                      decoration: InputDecoration(
-                        labelText: 'ادخل الاسم الجديد',
-                      ),
+                    SizedBox(width: 16),
+                    Row(
+                      children: [
+                        Checkbox(
+                          value: _changeEntityChecked,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              _changeEntityChecked = value!;
+                              _changeCategoryChecked = !_changeEntityChecked;
+                              if (_changeEntityChecked) {
+                                _selectedCategory = null;
+                                _selectedEntity = null;
+                              }
+                            });
+                          },
+                        ),
+                        Text('تغيير التصنيف'),
+                      ],
                     ),
                   ],
                 ),
-              SizedBox(height: 16.0),
-              ElevatedButton(
-                onPressed: () {
-                  if (_changeCategoryChecked &&
-                      _selectedCategory != null &&
-                      _selectedEntity == null &&
-                      _categoryNameController.text.isNotEmpty) {
-                    // Change Category
-                    _changeCategory(_selectedCategory!);
-                  } else if (!_changeCategoryChecked &&
-                      _selectedCategory != null &&
-                      _selectedEntity != null &&
-                      _entityNameController.text.isNotEmpty) {
-                    // Change Entity
-                    _changeEntity(_selectedEntity!);
-                  } else {
-                    _showAlert(
-                        'خطأ: يجب اختيار التصنيف والفئة وادخال الاسم الجديد للتصنيف او الفئة الجديد');
-                  }
-                },
-                child: Text('ارسال'),
-              ),
-            ],
+                SizedBox(height: 16.0),
+                if (_changeCategoryChecked)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text('اختر التصنيف'),
+                      DropdownButton<String>(
+                        value: _selectedCategory,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            _selectedCategory = newValue;
+                            _selectedEntity = null;
+                            if (_selectedCategory != null) {
+                              _fetchEntities(_selectedCategory!);
+                            }
+                          });
+                        },
+                        items: _categories
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                      ),
+                      SizedBox(height: 16),
+                      TextField(
+                        controller: _categoryNameController,
+                        decoration: InputDecoration(
+                          labelText: 'ادخل الاسم الجديد',
+                        ),
+                      ),
+                    ],
+                  )
+                else
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text('Choose Category'),
+                      DropdownButton<String>(
+                        value: _selectedCategory,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            _selectedCategory = newValue;
+                            if (_selectedCategory != null) {
+                              _fetchEntities(_selectedCategory!);
+                            }
+                          });
+                        },
+                        items: _categories
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                      ),
+                      SizedBox(height: 16),
+                      Text('Choose Entity'),
+                      DropdownButton<String>(
+                        value: _selectedEntity,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            _selectedEntity = newValue;
+                          });
+                        },
+                        items: _selectedCategory != null
+                            ? _entities
+                                .map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList()
+                            : [],
+                      ),
+                      SizedBox(height: 16),
+                      TextField(
+                        controller: _entityNameController,
+                        decoration: InputDecoration(
+                          labelText: 'ادخل الاسم الجديد',
+                        ),
+                      ),
+                    ],
+                  ),
+                SizedBox(height: 16.0),
+                ElevatedButton(
+                  onPressed: () {
+                    if (_changeCategoryChecked &&
+                        _selectedCategory != null &&
+                        _selectedEntity == null &&
+                        _categoryNameController.text.isNotEmpty) {
+                      // Change Category
+                      _changeCategory(_selectedCategory!);
+                    } else if (!_changeCategoryChecked &&
+                        _selectedCategory != null &&
+                        _selectedEntity != null &&
+                        _entityNameController.text.isNotEmpty) {
+                      // Change Entity
+                      _changeEntity(_selectedEntity!);
+                    } else {
+                      _showAlert(
+                          'خطأ: يجب اختيار التصنيف والفئة وادخال الاسم الجديد للتصنيف او الفئة الجديد');
+                    }
+                  },
+                  child: Text('ارسال'),
+                ),
+              ],
+            ),
           ),
         ),
       ),

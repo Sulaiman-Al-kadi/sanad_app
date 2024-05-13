@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:sanad_app/screans/user/rate_page.dart';
 
 class UserInprogress extends StatefulWidget {
   const UserInprogress({super.key});

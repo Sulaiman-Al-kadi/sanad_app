@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DeleteCategoryEntity extends StatefulWidget {
-  const DeleteCategoryEntity({Key? key}) : super(key: key);
+  const DeleteCategoryEntity({super.key});
 
   @override
   _DeleteCategoryEntityState createState() => _DeleteCategoryEntityState();
 }
 
 class _DeleteCategoryEntityState extends State<DeleteCategoryEntity> {
-  final TextEditingController _deleteController = TextEditingController();
   String? _selectedOption;
   String? _selectedCategory;
   String? _selectedEntity;
-  List<String> _options = ['Category', 'Entity'];
+  final List<String> _options = ['Category', 'Entity'];
   List<String> _categories = [];
   List<String> _entities = [];
 
@@ -21,7 +20,7 @@ class _DeleteCategoryEntityState extends State<DeleteCategoryEntity> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('حذف تصنيف أو فئة من النظام'),
+        title: Center(child: Text('حذف تصنيف أو فئة من النظام')),
       ),
       body: Directionality(
         textDirection: TextDirection.rtl,

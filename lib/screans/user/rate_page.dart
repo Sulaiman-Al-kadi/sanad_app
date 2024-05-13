@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:sanad_app/screans/user/make_new_request.dart';
 
 class RatingPage extends StatefulWidget {
   final String requestId;

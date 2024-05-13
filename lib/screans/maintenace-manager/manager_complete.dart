@@ -1,13 +1,9 @@
 import 'dart:io';
-import 'dart:math';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sanad_app/screans/maintenace-manager/manager_homepage.dart';
-import 'package:sanad_app/screans/maintenace-personnel/mp_homepage.dart';
 
 class ManagerCompleteRequestPage extends StatefulWidget {
   final String requestId;

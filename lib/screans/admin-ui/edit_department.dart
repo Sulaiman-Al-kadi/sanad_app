@@ -63,44 +63,47 @@ class _EditDepartmentState extends State<EditDepartment> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('تعديل القسم'),
+        title: Center(child: Text('تعديل القسم')),
       ),
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Expanded(
-              child: StreamBuilder<QuerySnapshot>(
-                stream: _firestore.collection('department').snapshots(),
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-
-                  List<DocumentSnapshot> departments = snapshot.data!.docs;
-
-                  return ListView.builder(
-                    itemCount: departments.length,
-                    itemBuilder: (context, index) {
-                      String departmentName = departments[index].get('name');
-                      return ListTile(
-                        title: Text(departmentName),
-                        trailing: IconButton(
-                          icon: Icon(Icons.edit),
-                          onPressed: () {
-                            _editDepartmentName(context, departmentName);
-                          },
-                        ),
+        child: Directionality(
+          textDirection: TextDirection.rtl,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Expanded(
+                child: StreamBuilder<QuerySnapshot>(
+                  stream: _firestore.collection('department').snapshots(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: CircularProgressIndicator(),
                       );
-                    },
-                  );
-                },
+                    }
+
+                    List<DocumentSnapshot> departments = snapshot.data!.docs;
+
+                    return ListView.builder(
+                      itemCount: departments.length,
+                      itemBuilder: (context, index) {
+                        String departmentName = departments[index].get('name');
+                        return ListTile(
+                          title: Text(departmentName),
+                          trailing: IconButton(
+                            icon: Icon(Icons.edit),
+                            onPressed: () {
+                              _editDepartmentName(context, departmentName);
+                            },
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
