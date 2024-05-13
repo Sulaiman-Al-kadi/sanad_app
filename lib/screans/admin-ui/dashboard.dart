@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sanad_app/screans/constants.dart';
-import 'package:sanad_app/screans/navigation-bar/maintenace_nav_bar.dart';
+import 'package:sanad_app/screans/navigation-bar/admin_nav_bar.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -49,7 +48,7 @@ class _DashboardState extends State<Dashboard> {
           ),
         ],
       ),
-      bottomNavigationBar: MpNBar(),
+      bottomNavigationBar: AdminNBar(),
     );
   }
 }

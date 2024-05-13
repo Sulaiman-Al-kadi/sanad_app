@@ -57,17 +57,13 @@ class _UserFinishedState extends State<UserFinished> {
                               title: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
-                                    children: [
-                                      Text('التصنيف : ${request['category']}',
-                                          style: TextStyle(
-                                              fontSize: 17,
-                                              fontWeight: FontWeight.bold)),
-                                    ],
-                                  ),
+                                  Text('التصنيف : ${request['category']}',
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold)),
                                   Text('الفئة: ${request['entity']}',
                                       style: TextStyle(
-                                          fontSize: 17,
+                                          fontSize: 15,
                                           fontWeight: FontWeight.bold)),
                                   Text(
                                     'وصف المشكلة:',
@@ -75,7 +71,7 @@ class _UserFinishedState extends State<UserFinished> {
                                         TextStyle(fontWeight: FontWeight.bold),
                                   ),
                                   Text(
-                                    '${(request['description'] as String).length > 25 ? '${request['description'].toString().substring(0, 25)}...' : request['description']}',
+                                    '${(request['description'] as String).length > 20 ? '${request['description'].toString().substring(0, 20)}...' : request['description']}',
                                   ),
                                 ],
                               ),

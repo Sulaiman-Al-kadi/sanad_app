@@ -19,6 +19,7 @@ import 'package:sanad_app/screans/admin-ui/add_category.dart';
 import 'package:sanad_app/screans/admin-ui/view_employee.dart';
 import 'package:sanad_app/screans/admin-ui/view_location.dart';
 import 'package:sanad_app/screans/forget_passwprd.dart';
+import 'package:sanad_app/screans/login.dart';
 import 'package:sanad_app/screans/maintenace-manager/add_employee.dart';
 import 'package:sanad_app/screans/maintenace-manager/manager_dashboard.dart';
 import 'package:sanad_app/screans/maintenace-manager/manager_homepage.dart';
@@ -66,9 +67,9 @@ class _RoutState extends State<Rout> {
 }
 
 var routes = <String, WidgetBuilder>{
-  //"/": (context) => const Login(),
+  "/": (context) => const Login(),
   "/signup": (context) => const Signup(),
-  "/forget_ password": (context) => const Password(),
+  "/forget_ password": (context) =>  const Password(),
   //user :
   "/user_homepage": (context) => const UserHomePage(),
   "/user_settings": (context) => const UserSettingsPage(),

@@ -194,15 +194,15 @@ class _ManagerRequestDetailsPageState extends State<ManagerRequestDetailsPage> {
                 children: [
                   Text('التصنيف: ${widget.requestData['category']}',
                       style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
                   SizedBox(height: 20),
                   Text('الفئة: ${widget.requestData['entity']}',
                       style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
                   SizedBox(height: 20),
                   Text('وصف المشكلة:',
                       style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
                   SizedBox(height: 3),
                   if (widget.requestData['description'] != "")
                     Text(widget.requestData['description'],

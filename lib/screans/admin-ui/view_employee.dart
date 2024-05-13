@@ -39,6 +39,7 @@ class ViewEmployeesPage extends StatelessWidget {
 
               employeeWidgets.add(
                 Card(
+                 
                   elevation: 3,
                   margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
                   shape: RoundedRectangleBorder(
@@ -49,39 +50,41 @@ class ViewEmployeesPage extends StatelessWidget {
                     child: ListTile(
                       contentPadding: EdgeInsets.all(16.0),
                       title: Text(
-                        email,
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                            'الاسم: $fname $lname',
+                            style: TextStyle(
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold
+                            ),
+                          ), 
+                     
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(height: 8.0),
-                          Text(
-                            ' $fname $lname :الاسم',
-                            style: TextStyle(
-                              fontSize: 16.0,
-                            ),
-                          ),
+                           Text(
+                        email,
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          
+                        ),
+                      ),
                           SizedBox(height: 8.0),
                           Text(
-                            ' $userType :الوظيفة',
+                            ' الوظيفة: $userType',
                             style: TextStyle(
                               fontSize: 16.0,
                             ),
                           ),
                           SizedBox(height: 4.0),
                           Text(
-                            ' $department :القسم',
+                            ' القسم: $department',
                             style: TextStyle(
                               fontSize: 16.0,
                             ),
                           ),
                           SizedBox(height: 4.0),
                           Text(
-                            ' $phoneNumber :رقم التواصل',
+                            ' رقم التواصل: $phoneNumber',
                             style: TextStyle(
                               fontSize: 16.0,
                             ),

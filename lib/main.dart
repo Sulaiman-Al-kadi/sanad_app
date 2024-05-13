@@ -11,8 +11,7 @@ void main() async {
       appId: "1:489826002106:android:d15a451061bf6225df0e83",
       messagingSenderId: "489826002106",
       projectId: "sanaddb1",
-      storageBucket:
-          'gs://sanaddb1.appspot.com', // <- Your bucket URL goes here
+      storageBucket: 'gs://sanaddb1.appspot.com',
     ),
   );
   runApp(const MyApp());
@@ -30,8 +29,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
 
-      home: Login(),
-      //initialRoute: "/admin_homepage",
+      //home: Login(),
+      initialRoute: "/",
       routes: routes,
     );
   }

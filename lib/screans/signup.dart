@@ -86,7 +86,7 @@ class _SignupState extends State<Signup> {
                       borderSide: BorderSide(
                         color: Colors.black,
                       )),
-                  hintText: 'البريد الالكترني',
+                  hintText: 'البريد الالكتروني',
                   prefixIcon: Icon(Icons.email),
                 ),
               ),
@@ -122,29 +122,7 @@ class _SignupState extends State<Signup> {
                 ),
               ),
               SizedBox(height: 24),
-              // DropdownButtonFormField<String>(
-              //   value: userType,
-              //   onChanged: (value) {
-              //     setState(() {
-              //       userType = value!;
-              //     });
-              //   },
-              //   items: ['User', 'Admin', 'Manager', 'Maintenance Personnel']
-              //       .map((type) {
-              //     return DropdownMenuItem<String>(
-              //       value: type,
-              //       child: Text(type),
-              //     );
-              //   }).toList(),
-              //   decoration: InputDecoration(
-              //     label: Text("نوع المستخدم"),
-              //     prefixIcon: Icon(Icons.person),
-              //     border: OutlineInputBorder(
-              //         borderRadius: BorderRadius.circular(10),
-              //         borderSide: BorderSide(
-              //             color: Colors.black, style: BorderStyle.none)),
-              //   ),
-              // ),
+          
               SizedBox(height: 24),
               MaterialButton(
                 onPressed: () async {

@@ -64,20 +64,18 @@ class _InprogressPageState extends State<InprogressPage> {
                             title: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Row(
-                                  children: [
+                               
                                     Text(
-                                      'التصنيف : ${request['category']}',
+                                      'التصنيف: ${request['category']}',
                                       style: TextStyle(
-                                          fontSize: 17,
+                                          fontSize: 15,
                                           fontWeight: FontWeight.bold),
                                     ),
-                                  ],
-                                ),
+                                
                                 Text(
                                   'الفئة: ${request['entity']}',
                                   style: TextStyle(
-                                      fontSize: 17,
+                                      fontSize: 15,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(
@@ -85,7 +83,7 @@ class _InprogressPageState extends State<InprogressPage> {
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                 ),
                                 Text(
-                                  '${(request['description'] as String).length > 25 ? '${request['description'].toString().substring(0, 25)}...' : request['description']}',
+                                  '${(request['description'] as String).length > 20 ? '${request['description'].toString().substring(0, 20)}...' : request['description']}',
                                 ),
                                 // Text(
                                 //   'منذ: ${(request['timestamp'].asTimestamp() as Timestamp).toDate().toString().substring(0, 16)}',

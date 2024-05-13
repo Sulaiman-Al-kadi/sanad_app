@@ -265,7 +265,7 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
                   child: Text(value),
                 );
               }).toList(),
-              hint: Text('عطل كهربائي'),
+              hint: Text( 'اختر التصنيف'),
               icon: Icon(Icons.arrow_drop_down),
               elevation: 16,
               style: TextStyle(color: Colors.black),
@@ -293,7 +293,7 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
                     child: Text(value),
                   );
                 }).toList(),
-                hint: Text('مثال :الافياش لاتعمل'),
+                hint: Text('اختر الئة'),
                 icon: Icon(Icons.arrow_drop_down),
                 elevation: 16,
                 style: TextStyle(color: Colors.black),

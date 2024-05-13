@@ -65,7 +65,7 @@ class _ScanQRPageState extends State<ScanQRPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('الباركود'),
+        title: Center(child: Text('الباركود')),
       ),
       body: Column(
         children: <Widget>[
