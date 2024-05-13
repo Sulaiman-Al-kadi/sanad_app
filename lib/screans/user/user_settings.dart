@@ -14,9 +14,7 @@ class UserSettingsPage extends StatefulWidget {
 class _SettingsPage extends State<UserSettingsPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<void> _changePassword() async {
-    // Implement password change logic
-  }
+  
 
   void _logout() async {
     UserNBar u = new UserNBar();

@@ -202,7 +202,7 @@ class _AddEntityState extends State<AddEntity> {
         'department': _selectedDepartment,
         'category': _selectedCategory,
       });
-      _showAlert('نجاح: تمت إضافة الفىة بنجاح');
+      _showAlert('نجاح: تمت إضافة الفئة بنجاح');
       _entityNameController.clear();
     } catch (e) {
       print('Error adding entity: $e');
