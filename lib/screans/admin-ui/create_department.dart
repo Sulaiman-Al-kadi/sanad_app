@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:sanad_app/screans/admin-ui/admin_home_page.dart';
 
 class CreateDepartment extends StatelessWidget {
   CreateDepartment({super.key});

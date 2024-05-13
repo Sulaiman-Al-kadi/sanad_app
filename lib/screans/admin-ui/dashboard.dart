@@ -13,14 +13,14 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text('لوحة')),
+        title: const Center(child: Text('لوحة')),
       ),
       body: GridView.count(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         crossAxisCount: 2,
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
-        children: <Widget>[
+        children: const <Widget>[
           DashboardTile(
             title: ' عدد الطلبات الكلي',
             value: '36',
@@ -48,7 +48,7 @@ class _DashboardState extends State<Dashboard> {
           ),
         ],
       ),
-      bottomNavigationBar: AdminNBar(),
+      bottomNavigationBar: const AdminNBar(),
     );
   }
 }
@@ -76,18 +76,18 @@ class DashboardTile extends StatelessWidget {
               iconData,
               size: 40,
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
               ),
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Text(
               value,
-              style: TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24),
             ),
           ],
         ),

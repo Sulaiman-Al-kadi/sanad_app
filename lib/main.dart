@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sanad_app/routes.dart';
-import 'package:sanad_app/screans/login.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {

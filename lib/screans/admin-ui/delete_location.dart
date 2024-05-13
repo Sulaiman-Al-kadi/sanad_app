@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DeleteLocation extends StatefulWidget {
-  const DeleteLocation({Key? key}) : super(key: key);
+  const DeleteLocation({super.key});
 
   @override
   _DeleteLocationState createState() => _DeleteLocationState();

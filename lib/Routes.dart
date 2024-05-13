@@ -1,4 +1,3 @@
-// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sanad_app/screans/admin-ui/add_location.dart';
 import 'package:sanad_app/screans/admin-ui/add_employee.dart';
@@ -34,7 +33,6 @@ import 'package:sanad_app/screans/user/make_new_request.dart';
 import 'package:sanad_app/screans/user/rate_page.dart';
 import 'package:sanad_app/screans/user/requestState.dart';
 import 'package:sanad_app/screans/user/scan_qr_code.dart';
-import 'package:sanad_app/screans/user/user_notifcations.dart';
 import 'package:sanad_app/screans/user/user_settings.dart';
 import 'package:sanad_app/screans/user/user.dashbaord.dart';
 import 'package:sanad_app/screans/user/user_homepage.dart';
@@ -76,8 +74,8 @@ var routes = <String, WidgetBuilder>{
   "/user_dashboard": (context) => const UserDashboard(),
   "/user_new_request": (context) => const EnhancedRequestPage(),
   "/scan_qr_code": (context) => ScanQRPage(),
-  "/user_request_state": (context) => TaskScreen(),
-  "/rate_page": (context) => RatingPage(
+  "/user_request_state": (context) => const TaskScreen(),
+  "/rate_page": (context) => const RatingPage(
         requestId: '',
         requestData: {},
       ),
@@ -93,35 +91,35 @@ var routes = <String, WidgetBuilder>{
   "/craete_department": (context) => CreateDepartment(),
   "/add_location": (context) => AddLocation(),
   "/admin_category_enitity": (context) => const CategoryAndEntity(),
-  "/admin_add_category": (context) => ChangeCategoryEntity(),
-  "/admin_add_entity": (context) => MainPage(),
-  "/admin_edit_employee": (context) => EditEmployee(),
+  "/admin_add_category": (context) => const ChangeCategoryEntity(),
+  "/admin_add_entity": (context) => const MainPage(),
+  "/admin_edit_employee": (context) => const EditEmployee(),
   "/admin_view_location": (context) => LocationData(),
-  "/admin_edit_location": (context) => EditLocationPage(),
+  "/admin_edit_location": (context) => const EditLocationPage(),
   "/admin_employee": (context) => const Employee(),
-  "/add_employee": (context) => AddEmplyee(),
-  "/delete_category_entity": (context) => DeleteCategoryEntity(),
-  "/delete_location": (context) => DeleteLocation(),
+  "/add_employee": (context) => const AddEmplyee(),
+  "/delete_category_entity": (context) => const DeleteCategoryEntity(),
+  "/delete_location": (context) => const DeleteLocation(),
   "/view_employee": (context) => ViewEmployeesPage(),
 
   //mp
   "/mp_homepage": (context) => const MPHomepage(),
-  "/mp_dashboard": (context) => MPDashboard(),
+  "/mp_dashboard": (context) => const MPDashboard(),
   "/mp_settings": (context) => MPSettigns(),
   // "/view_requests": (context) => ViewRequestPage(),
   // "/maintenance_personnel_page": (context) => MaintenancePersonnelPage(),
 
   //Manager
-  "/manager_homepage": (context) => ManagerHomepage(),
-  "/m_request_list": (context) => RequestListPage(),
+  "/manager_homepage": (context) => const ManagerHomepage(),
+  "/m_request_list": (context) => const RequestListPage(),
   // "/mp_request_detail": (context) => RequestDetailPage(
   //       request: {},
   //       requestId: '',
   //       documentId: '',
   //     ),
-  "/manager_settings": (context) => ManagerSettings(),
+  "/manager_settings": (context) => const ManagerSettings(),
   "/manager_dashboard": (context) => const ManagerDashbaord(),
   "/manager_add_employee": (context) => const AddEmployeePage(),
-  "/manager_change_available": (context) => ManagerMaintenancePersonnelPage(),
+  "/manager_change_available": (context) => const ManagerMaintenancePersonnelPage(),
   // other routes
 };
