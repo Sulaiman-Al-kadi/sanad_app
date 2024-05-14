@@ -264,7 +264,7 @@ class _EnhancedRequestPageState extends State<EnhancedRequestPage> {
                   child: Text(value),
                 );
               }).toList(),
-              hint: Text( 'اختر التصنيف'),
+              hint: Text('اختر التصنيف'),
               icon: Icon(Icons.arrow_drop_down),
               elevation: 16,
               style: TextStyle(color: Colors.black),

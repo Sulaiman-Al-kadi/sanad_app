@@ -67,7 +67,7 @@ class _RoutState extends State<Rout> {
 var routes = <String, WidgetBuilder>{
   "/": (context) => const Login(),
   "/signup": (context) => const Signup(),
-  "/forget_ password": (context) =>  const Password(),
+  "/forget_ password": (context) => const Password(),
   //user :
   "/user_homepage": (context) => const UserHomePage(),
   "/user_settings": (context) => const UserSettingsPage(),
@@ -118,8 +118,9 @@ var routes = <String, WidgetBuilder>{
   //       documentId: '',
   //     ),
   "/manager_settings": (context) => const ManagerSettings(),
-  "/manager_dashboard": (context) => const ManagerDashbaord(),
+  "/manager_dashboard": (context) => const ManagerDashboard(),
   "/manager_add_employee": (context) => const AddEmployeePage(),
-  "/manager_change_available": (context) => const ManagerMaintenancePersonnelPage(),
+  "/manager_change_available": (context) =>
+      const ManagerMaintenancePersonnelPage(),
   // other routes
 };

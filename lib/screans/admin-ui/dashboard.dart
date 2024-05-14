@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sanad_app/screans/navigation-bar/admin_nav_bar.dart';
 
 class Dashboard extends StatefulWidget {
@@ -9,44 +10,105 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  late Future<Map<String, dynamic>> _dashboardData;
+
+  @override
+  void initState() {
+    super.initState();
+    _dashboardData = _fetchDashboardData();
+  }
+
+  Future<Map<String, dynamic>> _fetchDashboardData() async {
+    int totalOrders = await _firestore
+        .collection('requests')
+        .get()
+        .then((snapshot) => snapshot.size);
+
+    int cancelledOrders = await _firestore
+        .collection('requests')
+        .where('state', isEqualTo: 'cancelled')
+        .get()
+        .then((snapshot) => snapshot.size);
+
+    int completedOrders = await _firestore
+        .collection('requests')
+        .where('state', isEqualTo: 'completed')
+        .get()
+        .then((snapshot) => snapshot.size);
+
+    int ongoingOrders = await _firestore
+        .collection('requests')
+        .where('state', isEqualTo: 'onProgress')
+        .get()
+        .then((snapshot) => snapshot.size);
+
+    int rooms = await _firestore
+        .collection('location')
+        .get()
+        .then((snapshot) => snapshot.size);
+
+    return {
+      'totalOrders': totalOrders,
+      'cancelledOrders': cancelledOrders,
+      'completedOrders': completedOrders,
+      'ongoingOrders': ongoingOrders,
+      'rooms': rooms,
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text('لوحة')),
+        title: const Center(child: Text('لوحة التحكم')),
       ),
-      body: GridView.count(
-        padding: const EdgeInsets.all(20),
-        crossAxisCount: 2,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-        children: const <Widget>[
-          DashboardTile(
-            title: ' عدد الطلبات الكلي',
-            value: '36',
-            iconData: Icons.format_list_numbered,
-          ),
-          DashboardTile(
-            title: 'الطبيات الملغية',
-            value: '1',
-            iconData: Icons.cancel,
-          ),
-          DashboardTile(
-            title: 'الطلبات المكتملة',
-            value: '15',
-            iconData: Icons.check_circle_outline,
-          ),
-          DashboardTile(
-            title: 'الطلبات الجاري تنفيذها',
-            value: '20 ',
-            iconData: Icons.pending_actions,
-          ),
-          DashboardTile(
-            title: 'عدد الغرف في  النظام',
-            value: '10',
-            iconData: Icons.meeting_room,
-          ),
-        ],
+      body: FutureBuilder<Map<String, dynamic>>(
+        future: _dashboardData,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return const Center(child: Text('Error fetching data'));
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return const Center(child: Text('No data available'));
+          } else {
+            Map<String, dynamic> data = snapshot.data!;
+            return GridView.count(
+              padding: const EdgeInsets.all(20),
+              crossAxisCount: 2,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+              children: <Widget>[
+                DashboardTile(
+                  title: ' عدد الطلبات الكلي',
+                  value: data['totalOrders'].toString(),
+                  iconData: Icons.format_list_numbered,
+                ),
+                DashboardTile(
+                  title: 'الطبيات الملغية',
+                  value: data['cancelledOrders'].toString(),
+                  iconData: Icons.cancel,
+                ),
+                DashboardTile(
+                  title: 'الطلبات المكتملة',
+                  value: data['completedOrders'].toString(),
+                  iconData: Icons.check_circle_outline,
+                ),
+                DashboardTile(
+                  title: 'الطلبات الجاري تنفيذها',
+                  value: data['ongoingOrders'].toString(),
+                  iconData: Icons.pending_actions,
+                ),
+                DashboardTile(
+                  title: 'عدد الغرف في النظام',
+                  value: data['rooms'].toString(),
+                  iconData: Icons.meeting_room,
+                ),
+              ],
+            );
+          }
+        },
       ),
       bottomNavigationBar: const AdminNBar(),
     );

@@ -17,7 +17,7 @@ class CancelPage extends StatelessWidget {
     await _firestore
         .collection('requests')
         .doc(requestId)
-        .update({'state': 'canceled'}).then((_) {
+        .update({'state': 'cancelled'}).then((_) {
       print('Cancellation Accepted');
     }).catchError((error) {
       print('Error updating document: $error');
