@@ -63,14 +63,10 @@ class _MInprogressPageState extends State<MInprogressPage> {
                               title: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
-                                    children: [
-                                      Text('التصنيف : ${request['category']}',
-                                          style: TextStyle(
-                                              fontSize: 17,
-                                              fontWeight: FontWeight.bold)),
-                                    ],
-                                  ),
+                                  Text('التصنيف : ${request['category']}',
+                                      style: TextStyle(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.bold)),
                                   Text('الفئة: ${request['entity']}',
                                       style: TextStyle(
                                           fontSize: 17,
