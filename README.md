@@ -1,7 +1,7 @@
 # sanad_app
 
-A new Flutter project.
-
+A maintenance mobile app for buildings, the user can use it to send a maintenance request to the
+responsible person directly, it's easy to use for normal users, with a user-friendly User Interface 
 ## Getting Started
 
 This project is a starting point for a Flutter application.
