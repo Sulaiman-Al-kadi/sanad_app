@@ -2,11 +2,10 @@
 
 A maintenance mobile app for buildings, the user can use it to send a maintenance request to the
 responsible person directly, it's easy to use for normal users, with a user-friendly User Interface 
-## Getting Started
+## Screenshots And Usage
+![Screenshot_20240514_082232](https://github.com/user-attachments/assets/641e5701-d809-4bb0-8815-73b9cf42442d)
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
